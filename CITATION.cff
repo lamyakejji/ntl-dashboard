@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "If you use these estimates, please cite them as below."
+title: "Night-time lights and economic activity — Mauritania"
+authors:
+  - name: "African Development Bank"
+  - name: "Data Innovation for Africa (DI4A)"
+date-released: 2026-11-01
+url: "https://lamyakejji.github.io/ntl-dashboard/"
+repository-code: "https://github.com/lamyakejji/ntl-dashboard"
+license:
+  - CC-BY-4.0
+  - MIT
