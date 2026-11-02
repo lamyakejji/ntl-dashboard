@@ -6,9 +6,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Lumières nocturnes et activité économique</title>
 <meta name="description" content="Tableau de bord : l'activité économique mesurée par les lumières nocturnes (VIIRS), aux niveaux national et régional.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2300553A'/%3E%3Ccircle cx='11' cy='13' r='3' fill='%23f5c242'/%3E%3Ccircle cx='21' cy='19' r='2' fill='%23f5c242'/%3E%3Ccircle cx='19' cy='9' r='1.4' fill='%23fde7a6'/%3E%3C/svg%3E">
-<link rel="stylesheet" href="assets/vendor/leaflet.css?v=20261101131711">
-<link rel="stylesheet" href="assets/style.css?v=20261101131711">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23004C97'/%3E%3Ccircle cx='11' cy='13' r='3' fill='%23F5BD47'/%3E%3Ccircle cx='21' cy='19' r='2' fill='%23F5BD47'/%3E%3Ccircle cx='19' cy='9' r='1.4' fill='%23fde7a6'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/vendor/leaflet.css?v=20261102080455">
+<link rel="stylesheet" href="assets/style.css?v=20261102080455">
 <script>
   // apply the stored theme before first paint (no flash)
   try { const t = localStorage.getItem("ntl-theme"); if (t === "light" || t === "dark") document.documentElement.dataset.theme = t; } catch (e) {}
@@ -20,12 +20,13 @@
   <div class="brand">
     <img id="flag" class="flag" alt="Drapeau" hidden>
     <div>
-      <div class="eyebrow">Banque africaine de développement · Lumières nocturnes et activité économique</div>
+      <div class="eyebrow">Banque africaine de développement · IMF Big Data Center · Lumières nocturnes et activité économique</div>
       <h1 id="country-title">Chargement…</h1>
     </div>
   </div>
   <div class="controls">
     <span class="cobrand">BAD × DI4A</span>
+    <span class="cobrand imf">IMF Big Data Center</span>
     <a id="lang-switch" class="lang-btn" href="#" title="English version" hreflang="en">EN</a>
     <label class="sr" for="country-select">Pays</label>
     <select id="country-select" hidden></select>
@@ -43,9 +44,9 @@
   <a href="#map" data-page="map">Carte</a>
   <a href="#time" data-page="time">Évolution</a>
   <a href="#regions" data-page="regions">Régions</a>
-  <a href="#shocks" data-page="shocks">Chocs</a>
   <a href="#inequality" data-page="inequality">Inégalités</a>
-  <a href="#industry" data-page="industry">Zones industrielles</a>
+  <a href="#grid" data-page="grid">Réseau électrique</a>
+  <a href="#outages" data-page="outages">Coupures d'électricité</a>
   <a href="#method" data-page="method">Méthode &amp; limites</a>
   <a href="#data" data-page="data">Données</a>
 </nav>
@@ -178,36 +179,6 @@
     </article>
   </section>
 
-  <!-- ================================ SHOCKS ================================ -->
-  <section class="page" id="page-shocks" hidden>
-    <article class="card">
-      <h2>Chocs : profondeur et durée de récupération</h2>
-      <p class="help">Creux = écart maximal du niveau désaisonnalisé à sa moyenne des 12 mois précédant l'événement.
-        Récupération = premier mois où ce niveau est retrouvé.</p>
-      <div id="s-table"></div>
-    </article>
-    <div class="grid two">
-      <article class="card">
-        <h2>Données quotidiennes (Black Marble)</h2>
-        <label class="ctl">Fenêtre <select id="s-window"></select></label>
-        <div class="chart" id="s-daily"></div>
-        <p class="source">Source : NASA Black Marble VNP46A2, pixels de qualité élevée sans nuage ni neige.</p>
-      </article>
-      <article class="card">
-        <h2>Impact par région</h2>
-        <label class="ctl">Événement <select id="s-event"></select></label>
-        <div class="chart" id="s-regional"></div>
-        <p class="source">Source : VIIRS DNB mensuel désaisonnalisé par région.</p>
-      </article>
-    </div>
-    <article class="card">
-      <h2>Ruptures détectées</h2>
-      <p class="help">Une rupture sans événement connu à ±6 mois mérite une enquête : changement de capteur, panne,
-        événement local non répertorié.</p>
-      <div id="s-breaks"></div>
-    </article>
-  </section>
-
   <!-- ================================ INEQUALITY ================================ -->
   <section class="page" id="page-inequality" hidden>
     <div class="grid two">
@@ -249,56 +220,12 @@
   </section>
 
   <!-- ================================ METHOD ================================ -->
+  <!-- ======================= ELECTRICITY GRID / OUTAGES (rendered by assets/elec.js) ======================= -->
+  <section class="page" id="page-grid" hidden></section>
+  <section class="page" id="page-outages" hidden></section>
+
   <section class="page prose" id="page-method" hidden>
     <article class="card"><div id="method"></div></article>
-  </section>
-
-  <!-- ================================ INDUSTRY ================================ -->
-  <section class="page" id="page-industry" hidden>
-    <p class="lede" id="ind-lede"></p>
-    <div class="kpis" id="ind-kpis"></div>
-    <div class="card map-card ind-card">
-      <div class="map-toolbar" role="group" aria-label="Filtres des zones">
-        <div class="seg" id="ind-filter">
-          <button type="button" data-c="all" class="on">Toutes</button>
-          <button type="button" data-c="major">Pôles majeurs</button>
-          <button type="button" data-c="zone">Zones industrielles / logistiques</button>
-          <button type="button" data-c="energy">Énergie / extraction</button>
-        </div>
-        <label class="ctl"><input type="checkbox" id="ind-ntl" checked> Lumières nocturnes en fond</label>
-        <label class="ctl"><input type="checkbox" id="ind-poly" checked> Contours des zones</label>
-      </div>
-      <div class="map-wrap ind-wrap">
-        <div id="imap" class="map" role="region" aria-label="Carte des zones industrielles"></div>
-        <div class="map-legend" id="ind-legend"></div>
-      </div>
-      <p class="help">Chaque cercle est une zone candidate ; sa surface est proportionnelle à la lumière émise. Survolez pour
-        l'identifier, cliquez pour sa fiche (évolution de la lumière, bâti non résidentiel, NO₂, validation OpenStreetMap).</p>
-      <p class="source">Sources : VIIRS VNL V2 (NOAA/EOG), GHSL BUILT-S R2023A (bâti non résidentiel) et GHS-POP (JRC),
-        Sentinel-5P TROPOMI NO₂ (ESA/Copernicus), OpenStreetMap (validation) ; calculs Google Earth Engine.</p>
-    </div>
-    <div class="grid two">
-      <article class="card">
-        <h2>Les 15 zones qui émettent le plus de lumière</h2>
-        <p class="help">Part de la lumière nationale émise par chaque zone (dernière année), couleur = type de zone.</p>
-        <div class="chart tall" id="ind-top"></div>
-      </article>
-      <article class="card">
-        <h2>Signature industrielle des zones</h2>
-        <p class="help">Plus une zone est à droite (bâti surtout non résidentiel) et haut (beaucoup de lumière par habitant),
-          plus son profil est industriel. Taille = lumière émise.</p>
-        <div class="chart tall" id="ind-scatter"></div>
-      </article>
-    </div>
-    <article class="card">
-      <h2>Toutes les zones détectées</h2>
-      <p class="help">Cliquez sur une ligne pour centrer la carte sur la zone. Colonnes triables.</p>
-      <div class="table-wrap ind-table-wrap"><table class="data" id="ind-table"></table></div>
-    </article>
-    <article class="card prose">
-      <h2>Méthode, validation et limites</h2>
-      <div id="ind-method"></div>
-    </article>
   </section>
 
   <!-- ================================ DATA ================================ -->
@@ -308,6 +235,7 @@
       <p class="help">Toutes les tables affichées sont téléchargeables. Licences : VIIRS et Black Marble (domaine public,
         attribution demandée), geoBoundaries et WorldPop (CC BY 4.0), GHSL (CC BY 4.0), Banque mondiale (CC BY 4.0).</p>
       <p class="lic-note"><b>© 2026 AfDB-DI4A — CC BY 4.0.</b> Toute réutilisation de ces tableaux, cartes ou figures doit mentionner : <b>« Source : Banque africaine de développement – Data Innovation for Africa (AfDB-DI4A) »</b>. Conditions complètes dans <code>LICENSE.txt</code>.</p>
+      <p class="lic-note"><b>Avertissement : les opinions exprimées sont celles des auteurs et ne reflètent pas nécessairement celles du FMI, de son Conseil d'administration ou de sa direction.</b></p>
       <ul class="downloads" id="downloads"></ul>
     </article>
   </section>
@@ -317,15 +245,19 @@
     <span class="fb-afdb">Banque africaine de développement</span>
     <span class="fb-x">×</span>
     <span class="fb-di4a">Data Innovation for Africa (DI4A)</span>
+    <span class="fb-x">×</span>
+    <span class="fb-imf">IMF Big Data Center</span>
     <span class="fb-lic">© 2026 AfDB-DI4A · Contenus CC BY 4.0, code MIT · Toute réutilisation doit mentionner « Source : Banque africaine de développement – Data Innovation for Africa (AfDB-DI4A) »</span>
+    <p class="disclaimer">Avertissement : les opinions exprimées sont celles des auteurs et ne reflètent pas nécessairement celles du FMI, de son Conseil d'administration ou de sa direction.</p>
   </div>
   <p id="foot"></p>
 </footer>
 
-<script src="assets/vendor/leaflet.js?v=20261101131711"></script>
+<script src="assets/vendor/leaflet.js?v=20261102080455"></script>
 <script>window.L || document.write('<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"><script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"><\/script>')</script>
-<script src="assets/vendor/plotly.min.js?v=20261101131711" charset="utf-8"></script>
+<script src="assets/vendor/plotly.min.js?v=20261102080455" charset="utf-8"></script>
 <script>window.Plotly || document.write('<script src="https://cdn.jsdelivr.net/npm/plotly.js-dist-min@2.35.2/plotly.min.js" charset="utf-8"><\/script>')</script>
-<script src="assets/app.js?v=20261101131711"></script>
+<script src="assets/app.js?v=20261102080455"></script>
+<script src="assets/elec.js?v=20261102080455"></script>
 </body>
 </html>

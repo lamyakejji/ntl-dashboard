@@ -5,7 +5,7 @@
 const S = { iso: null, d: {}, rendered: {}, map: null, mapB: null, mapMode: "choro" };
 const $ = (s, el = document) => el.querySelector(s);
 const $$ = (s, el = document) => [...el.querySelectorAll(s)];
-const PAGES = ["overview", "map", "time", "regions", "shocks", "inequality", "industry", "method", "data"];
+const PAGES = ["overview", "map", "time", "regions", "inequality", "grid", "outages", "method", "data"];
 
 /* ---------------------------------------------------------------- formatting (fr-FR) */
 const nf = (d = 0) => new Intl.NumberFormat("fr-FR", { minimumFractionDigits: d, maximumFractionDigits: d });
@@ -56,8 +56,9 @@ async function loadCountry(iso) {
     meta: getJSON(base + "meta.json"), summary: getJSON(base + "summary.json"),
     regions: getCSV(base + "regions.csv"), annual: getCSV(base + "annual_units.csv"),
     monthly: getCSV(base + "monthly_national.csv"), madm1: getCSV(base + "monthly_adm1.csv"),
-    gdp: getJSON(base + "gdp.json"), shocks: getJSON(base + "shocks.json"), ineq: getJSON(base + "inequality.json"),
-    growth: getJSON(base + "growth.json"), ind: getJSON(base + "industrial.geojson"), indmeta: getJSON(base + "industrial.json"),
+    gdp: getJSON(base + "gdp.json"), breaks: getJSON(base + "breaks.json"), ineq: getJSON(base + "inequality.json"),
+    growth: getJSON(base + "growth.json"), grid: getJSON(base + "grid.json"), gridLines: getJSON(base + "grid_lines.geojson"), gridPts: getJSON(base + "grid_points.geojson"),
+    outages: getJSON(base + "outages.json"), outUnits: getJSON(base + "outage_units.geojson"), news: getJSON(base + "news.json"),
     adm0: getJSON(base + "adm0.geojson"), adm1: getJSON(base + "adm1.geojson"), adm2: getJSON(base + "adm2.geojson"),
   };
   const keys = Object.keys(want);
@@ -124,7 +125,8 @@ function route() {
     S.rendered[p] = true;
   }
   if (p === "map" && S.map) setTimeout(() => S.map.invalidateSize(), 50);
-  if (p === "industry" && S.imap) setTimeout(() => S.imap.invalidateSize(), 50);
+  if (p === "grid" && S.gmap) setTimeout(() => S.gmap.invalidateSize(), 50);
+  if (p === "outages" && S.omap) setTimeout(() => S.omap.invalidateSize(), 50);
   window.dispatchEvent(new Event("resize"));
 }
 
@@ -152,7 +154,7 @@ RENDER.overview = () => {
 
 /* ---------------------------------------------------------------- time */
 RENDER.time = () => {
-  const { monthly, shocks, madm1, gdp } = S.d; const c = C();
+  const { monthly, madm1, gdp } = S.d; const shocks = S.d.shocks || S.d.breaks; const c = C();
   if (monthly) {
     const shapes = [], ann = [];
     (shocks?.events || []).forEach((e) => {
@@ -412,11 +414,14 @@ RENDER.method = () => {
   <h2>Reproductibilité</h2>
   <p>Exécution du ${new Date(m.generated_at).toLocaleString("fr-FR")}. Versions : ${ver}.</p>
   <h2>Références</h2>
-  <ul>${(m.references || []).map((r) => `<li>${esc(r)}</li>`).join("")}</ul>`;
+  <ul>${(m.references || []).map((r) => `<li>${esc(r)}</li>`).join("")}</ul>
+  <h2>Avertissement</h2>
+  <p><em>Avertissement : les opinions exprimées sont celles des auteurs et ne reflètent pas nécessairement celles du FMI, de son Conseil d'administration ou de sa direction.</em></p>`;
 };
 
 /* ---------------------------------------------------------------- data */
 const FILE_DESC = {
+  "breaks.json": "Ruptures structurelles et mois atypiques", "grid.json": "Réseau électrique : événements, villes, distances, études d'événements", "grid_lines.geojson": "Lignes électriques (OpenStreetMap) et classe de tension", "grid_points.geojson": "Postes et centrales (OpenStreetMap)", "outages.json": "Indice nocturne de coupures de la ville (Black Marble), épisodes, taux annuels et mensuels", "outage_units.geojson": "Contours de la ville et des sous-unités", "news.json": "Presse sur les coupures : articles, tonalité, vocabulaire économique", "news_wordcloud_concepts.png": "Nuage de mots — thèmes économiques", "news_wordcloud_words.png": "Nuage de mots — mots tels qu'écrits",
   "LICENSE.txt": "Licence et mention obligatoire de la source (CC BY 4.0 / MIT)",
   "regions.csv": "Indicateurs par unité administrative (dernière année)", "annual_units.csv": "Séries annuelles par unité",
   "monthly_national.csv": "Série mensuelle nationale observée, désaisonnalisée, tendance", "monthly_adm1.csv": "Séries mensuelles désaisonnalisées par région",
@@ -442,9 +447,9 @@ const INDICATORS = [
   { k: "pop_dark", t: "Population dans le noir", kind: "seqo", fmt: (v) => F.people(v), help: "Nombre de personnes en zone habitée non éclairée." },
   { k: "gdp_pc_est", t: "PIB par habitant estimé (USD, expérimental)", kind: "seq", fmt: (v) => F.num(v), lvl: "ADM1", help: "PIB national réparti au prorata de la lumière (statistique expérimentale)." },
 ];
-const SEQ_B = ["#cde2fb", "#9ec5f4", "#6da7ec", "#3987e5", "#256abf", "#184f95", "#0d366b"];
-const SEQ_O = ["#fde3d6", "#f9bfa4", "#f39a72", "#eb6834", "#c94f20", "#9f3c17", "#73290e"];
-const DIV = ["#e34948", "#ef8f8a", "#f6c6c2", "#d9d8d2", "#b7d3f6", "#6da7ec", "#2a78d6"];
+const SEQ_B = ["#CAE0FB", "#9DC1E8", "#6F9FD0", "#4B82AD", "#2A64A0", "#004C97", "#0E1074"];   // IMF blues
+const SEQ_O = ["#F7D9E3", "#EDB0C4", "#E0809F", "#D1507B", "#C00050", "#900000", "#5C0020"];   // IMF reds
+const DIV = ["#C00050", "#DB6F92", "#F0C3D2", "#E6E6E6", "#CAE0FB", "#4B82AD", "#004C97"];   // IMF red–blue
 
 // Map: Leaflet (no WebGL needed). Basemaps WITHOUT any API key: Esri grey canvas (default), NASA Black
 // Marble (GIBS), OpenStreetMap; automatic fallback to the next one if tiles fail; PNG overlays in Web Mercator.
@@ -498,6 +503,10 @@ RENDER.map = async () => {
   yr.max = Math.max(0, years.length - 1); yr.value = yr.max;
   const ca = $("#cmp-a"), cb = $("#cmp-b");
   if (ca && cb) { const o = years.map((y) => `<option>${y}</option>`).join(""); ca.innerHTML = cb.innerHTML = o; ca.value = years[0]; cb.value = years[years.length - 1]; }
+  const noR = !years.length, noD = !Object.keys((m.rasters && m.rasters.dark) || {}).length;
+  $$("#map-mode button").forEach((b) => { const k = b.dataset.mode; const off = (k === "ntl" || k === "compare") ? noR : k === "dark" ? noD : false;
+    b.disabled = off; b.classList.toggle("off", off); if (off) b.title = k === "dark" && !noR ? "L'image « zones dans le noir » n'a pas été exportée (refus d'Earth Engine) : les autres modes fonctionnent." : 'Images non exportées lors de ce calcul : relancer la section 3.3 avec Earth Engine, puis la section 12.'; });
+  if (noR) $("#map-help").textContent = 'Images non exportées lors de ce calcul : relancer la section 3.3 avec Earth Engine, puis la section 12.';
   if (!window.L) { mapFail("La bibliothèque cartographique (Leaflet) n'a pas pu être chargée. Rechargez la page ; les tableaux des autres pages restent disponibles."); return; }
   try {
     S.map = newMap("map");
@@ -519,7 +528,7 @@ RENDER.map = async () => {
     setTimeout(() => { S.map.invalidateSize(); S.map.fitBounds(mapBounds(), { padding: [16, 16] }); }, 80);
     applyMapMode();
   } catch (e) { console.error(e); mapFail("La carte n'a pas pu être initialisée : " + (e && e.message ? e.message : e)); return; }
-  $("#map-mode").onclick = (e) => { const b = e.target.closest("button"); if (!b) return; $$("#map-mode button").forEach((x) => x.classList.toggle("on", x === b)); S.mapMode = b.dataset.mode; applyMapMode(); };
+  $("#map-mode").onclick = (e) => { const b = e.target.closest("button"); if (!b || b.disabled) return; $$("#map-mode button").forEach((x) => x.classList.toggle("on", x === b)); S.mapMode = b.dataset.mode; applyMapMode(); };
   lvSel.onchange = () => { fillInd(); applyMapMode(); };
   indSel.onchange = applyMapMode;
   yr.oninput = () => applyMapMode();
@@ -575,7 +584,7 @@ function applyMapMode0() {
       setupCompare(yB);
     } else { help.textContent = "Composite annuel VNL V2 (torchères masquées). Déplacez le curseur pour parcourir les années."; teardownCompare(); }
   } else if (mode === "dark") {
-    legend.innerHTML = `<strong>Zones habitées (${(m.rasters && Object.keys(m.rasters.dark || {})[0]) || ""})</strong><div><span class="sw" style="background:#f5c242"></span>éclairées</div><div><span class="sw" style="background:#d7263d"></span>non éclairées (« dans le noir »)</div>`;
+    legend.innerHTML = `<strong>Zones habitées (${(m.rasters && Object.keys(m.rasters.dark || {})[0]) || ""})</strong><div><span class="sw" style="background:#F5BD47"></span>éclairées</div><div><span class="sw" style="background:#C00050"></span>non éclairées (« dans le noir »)</div>`;
     help.textContent = "Pixels comptant au moins {p} habitants : en rouge ceux dont la radiance reste sous le seuil de détection. Proxy de l'absence d'accès à l'électricité — un foyer raccordé mais peu éclairé y apparaît aussi.".replace("{p}", (m.config || {}).pop_min || 5);
     teardownCompare();
   }

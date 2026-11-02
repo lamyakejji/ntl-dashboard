@@ -5,7 +5,7 @@
 const S = { iso: null, d: {}, rendered: {}, map: null, mapB: null, mapMode: "choro" };
 const $ = (s, el = document) => el.querySelector(s);
 const $$ = (s, el = document) => [...el.querySelectorAll(s)];
-const PAGES = ["overview", "map", "time", "regions", "shocks", "inequality", "industry", "method", "data"];
+const PAGES = ["overview", "map", "time", "regions", "inequality", "grid", "outages", "method", "data"];
 
 /* ---------------------------------------------------------------- formatting (en-US) */
 const nf = (d = 0) => new Intl.NumberFormat("en-US", { minimumFractionDigits: d, maximumFractionDigits: d });
@@ -56,8 +56,9 @@ async function loadCountry(iso) {
     meta: getJSON(base + "meta.json"), summary: getJSON(base + "summary.json"),
     regions: getCSV(base + "regions.csv"), annual: getCSV(base + "annual_units.csv"),
     monthly: getCSV(base + "monthly_national.csv"), madm1: getCSV(base + "monthly_adm1.csv"),
-    gdp: getJSON(base + "gdp.json"), shocks: getJSON(base + "shocks.json"), ineq: getJSON(base + "inequality.json"),
-    growth: getJSON(base + "growth.json"), ind: getJSON(base + "industrial.geojson"), indmeta: getJSON(base + "industrial.json"),
+    gdp: getJSON(base + "gdp.json"), breaks: getJSON(base + "breaks.json"), ineq: getJSON(base + "inequality.json"),
+    growth: getJSON(base + "growth.json"), grid: getJSON(base + "grid.json"), gridLines: getJSON(base + "grid_lines.geojson"), gridPts: getJSON(base + "grid_points.geojson"),
+    outages: getJSON(base + "outages.json"), outUnits: getJSON(base + "outage_units.geojson"), news: getJSON(base + "news.json"),
     adm0: getJSON(base + "adm0.geojson"), adm1: getJSON(base + "adm1.geojson"), adm2: getJSON(base + "adm2.geojson"),
   };
   const keys = Object.keys(want);
@@ -124,7 +125,8 @@ function route() {
     S.rendered[p] = true;
   }
   if (p === "map" && S.map) setTimeout(() => S.map.invalidateSize(), 50);
-  if (p === "industry" && S.imap) setTimeout(() => S.imap.invalidateSize(), 50);
+  if (p === "grid" && S.gmap) setTimeout(() => S.gmap.invalidateSize(), 50);
+  if (p === "outages" && S.omap) setTimeout(() => S.omap.invalidateSize(), 50);
   window.dispatchEvent(new Event("resize"));
 }
 
@@ -152,7 +154,7 @@ RENDER.overview = () => {
 
 /* ---------------------------------------------------------------- time */
 RENDER.time = () => {
-  const { monthly, shocks, madm1, gdp } = S.d; const c = C();
+  const { monthly, madm1, gdp } = S.d; const shocks = S.d.shocks || S.d.breaks; const c = C();
   if (monthly) {
     const shapes = [], ann = [];
     (shocks?.events || []).forEach((e) => {
@@ -412,11 +414,14 @@ RENDER.method = () => {
   <h2>Reproducibility</h2>
   <p>Run of ${new Date(m.generated_at).toLocaleString("en-US")}. Versions: ${ver}.</p>
   <h2>References</h2>
-  <ul>${(m.references || []).map((r) => `<li>${esc(r)}</li>`).join("")}</ul>`;
+  <ul>${(m.references || []).map((r) => `<li>${esc(r)}</li>`).join("")}</ul>
+  <h2>Disclaimer</h2>
+  <p><em>Disclaimer: the views expressed are those of the authors and do not necessarily represent the views of the IMF, its Executive Board, or IMF management.</em></p>`;
 };
 
 /* ---------------------------------------------------------------- data */
 const FILE_DESC = {
+  "breaks.json": "Structural breaks and anomalous months", "grid.json": "Electricity grid: events, towns, distance bands, event studies", "grid_lines.geojson": "Power lines (OpenStreetMap) with voltage class", "grid_points.geojson": "Substations and power plants (OpenStreetMap)", "outages.json": "Nightly outage index for the city (Black Marble), events, yearly and monthly rates", "outage_units.geojson": "City and sub-unit outlines used for outages", "news.json": "News on outages: articles, sentiment, economic vocabulary", "news_wordcloud_concepts.png": "Word cloud — economic concepts", "news_wordcloud_words.png": "Word cloud — words as written",
   "LICENSE.txt": "Licence and mandatory source attribution (CC BY 4.0 / MIT)",
   "regions.csv": "Indicators by administrative unit (latest year)", "annual_units.csv": "Annual series by unit",
   "monthly_national.csv": "National monthly series: observed, seasonally adjusted, trend", "monthly_adm1.csv": "Seasonally adjusted monthly series by region",
@@ -442,9 +447,9 @@ const INDICATORS = [
   { k: "pop_dark", t: "Population in the dark", kind: "seqo", fmt: (v) => F.people(v), help: "Number of people in unlit settled areas." },
   { k: "gdp_pc_est", t: "Estimated GDP per capita (USD, experimental)", kind: "seq", fmt: (v) => F.num(v), lvl: "ADM1", help: "National GDP allocated in proportion to light (experimental statistic)." },
 ];
-const SEQ_B = ["#cde2fb", "#9ec5f4", "#6da7ec", "#3987e5", "#256abf", "#184f95", "#0d366b"];
-const SEQ_O = ["#fde3d6", "#f9bfa4", "#f39a72", "#eb6834", "#c94f20", "#9f3c17", "#73290e"];
-const DIV = ["#e34948", "#ef8f8a", "#f6c6c2", "#d9d8d2", "#b7d3f6", "#6da7ec", "#2a78d6"];
+const SEQ_B = ["#CAE0FB", "#9DC1E8", "#6F9FD0", "#4B82AD", "#2A64A0", "#004C97", "#0E1074"];   // IMF blues
+const SEQ_O = ["#F7D9E3", "#EDB0C4", "#E0809F", "#D1507B", "#C00050", "#900000", "#5C0020"];   // IMF reds
+const DIV = ["#C00050", "#DB6F92", "#F0C3D2", "#E6E6E6", "#CAE0FB", "#4B82AD", "#004C97"];   // IMF red–blue
 
 // Map: Leaflet (no WebGL needed). Basemaps WITHOUT any API key: Esri grey canvas (default), NASA Black
 // Marble (GIBS), OpenStreetMap; automatic fallback to the next one if tiles fail; PNG overlays in Web Mercator.
@@ -498,6 +503,10 @@ RENDER.map = async () => {
   yr.max = Math.max(0, years.length - 1); yr.value = yr.max;
   const ca = $("#cmp-a"), cb = $("#cmp-b");
   if (ca && cb) { const o = years.map((y) => `<option>${y}</option>`).join(""); ca.innerHTML = cb.innerHTML = o; ca.value = years[0]; cb.value = years[years.length - 1]; }
+  const noR = !years.length, noD = !Object.keys((m.rasters && m.rasters.dark) || {}).length;
+  $$("#map-mode button").forEach((b) => { const k = b.dataset.mode; const off = (k === "ntl" || k === "compare") ? noR : k === "dark" ? noD : false;
+    b.disabled = off; b.classList.toggle("off", off); if (off) b.title = k === "dark" && !noR ? 'The “areas in the dark” image was not exported in this run (Earth Engine refused it): the other modes work.' : 'Raster images were not exported in this run: re-run section 3.3 with Earth Engine, then section 12.'; });
+  if (noR) $("#map-help").textContent = 'Raster images were not exported in this run: re-run section 3.3 with Earth Engine, then section 12.';
   if (!window.L) { mapFail("The mapping library (Leaflet) could not be loaded. Reload the page; the tables on the other pages remain available."); return; }
   try {
     S.map = newMap("map");
@@ -519,7 +528,7 @@ RENDER.map = async () => {
     setTimeout(() => { S.map.invalidateSize(); S.map.fitBounds(mapBounds(), { padding: [16, 16] }); }, 80);
     applyMapMode();
   } catch (e) { console.error(e); mapFail("The map could not be initialised: " + (e && e.message ? e.message : e)); return; }
-  $("#map-mode").onclick = (e) => { const b = e.target.closest("button"); if (!b) return; $$("#map-mode button").forEach((x) => x.classList.toggle("on", x === b)); S.mapMode = b.dataset.mode; applyMapMode(); };
+  $("#map-mode").onclick = (e) => { const b = e.target.closest("button"); if (!b || b.disabled) return; $$("#map-mode button").forEach((x) => x.classList.toggle("on", x === b)); S.mapMode = b.dataset.mode; applyMapMode(); };
   lvSel.onchange = () => { fillInd(); applyMapMode(); };
   indSel.onchange = applyMapMode;
   yr.oninput = () => applyMapMode();
@@ -575,7 +584,7 @@ function applyMapMode0() {
       setupCompare(yB);
     } else { help.textContent = "VNL V2 annual composite (gas flares masked). Move the slider to browse the years."; teardownCompare(); }
   } else if (mode === "dark") {
-    legend.innerHTML = `<strong>Inhabited areas (${(m.rasters && Object.keys(m.rasters.dark || {})[0]) || ""})</strong><div><span class="sw" style="background:#f5c242"></span>lit</div><div><span class="sw" style="background:#d7263d"></span>unlit (“in the dark”)</div>`;
+    legend.innerHTML = `<strong>Inhabited areas (${(m.rasters && Object.keys(m.rasters.dark || {})[0]) || ""})</strong><div><span class="sw" style="background:#F5BD47"></span>lit</div><div><span class="sw" style="background:#C00050"></span>unlit (“in the dark”)</div>`;
     help.textContent = "Pixels with at least {p} inhabitants: red marks those whose radiance stays below the detection threshold. A proxy for lack of access to electricity — a connected but dimly lit household also appears here.".replace("{p}", (m.config || {}).pop_min || 5);
     teardownCompare();
   }
