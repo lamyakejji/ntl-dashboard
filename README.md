@@ -3,9 +3,9 @@
 
 <p align="center"><a href="https://lamyakejji.github.io/ntl-dashboard/"><img src="docs/img/banner.png" alt="Mauritania at night" width="100%"></a></p>
 
-<p align="center"><b><a href="https://lamyakejji.github.io/ntl-dashboard/">🌍 Dashboard</a> &nbsp;·&nbsp; <a href="https://lamyakejji.github.io/ntl-dashboard/#map">🗺️ Map</a> &nbsp;·&nbsp; <a href="https://lamyakejji.github.io/ntl-dashboard/#time">📈 Trends</a> &nbsp;·&nbsp; <a href="https://lamyakejji.github.io/ntl-dashboard/#industry">🏭 Industrial zones</a> &nbsp;·&nbsp; <a href="https://lamyakejji.github.io/ntl-dashboard/#method">📐 Method</a> &nbsp;·&nbsp; <a href="https://lamyakejji.github.io/ntl-dashboard/#data">⬇️ Data</a> &nbsp;·&nbsp; <a href="README.fr.md">🌐 Français</a></b></p>
+<p align="center"><b><a href="https://lamyakejji.github.io/ntl-dashboard/">🌍 Dashboard</a> &nbsp;·&nbsp; <a href="https://lamyakejji.github.io/ntl-dashboard/#map">🗺️ Map</a> &nbsp;·&nbsp; <a href="https://lamyakejji.github.io/ntl-dashboard/#time">📈 Trends</a> &nbsp;·&nbsp; <a href="https://lamyakejji.github.io/ntl-dashboard/#grid">⚡ Electricity grid</a> &nbsp;·&nbsp; <a href="https://lamyakejji.github.io/ntl-dashboard/#outages">🔌 Power outages</a> &nbsp;·&nbsp; <a href="https://lamyakejji.github.io/ntl-dashboard/#method">📐 Method</a> &nbsp;·&nbsp; <a href="https://lamyakejji.github.io/ntl-dashboard/#data">⬇️ Data</a> &nbsp;·&nbsp; <a href="README.fr.md">🌐 Français</a></b></p>
 
-<p align="center"><a href="https://lamyakejji.github.io/ntl-dashboard/"><img alt="Dashboard" src="https://img.shields.io/badge/Dashboard-live-00704A?style=for-the-badge&logo=githubpages&logoColor=white"></a> <a href="https://lamyakejji.github.io/ntl-dashboard/fr/"><img alt="Tableau de bord" src="https://img.shields.io/badge/Tableau_de_bord-fran%C3%A7ais-3F7FC7?style=for-the-badge"></a> <img alt="period" src="https://img.shields.io/badge/period-2014%E2%80%932025-D49A00?style=for-the-badge"> <img alt="data" src="https://img.shields.io/badge/data-VIIRS_%C2%B7_GHSL_%C2%B7_Sentinel-231F20?style=for-the-badge"> <img alt="Earth Engine" src="https://img.shields.io/badge/Google-Earth_Engine-4285F4?style=for-the-badge&logo=googleearth&logoColor=white"> <a href="LICENSE"><img alt="licence" src="https://img.shields.io/badge/licence-CC_BY_4.0_%C2%B7_MIT-5E6964?style=for-the-badge"></a></p>
+<p align="center"><a href="https://lamyakejji.github.io/ntl-dashboard/"><img alt="Dashboard" src="https://img.shields.io/badge/Dashboard-live-004C97?style=for-the-badge&logo=githubpages&logoColor=white"></a> <a href="https://lamyakejji.github.io/ntl-dashboard/fr/"><img alt="Tableau de bord" src="https://img.shields.io/badge/Tableau_de_bord-fran%C3%A7ais-4B82AD?style=for-the-badge"></a> <img alt="period" src="https://img.shields.io/badge/period-2014%E2%80%932025-D49A00?style=for-the-badge"> <img alt="data" src="https://img.shields.io/badge/data-VIIRS_%C2%B7_GHSL_%C2%B7_Sentinel-231F20?style=for-the-badge"> <img alt="Earth Engine" src="https://img.shields.io/badge/Google-Earth_Engine-4285F4?style=for-the-badge&logo=googleearth&logoColor=white"> <a href="LICENSE"><img alt="licence" src="https://img.shields.io/badge/licence-CC_BY_4.0_%C2%B7_MIT-5E6964?style=for-the-badge"></a></p>
 
 > [!NOTE]
 > This repository hosts the **public dashboard** of economic activity in **Mauritania** measured with night-time lights seen from space (2014–2025). The site is bilingual (English / French), fully static and regenerated each time the notebook runs.
@@ -25,7 +25,7 @@
 </tr>
 </table>
 
-<p align="center"><a href="https://lamyakejji.github.io/ntl-dashboard/"><img alt="Open the dashboard" src="https://img.shields.io/badge/%E2%9E%9C-Open_the_dashboard-00704A?style=for-the-badge"></a></p>
+<p align="center"><a href="https://lamyakejji.github.io/ntl-dashboard/"><img alt="Open the dashboard" src="https://img.shields.io/badge/%E2%9E%9C-Open_the_dashboard-004C97?style=for-the-badge"></a></p>
 
 ## 💡 Key messages
 
@@ -37,40 +37,30 @@
    <sub>🔴 low · β = −0.009 [−0.023; 0.006], n = 52</sub>
 4. **Link with GDP** — The elasticity of light with respect to real GDP is 3.30 in levels (95% CI: 2.80 to 3.79, R² = 0.97, 12 years) and 1.68 in growth rates (CI: −0.03 to 3.39). In pseudo-real time (each year predicted from earlier years only), light growth tracks GDP growth with a correlation of 0.33 (mean absolute error: 2.5 percentage points of growth, no better than the best naive forecast, error ratio 1.14).  
    <sub>🟠 medium · clear relationship but only 12 years</sub>
-5. **Shocks** — The most pronounced shock in the seasonally adjusted series is “COVID-19”: trough of -26.5% (06/2020), return to the pre-shock level after 5 months.  
-   <sub>🟠 medium · trough compared with pre-shock month-to-month variability</sub>
-6. **Inequality and access** — The Gini coefficient of light per capita (ADM2) is 0.69 in 2025 (no significant change since 2014). About 2.06 million people live in inhabited areas with no detectable light (41% of the inhabited population).  
+5. **Inequality and access** — The Gini coefficient of light per capita (ADM2) is 0.69 in 2025 (no significant change since 2014). About 2.06 million people live in inhabited areas with no detectable light (41% of the inhabited population).  
    <sub>🟠 medium · sensitive to the radiance threshold (from 0.00 to 2.37 M depending on the threshold); a proxy for outdoor lighting, not for grid connection</sub>
-7. **Industrial zones** — 7 candidate industrial zones are detected (3 major hubs, 0 energy sites), covering 5 km². They emit 1% of national light; the largest is Nouadhibou (Dakhlet Nouadhibou). Their light changes by +6.3% per year.  
-   <sub>🟠 medium · 100% of zones confirmed by OpenStreetMap; candidates to be checked</sub>
+6. **Electricity grid** — The mapped grid (OpenStreetMap) totals 2,813 km of line. Between 2014 and 2025, light in towns within 15 km of a transmission line changed by +204%, against +867% beyond 50 km (descriptive: OSM lines carry no dates).  
+   <sub>🔴 low · OSM coverage varies, lines are undated</sub>
+7. **Built-up land left dark** — In 2020, the share of built-up land (GHSL) with no detectable light is highest in Barkéol 79%, Maghama 72%, Tintane 68%: urban expansion runs ahead of electricity service there.  
+   <sub>🟠 medium · blooming understates this share in large cities</sub>
+8. **Effect of grid investments** — Event studies (treated vs never-treated towns) — HV connection (2 towns): -0.49 log points, wild-bootstrap p = 0.20; Generation upgrade (9 towns): +0.08 log points, wild-bootstrap p = 0.80.  
+   <sub>🔴 low · few treated towns; event dates of medium/low confidence</sub>
+9. **Power outages** — In Nouakchott, 1.0% of clear nights in 2026 (to 26 Oct) show a citywide drop in light consistent with a power outage (against 1.0% in 2014). The deepest episode starts on 11 Jun 2021: light at 9% of normal, 96% of pixels dimmed.  
+   <sub>🟠 medium · one satellite pass per night (≈01:30): daytime cuts are invisible; 2/4 observable documented episodes detected</sub>
+10. **News on outages** — 246 online news articles (FR, AR, EN) cover power cuts in Nouakchott; 63% are negative in tone. Coverage peaks in Aug 2026 (42 articles). Most-cited economic themes: Generation capacity & demand, Investment & finance, Heat & air conditioning, Water supply.  
+   <sub>🔴 low · uneven online coverage over time; tone estimated by a model</sub>
 
-## 🛰️ Day and night
+## 🌃 What changed
 
-<p align="center"><img src="docs/img/daynight.png" alt="Day and night" width="100%"></p>
+<p align="center"><img src="docs/img/compare.png" alt="What changed" width="85%"></p>
 
-The country's main economic pole (Ksar (Nouakchott)), by day as seen by Sentinel-2 and by night as seen by VIIRS. What the satellite sees at night — the lighting of cities, ports, factories and roads — is the proxy of activity used throughout this project.
+VIIRS VNL V2 annual composites (gas flares masked), same logarithmic scale: left 2014, right 2025.
 
 ## 📈 The trend
 
 <p align="center"><img src="docs/img/series.png" alt="series" width="100%"></p>
 
 The seasonally adjusted curve removes seasonal effects (snow, vegetation, festivities): read it to judge a rise or a fall.
-
-## 🏭 Industrial zones
-
-<p align="center"><img src="docs/img/industry.png" alt="industry" width="80%"></p>
-
-Industrial sites shine at night like towns, but their buildings are mostly non-residential, few people live there and they emit NO₂. Combining VIIRS, GHSL (non-residential built-up, population) and Sentinel-5P, **7 candidate zones** are detected; they emit **1%** of national light. 100% of them contain an industrial area mapped in OpenStreetMap (± 1 km).
-
-| # | Zone | Type | Area | Share of national light | Growth / yr |
-|---:|---|---|---:|---:|---:|
-| 1 | Nouadhibou (Dakhlet Nouadhibou) | Major industrial hub | 1.8 km² | 0.3% | +4.3% |
-| 2 | Zoueratt (Tiris Zemmour) | Major industrial hub | 0.8 km² | 0.1% | +0.1% |
-| 3 | Ouad Naga (Trarza) | Major industrial hub | 0.6 km² | 0.1% | +1.7% |
-| 4 | El Mina (Nouakchott) | Industrial / logistics zone | 0.4 km² | 0.1% | +8.9% |
-| 5 | El Mina (Nouakchott) | Industrial / logistics zone | 0.4 km² | 0.1% | +12.3% |
-| 6 | El Mina (Nouakchott) | Industrial / logistics zone | 0.6 km² | 0.1% | +6.9% |
-| 7 | El Mina (Nouakchott) | Industrial / logistics zone | 0.6 km² | 0.1% | +7.5% |
 
 ## 🧭 What the dashboard contains
 
@@ -80,9 +70,9 @@ Industrial sites shine at night like towns, but their buildings are mostly non-r
 | [**Map**](https://lamyakejji.github.io/ntl-dashboard/#map) | light year by year, change, regional statistics on hover |
 | [**Trends**](https://lamyakejji.github.io/ntl-dashboard/#time) | observed and seasonally adjusted monthly series, year-on-year change, long series 1992 → |
 | [**Regions**](https://lamyakejji.github.io/ntl-dashboard/#regions) | growth by region and district, classes, concentration and convergence |
-| [**Shocks**](https://lamyakejji.github.io/ntl-dashboard/#shocks) | COVID-19 and other events: trough, recovery, placebo test, daily index |
+| [**Electricity grid**](https://lamyakejji.github.io/ntl-dashboard/#grid) | OpenStreetMap lines, dated and sourced events, distance to the grid, built-up land left dark, event studies |
 | [**Inequality**](https://lamyakejji.github.io/ntl-dashboard/#inequality) | Gini, Lorenz curves, Theil, people “in the dark” |
-| [**Industrial zones**](https://lamyakejji.github.io/ntl-dashboard/#industry) | candidate zones, score, trend, OpenStreetMap validation |
+| [**Power outages**](https://lamyakejji.github.io/ntl-dashboard/#outages) | night-by-night outages (daily Black Marble), episodes, news: tone and economic vocabulary |
 | [**Method & limitations**](https://lamyakejji.github.io/ntl-dashboard/#method) | sources, parameters, assumptions and known biases |
 | [**Data**](https://lamyakejji.github.io/ntl-dashboard/#data) | every downloadable table, reproducibility manifest |
 
@@ -95,14 +85,14 @@ flowchart LR
     A["🛰️ VIIRS DNB monthly<br/>and annual (VNL V2)"] --> B["🧹 Cleaning<br/>clouds · gas flares · background"]
     B --> C["🗺️ Zonal statistics<br/>country · regions · districts"]
     P["👥 GHSL population<br/>🏭 non-residential built-up<br/>💨 Sentinel-5P NO₂"] --> C
-    C --> D["📈 Series, trends,<br/>shocks, breaks"]
+    C --> D["📈 Series, trends,<br/>breaks"]
     C --> E["⚖️ Inequality,<br/>people in the dark"]
-    C --> F["🏭 Industrial zones"]
+    R["⚡ OSM grid<br/>🛰️ daily Black Marble<br/>📰 news"] --> F["🔌 Grid and outages"]
     W["🏦 World Bank<br/>GDP · electricity access"] --> G["💹 Light–GDP<br/>elasticity"]
     C --> G
     D & E & F & G --> H["🌍 Bilingual dashboard<br/>GitHub Pages"]
-    classDef default fill:#E8F5EF,stroke:#00704A,color:#231F20;
-    class H fill:#00704A,color:#fff,stroke:#F5C242
+    classDef default fill:#EAF2FB,stroke:#004C97,color:#231F20;
+    class H fill:#004C97,color:#fff,stroke:#F5BD47
 ```
 
 <details>
@@ -114,9 +104,9 @@ flowchart LR
 | **📈 Time dynamics** | STL decomposition, year-on-year change, Theil–Sen trend with Mann–Kendall test, anomalies, breaks |
 | **🗺️ Regional growth** | Growth / Stagnation / Decline classes (Benjamini–Hochberg correction), HHI, β and σ convergence |
 | **💹 Lights and GDP** | elasticity (HAC errors, bootstrap), nowcast judged against two naive forecasts, experimental regional GDP |
-| **⚡ Shocks** | trough, gap vs trend, months to recovery, placebo test, Black Marble daily index |
+| **⚡ Electricity grid** | OSM lines, dated events, distance to the grid, built-up land left dark, event studies (wild bootstrap) |
 | **⚖️ Inequality and access** | Gini, Theil (between / within regions), urban / rural ratio, people in the dark at three thresholds |
-| **🏭 Industrial zones** | four-signal score (light, non-residential built-up, low density, NO₂), OpenStreetMap validation |
+| **🔌 Power outages** | daily Black Marble: % of normal, dimmed pixels, sporadic / prolonged episodes, news tone and economic vocabulary |
 
 </details>
 
@@ -140,9 +130,9 @@ flowchart LR
 | [`annual_units.csv`](https://lamyakejji.github.io/ntl-dashboard/data/MRT/annual_units.csv) | one row per unit and year: light, population, light per capita, people in the dark |
 | [`regions.csv`](https://lamyakejji.github.io/ntl-dashboard/data/MRT/regions.csv) | latest-year indicators by region and district (map, ranking) |
 | [`gdp.json`](https://lamyakejji.github.io/ntl-dashboard/data/MRT/gdp.json) | light–GDP elasticity, nowcast, experimental regional GDP |
-| [`shocks.json`](https://lamyakejji.github.io/ntl-dashboard/data/MRT/shocks.json) | events, troughs, recovery, breaks, anomalies, daily indices |
+| [`grid.json`](https://lamyakejji.github.io/ntl-dashboard/data/MRT/grid.json) | grid: dated events, towns, distance to the grid, event studies |
 | [`inequality.json`](https://lamyakejji.github.io/ntl-dashboard/data/MRT/inequality.json) | Gini, Lorenz, Theil, people in the dark and threshold sensitivity |
-| [`industrial.geojson`](https://lamyakejji.github.io/ntl-dashboard/data/MRT/industrial.geojson) | candidate industrial zones (geometries and indicators) |
+| [`outages.json`](https://lamyakejji.github.io/ntl-dashboard/data/MRT/outages.json) | nightly outage index, episodes, yearly and monthly rates; news.json: news coverage |
 | [`meta.json`](https://lamyakejji.github.io/ntl-dashboard/data/MRT/meta.json) | parameters, software versions, dataset availability: reproducibility |
 
 📁 [`gh-pages/data/MRT/`](https://github.com/lamyakejji/ntl-dashboard/tree/gh-pages/data/MRT)
@@ -170,7 +160,7 @@ The site is produced by the **Night-time lights and economic activity** notebook
 
 ## 🤝 Credits and citation
 
-Produced by the **African Development Bank** as part of **Data Innovation for Africa (DI4A)**. Estimates are experimental and are not official statistics.
+Produced by the **African Development Bank** as part of **Data Innovation for Africa (DI4A)**, with the **IMF Big Data Center**. *Disclaimer: the views expressed are those of the authors and do not necessarily represent the views of the IMF, its Executive Board, or IMF management.* Estimates are experimental and are not official statistics.
 
 **Licence** — content CC BY 4.0, code MIT (see `LICENSE`). Any reuse must cite: **Source: African Development Bank – Data Innovation for Africa (AfDB-DI4A)**.
 
@@ -180,5 +170,5 @@ Produced by the **African Development Bank** as part of **Data Innovation for Af
 
 ---
 
-<p align="center"><sub>© 2026 AfDB-DI4A · Any reuse must cite “Source: AfDB-DI4A”</sub></p>
-<p align="center"><sub>Last update: 2026-11-01 · <a href="#top">↑</a></sub></p>
+<p align="center"><sub>© 2026 AfDB-DI4A · with the IMF Big Data Center · Any reuse must cite “Source: AfDB-DI4A” · The views expressed do not necessarily represent the views of the IMF</sub></p>
+<p align="center"><sub>Last update: 2026-11-02 · <a href="#top">↑</a></sub></p>

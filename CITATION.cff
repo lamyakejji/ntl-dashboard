@@ -4,7 +4,8 @@ title: "Night-time lights and economic activity — Mauritania"
 authors:
   - name: "African Development Bank"
   - name: "Data Innovation for Africa (DI4A)"
-date-released: 2026-11-01
+  - name: "IMF Big Data Center"
+date-released: 2026-11-02
 url: "https://lamyakejji.github.io/ntl-dashboard/"
 repository-code: "https://github.com/lamyakejji/ntl-dashboard"
 license:
