@@ -104,7 +104,7 @@ const GROUP_FR = { "HV connection": "Raccordement haute tension", "Generation up
 const VCL_FR = { "≥ 150 kV": "≥ 150 kV", "60–150 kV": "60–150 kV", "< 60 kV": "< 60 kV", "line, voltage not tagged": "ligne, tension non renseignée" };
 const gl = (g) => (FR ? GROUP_FR[g] || g : g);
 const vl = (v) => (FR ? VCL_FR[v] || v : v);
-const IMF = { blue: "#004C97", mid: "#4B82AD", light: "#CAE0FB", red: "#C00050", green: "#96BA79", gold: "#F5BD47", navy: "#0E1074", grey: "#A6A8AC" };
+const IMF = { blue: "#004C97", mid: "#5E8AB4", light: "#CAE0FB", red: "#DA291C", green: "#78BE20", gold: "#F2A900", navy: "#001E60", grey: "#B1B3B3" };
 const pct = (v, d = 0) => (isNum(v) ? (FR ? (100 * v).toFixed(d).replace(".", ",") + " %" : (100 * v).toFixed(d) + "%") : "–");
 const num = (v, d = 0) => F.num(v, d);
 const link = (u, t) => (u ? `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(t || (FR ? "source" : "source"))}</a>` : "–");

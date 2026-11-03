@@ -4,9 +4,9 @@
 "use strict";
 (() => {
 const FR = (document.documentElement.lang || "en").toLowerCase().startsWith("fr");
-const IMF = { blue: "#004C97", mid: "#4B82AD", light: "#CAE0FB", red: "#C00050", green: "#96BA79", gold: "#F5BD47", navy: "#0E1074",
-  grey: "#A6A8AC", purple: "#923CC2", orange: "#FF8547" };
-const PAL = [IMF.blue, IMF.red, IMF.green, IMF.gold, IMF.mid, IMF.purple, IMF.orange, IMF.navy];
+const IMF = { blue: "#004C97", mid: "#5E8AB4", light: "#CAE0FB", red: "#DA291C", green: "#78BE20", gold: "#F2A900", navy: "#001E60",
+  grey: "#B1B3B3", purple: "#8031A7", orange: "#FF8200", sky: "#009CDE", teal: "#00B0B9", rust: "#E35205" };
+const PAL = [IMF.blue, IMF.orange, IMF.sky, IMF.green, IMF.red, IMF.purple, IMF.gold, IMF.navy];
 const dec = (v, d = 1) => (isNum(v) ? (FR ? v.toFixed(d).replace(".", ",") : v.toFixed(d)) : "–");
 const sgn = (v, d = 1) => (isNum(v) ? (v > 0 ? "+" : "") + dec(v, d) : "–");
 const pc = (v, d = 1) => (isNum(v) ? sgn(v, d) + (FR ? " %" : "%") : "–");
@@ -159,7 +159,7 @@ RENDER.macro = () => {
     const rows = (m.contrib || []).filter((r) => r.kind === kind);
     const qs = [...new Set(rows.map((r) => r.quarter))].sort();
     const val = (b, q) => { const r = rows.find((x) => x.branch === b && x.quarter === q); return r ? r.value : null; };
-    const cols = { primary: IMF.green, secondary: IMF.orange, tertiary: IMF.grey, taxes: "#5EC4CF" };
+    const cols = { primary: IMF.green, secondary: IMF.orange, tertiary: IMF.grey, taxes: "#00B0B9" };
     const tr = Object.keys(T.sec).map((b) => ({ type: "bar", x: qs.map(qlab), y: qs.map((q) => val(b, q)), name: T.sec[b], marker: { color: cols[b] },
       text: qs.map((q) => dec(val(b, q))), textposition: "outside", textfont: { size: 9, color: cols[b] }, cliponaxis: false, hovertemplate: "%{x}: %{y:.1f}<extra>" + T.sec[b] + "</extra>" }));
     tr.push({ type: "scatter", mode: "lines+markers+text", x: qs.map(qlab), y: qs.map((q) => val("gdp", q)), name: T.gdp, line: { color: IMF.mid, width: 2.6 },
@@ -179,7 +179,7 @@ RENDER.macro = () => {
   const ip = m.ipi || [];
   plot("m-ipi", ip.length ? [
     { type: "scatter", mode: "lines", x: ip.map((r) => qlab(r.quarter)), y: ip.map((r) => r.ipi), name: T.i_idx, line: { color: IMF.blue, width: 2.4 } },
-    { type: "bar", x: ip.map((r) => qlab(r.quarter)), y: ip.map((r) => r.yoy), name: T.i_yoy, yaxis: "y2", marker: { color: ip.map((r) => (r.yoy < 0 ? "rgba(192,0,80,.45)" : "rgba(75,130,173,.45)")) } },
+    { type: "bar", x: ip.map((r) => qlab(r.quarter)), y: ip.map((r) => r.yoy), name: T.i_yoy, yaxis: "y2", marker: { color: ip.map((r) => (r.yoy < 0 ? "rgba(218,41,28,.45)" : "rgba(94,138,180,.45)")) } },
   ] : [], { yaxis: { title: { text: T.i_idx } }, yaxis2: { overlaying: "y", side: "right", title: { text: T.i_yoy }, showgrid: false, zeroline: true }, xaxis: { type: "category", nticks: 12 }, legend: { y: 1.14 }, margin: { r: 56 } });
   // branch table
   const drawB = (kind) => {
@@ -187,7 +187,7 @@ RENDER.macro = () => {
     const qs = [...new Set((src || []).map((r) => r.quarter))].sort().slice(-6);
     const br = m.branches || {};
     const cell = (v) => { if (!isNum(v)) return `<td class="num">–</td>`; const a = Math.min(1, Math.abs(v) / 15);
-      const bg = v < 0 ? `rgba(192,0,80,${0.12 + 0.55 * a})` : `rgba(0,76,151,${0.08 + 0.5 * a})`; return `<td class="num" style="background:${bg}">${dec(v)}</td>`; };
+      const bg = v < 0 ? `rgba(218,41,28,${0.12 + 0.55 * a})` : `rgba(0,76,151,${0.08 + 0.5 * a})`; return `<td class="num" style="background:${bg}">${dec(v)}</td>`; };
     const el = $("#m-branch"); el.classList.add("elec-t");
     el.innerHTML = `<thead><tr><th>${esc(T.b_col)}</th>${qs.map((q) => `<th class="num">${qlab(q)}</th>`).join("")}</tr></thead><tbody>` +
       Object.keys(br).filter((b) => (src || []).some((r) => r.branch === b && qs.includes(r.quarter))).map((b) => {
@@ -196,7 +196,7 @@ RENDER.macro = () => {
   };
   onSeg("m-bkind", drawB); drawB("yoy");
   // annual
-  const ac = ann.contrib || {}, cols = { primary: IMF.green, secondary: IMF.orange, tertiary: IMF.grey, taxes: "#5EC4CF" };
+  const ac = ann.contrib || {}, cols = { primary: IMF.green, secondary: IMF.orange, tertiary: IMF.grey, taxes: "#00B0B9" };
   plot("m-annual", yrs.length ? Object.keys(T.sec).map((b) => ({ type: "bar", x: yrs.map(String), y: ac[b], name: T.sec[b], marker: { color: cols[b] } }))
     .concat([{ type: "scatter", mode: "lines+markers+text", x: yrs.map(String), y: gy, name: T.gdp, line: { color: IMF.blue, width: 2.6 }, text: gy.map((v) => pc(v)), textposition: "top center" }]) : [],
     { barmode: "relative", yaxis: { title: { text: T.c_y }, zeroline: true, zerolinecolor: c.ink }, legend: { y: -0.18 }, margin: { b: 70 } });

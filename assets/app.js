@@ -79,7 +79,7 @@ function layout(extra = {}) {
   const ink2 = css("--ink-2"), grid = css("--grid"), axis = css("--axis"), surf = css("--surface");
   const base = {
     paper_bgcolor: surf, plot_bgcolor: surf, separators: ".,",
-    font: { family: "system-ui, -apple-system, Segoe UI, sans-serif", size: 12, color: ink2 },
+    font: { family: "Arial, Helvetica, sans-serif", size: 12, color: ink2 },
     margin: { l: 56, r: 16, t: 18, b: 44 }, hovermode: "closest",
     hoverlabel: { bgcolor: surf, bordercolor: axis, font: { color: css("--ink") } },
     legend: { orientation: "h", x: 0, y: 1.12, font: { size: 11 } },
@@ -443,9 +443,31 @@ RENDER.data = () => {
     Object.values((m.rasters && m.rasters.ntl) || {}).map((f) => `<li><a href="data/${S.iso}/rasters/${esc(f)}" download>${esc(f)}</a><span>PNG image (Web Mercator), extent: ${esc((m.rasters.bounds || []).map((b) => b.toFixed(2)).join(", "))}</span></li>`).join("");
 };
 
+
+/* ---- v3: classed growth scale (fractions/yr), no grey midpoint; missing = unfilled dashed outline ---- */
+const GROWTH_BINS = [-0.10, 0, 0.05, 0.10, 0.20, 0.30];
+const GROWTH_COL = ["#E35205", "#FFB066", "#CFE9F8", "#8FD0F0", "#009CDE", "#004C97", "#001E60"];
+const NA_STYLE = { fillOpacity: 0, color: "#707372", weight: 1, dashArray: "4 3" };
+// year selector of the Indicators view: values of the chosen year from annual_units.csv (and gdp.json)
+function indYearValues(lv, y) {
+  const feats = (S.d[lv.toLowerCase()] || {}).features || [];
+  const ann = (S.d.annual || []).filter((r) => r.level === lv);
+  const by = new Map(ann.map((r) => [r.unit_id + "|" + r.year, r]));
+  const tot = ann.filter((r) => r.year === y).reduce((s, r) => s + (isNum(r.sol) ? r.sol : 0), 0);
+  const reg = new Map((((S.d.gdp || {}).regional) || []).filter((r) => r.year === y).map((r) => [r.unit_id, r.gdp_pc_est]));
+  feats.forEach((f) => { const p = f.properties; if (!p._orig) p._orig = { growth: p.growth, sol_pc: p.sol_pc, share_last: p.share_last, dark_share: p.dark_share, pop_dark: p.pop_dark, gdp_pc_est: p.gdp_pc_est, class: p.class };
+    Object.assign(p, p._orig);
+    if (!y) return;
+    const r = by.get(p.unit_id + "|" + y), q = by.get(p.unit_id + "|" + (y - 1));
+    p.sol_pc = r ? r.sol_pc : null; p.dark_share = r ? r.dark_share : null; p.pop_dark = r ? r.pop_dark : null;
+    p.share_last = r && tot ? r.sol / tot : null;
+    p.growth = r && q && q.sol > 0 ? r.sol / q.sol - 1 : null;
+    p.gdp_pc_est = reg.has(p.unit_id) ? reg.get(p.unit_id) : null; });
+}
+
 /* ================================================================ MAP */
 const INDICATORS = [
-  { k: "growth", t: "Growth of light (%/yr)", kind: "div", fmt: (v) => F.pct(v), help: "Robust slope of the sum of lights. Blue: growth; red: decline." },
+  { k: "growth", t: "Growth of light (%/yr)", kind: "div", fmt: (v) => F.pct(v), help: "Robust slope of the sum of lights. Blue: growth; orange: decline (fixed classes). Choose a year for the change from the previous year." },
   { k: "class", t: "Growth class", kind: "cat", help: "Growth / stagnation / decline, with a significance test." },
   { k: "sol_pc", t: "Light per capita", kind: "seq", fmt: (v) => F.num(v, 3), help: "Sum of radiance divided by population: intensity of activity per person." },
   { k: "share_last", t: "Share of national light", kind: "seq", fmt: (v) => F.share(v, 1), help: "Where the country's light-emitting activity is concentrated." },
@@ -453,9 +475,9 @@ const INDICATORS = [
   { k: "pop_dark", t: "Population in the dark", kind: "seqo", fmt: (v) => F.people(v), help: "Number of people in unlit settled areas." },
   { k: "gdp_pc_est", t: "Estimated GDP per capita (USD, experimental)", kind: "seq", fmt: (v) => F.num(v), lvl: "ADM1", help: "National GDP allocated in proportion to light (experimental statistic)." },
 ];
-const SEQ_B = ["#CAE0FB", "#9DC1E8", "#6F9FD0", "#4B82AD", "#2A64A0", "#004C97", "#0E1074"];   // IMF blues
-const SEQ_O = ["#F7D9E3", "#EDB0C4", "#E0809F", "#D1507B", "#C00050", "#900000", "#5C0020"];   // IMF reds
-const DIV = ["#C00050", "#DB6F92", "#F0C3D2", "#E6E6E6", "#CAE0FB", "#4B82AD", "#004C97"];   // IMF red–blue
+const SEQ_B = ["#D9EEFA", "#A6DAF4", "#5FBDEA", "#009CDE", "#407EC9", "#004C97", "#001E60"];   // IMF blues
+const SEQ_O = ["#FFE5CC", "#FFC48A", "#FFA24D", "#FF8200", "#E35205", "#B33F00", "#7A2B00"];   // IMF oranges
+const DIV = GROWTH_COL;   // classed orange–blue (no grey midpoint)
 
 // Map: Leaflet (no WebGL needed). Basemaps WITHOUT any API key: Esri grey canvas (default), NASA Black
 // Marble (GIBS), OpenStreetMap; automatic fallback to the next one if tiles fail; PNG overlays in Web Mercator.
@@ -503,6 +525,8 @@ RENDER.map = async () => {
   const m = S.d.meta;
   const lvSel = $("#map-level"), indSel = $("#map-indicator"), yr = $("#map-year");
   lvSel.innerHTML = (m.levels || ["ADM1"]).map((l) => `<option value="${l}">${l === "ADM1" ? "Regions (ADM1)" : "Districts (ADM2)"}</option>`).join("");
+  const iy = $("#map-ind-year"), ay = [...new Set((S.d.annual || []).map((r) => r.year))].filter(isNum).sort((a, b) => a - b);
+  if (iy) iy.innerHTML = `<option value="">Whole period (${m.period[0]}–${m.period[1]})</option>` + ay.slice().reverse().map((y) => `<option value="${y}">${y}</option>`).join("");
   const fillInd = () => { indSel.innerHTML = INDICATORS.filter((i) => !i.lvl || i.lvl === lvSel.value).map((i) => `<option value="${i.k}">${esc(i.t)}</option>`).join(""); };
   fillInd();
   const years = Object.keys((m.rasters && m.rasters.ntl) || {}).sort();
@@ -537,6 +561,7 @@ RENDER.map = async () => {
   $("#map-mode").onclick = (e) => { const b = e.target.closest("button"); if (!b || b.disabled) return; $$("#map-mode button").forEach((x) => x.classList.toggle("on", x === b)); S.mapMode = b.dataset.mode; applyMapMode(); };
   lvSel.onchange = () => { fillInd(); applyMapMode(); };
   indSel.onchange = applyMapMode;
+  if (iy) iy.onchange = applyMapMode;
   yr.oninput = () => applyMapMode();
   setupPlay();
   if (ca && cb) { ca.onchange = cb.onchange = () => applyMapMode(); }
@@ -557,26 +582,30 @@ function applyMapMode0() {
   src.textContent = "Sources: VIIRS VNL V2 (NOAA/EOG) via Google Earth Engine; boundaries {b}; basemap Esri, NASA Black Marble or © OpenStreetMap (no API key).".replace("{b}", (m.boundaries || {}).ADM1 || "geoBoundaries");
   if (mode === "choro") {
     const ind = INDICATORS.find((i) => i.k === $("#map-indicator").value) || INDICATORS[0];
+    const yv = $("#map-ind-year") ? +$("#map-ind-year").value || 0 : 0;
+    if ($("#map-ind-year")) $("#map-ind-year").disabled = ind.k === "class";
+    indYearValues(lv, ind.k === "class" ? 0 : yv);
     const feats = (S.d[lv.toLowerCase()] || {}).features || [];
     let colorOf, leg;
     if (ind.kind === "cat") {
       const cols = { Growth: css("--grow"), Stagnation: css("--flat"), "Decline": css("--decline") };
-      colorOf = (p) => cols[p.class] || css("--grid");
+      colorOf = (p) => cols[p.class] || null;
       leg = Object.entries(cols).map(([k, v]) => `<div><span class="sw" style="background:${v}"></span>${esc(k)}</div>`).join("");
     } else {
       const vals = feats.map((f) => f.properties[ind.k]);
       let breaks, ramp, lo = Math.min(...vals.filter(isNum)), hi = Math.max(...vals.filter(isNum));
-      if (ind.kind === "div") {
-        const mx = Math.max(...vals.filter(isNum).map(Math.abs), 0.01); const st = mx / 3.5;
-        breaks = [-2.5 * st, -1.5 * st, -0.5 * st, 0.5 * st, 1.5 * st, 2.5 * st]; ramp = DIV; lo = -mx; hi = mx;
-      } else { breaks = quantiles(vals); ramp = ind.kind === "seqo" ? SEQ_O : SEQ_B; }
+      if (ind.kind === "div") { breaks = GROWTH_BINS; ramp = GROWTH_COL; } else { breaks = quantiles(vals); ramp = ind.kind === "seqo" ? SEQ_O : SEQ_B; }
       const uniq = breaks.filter((b, i) => i === 0 || b > breaks[i - 1]);
-      colorOf = (p) => { const v = p[ind.k]; if (!isNum(v)) return css("--grid"); let k = 0; while (k < uniq.length && v >= uniq[k]) k++; return ramp[Math.min(k, ramp.length - 1)]; };
-      leg = `<div class="ramp" style="background:linear-gradient(90deg,${ramp.join(",")})"></div><div class="ticks"><span>${ind.fmt(lo)}</span>${ind.kind === "div" ? "<span>0</span>" : ""}<span>${ind.fmt(hi)}</span></div>`;
+      colorOf = (p) => { const v = p[ind.k]; if (!isNum(v)) return null; let k = 0; while (k < uniq.length && v >= uniq[k]) k++; return ramp[Math.min(k, ramp.length - 1)]; };
+      if (ind.kind === "div") {
+        const lab = (a, b) => (a === null ? "< " + ind.fmt(b) : b === null ? "> " + ind.fmt(a) : ind.fmt(a) + " – " + ind.fmt(b));
+        const edges = [null, ...GROWTH_BINS, null];
+        leg = `<div class="classes">${GROWTH_COL.map((c, i) => `<div><span class="sw" style="background:${c}"></span>${esc(lab(edges[i], edges[i + 1]))}</div>`).reverse().join("")}</div>`;
+      } else leg = `<div class="ramp" style="background:linear-gradient(90deg,${ramp.join(",")})"></div><div class="ticks"><span>${ind.fmt(lo)}</span><span>${ind.fmt(hi)}</span></div>`;
     }
     const lyr = S.lyr[lv];
-    if (lyr) { lyr.options.style = (f) => ({ color: "rgba(255,255,255,0.85)", weight: lv === "ADM1" ? 1 : 0.5, fillOpacity: 0.82, fillColor: colorOf(f.properties) }); lyr.setStyle(lyr.options.style); }
-    legend.innerHTML = `<strong>${esc(ind.t)}</strong>${leg}<div class="ticks"><span><span class="sw" style="background:${css("--grid")}"></span>not available</span></div>`;
+    if (lyr) { lyr.options.style = (f) => { const c = colorOf(f.properties); return c ? { color: "rgba(255,255,255,0.85)", weight: lv === "ADM1" ? 1 : 0.5, fillOpacity: 0.82, fillColor: c, dashArray: null } : NA_STYLE; }; lyr.setStyle(lyr.options.style); }
+    legend.innerHTML = `<strong>${esc(ind.t)}${yv && ind.k !== "class" ? " · " + yv : ""}</strong>${leg}<div class="ticks"><span><span class="sw na"></span>not available</span></div>`;
     help.textContent = ind.help + " Hover or click a unit for details.";
     teardownCompare();
   } else if (mode === "ntl" || mode === "compare") {
@@ -590,7 +619,7 @@ function applyMapMode0() {
       setupCompare(yB);
     } else { help.textContent = "VNL V2 annual composite (gas flares masked). Move the slider to browse the years."; teardownCompare(); }
   } else if (mode === "dark") {
-    legend.innerHTML = `<strong>Inhabited areas (${(m.rasters && Object.keys(m.rasters.dark || {})[0]) || ""})</strong><div><span class="sw" style="background:#F5BD47"></span>lit</div><div><span class="sw" style="background:#C00050"></span>unlit (“in the dark”)</div>`;
+    legend.innerHTML = `<strong>Inhabited areas (${(m.rasters && Object.keys(m.rasters.dark || {})[0]) || ""})</strong><div><span class="sw" style="background:#F2A900"></span>lit</div><div><span class="sw" style="background:#DA291C"></span>unlit (“in the dark”)</div>`;
     help.textContent = "Pixels with at least {p} inhabitants: red marks those whose radiance stays below the detection threshold. A proxy for lack of access to electricity — a connected but dimly lit household also appears here.".replace("{p}", (m.config || {}).pop_min || 5);
     teardownCompare();
   }
@@ -828,7 +857,7 @@ const IT = {
   val_ok: "{p} of detected zones (and {pt} of the 30 brightest) contain at least one OpenStreetMap <code>landuse=industrial</code> area within 1 km; these zones carry {pw} of the detected light. {rc} of the country's {n} OSM industrial areas are covered.",
   val_na: "The OpenStreetMap comparison could not be made (Overpass API unavailable at computation time).",
 };
-const ICOL = { major: "#F5BD47", zone: "#FF8547", energy: "#C00050" };   // IMF gold, orange, red
+const ICOL = { major: "#F2A900", zone: "#FF8200", energy: "#DA291C" };   // IMF gold, orange, red
 const fmtT = (s, o) => String(s).replace(/\{(\w+)\}/g, (_, k) => (o[k] ?? ""));
 function indYears(p) { return Object.keys(p).filter((k) => /^sol_\d{4}$/.test(k)).map((k) => +k.slice(4)).sort(); }
 function indSpark(p) {

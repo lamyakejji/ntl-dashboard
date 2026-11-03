@@ -309,30 +309,30 @@ path.izone-pt { filter: drop-shadow(0 0 6px rgba(245,194,66,.65)); transition: f
 #ind-table th:nth-child(2), #ind-table td:nth-child(2), #ind-table th:nth-child(3), #ind-table td:nth-child(3) { text-align: left; }
 #ind-table td:first-child, #ind-table th:first-child { min-width: 0; width: 56px; }
 
-/* ==== IMF palette — IMF blue #004C97, IMF series colours (IMF chart themes), WEO gold #F5BD47 ===========
+/* ==== IMF palette — IMF blue #004C97, IMF series colours (IMF chart themes), WEO gold #F2A900 ===========
    Co-branded African Development Bank · Data Innovation for Africa · IMF Big Data Center. Brand variables keep
    their historical names (--afdb*) so every earlier rule picks up the new palette. */
-:root { --afdb: #004C97; --afdb-dark: #002F6C; --afdb-light: #4B82AD; --afdb-gold: #F5BD47; --di4a: #4B82AD;
-  --imf: #004C97; --imf-dark: #002F6C; --imf-mid: #4B82AD; --imf-light: #CAE0FB; --imf-red: #C00050; --imf-green: #96BA79;
-  --weo-gold: #F5BD47; --night: #002F6C; --accent: #004C97;
-  --s1: #004C97; --s2: #C00050; --s3: #96BA79; --s4: #F5BD47; --s5: #4B82AD; --s6: #923CC2; --s7: #FF8547; --s8: #0E1074;
-  --grow: #004C97; --flat: #A6A8AC; --decline: #C00050; --good: #2E8B57; --warn: #F5BD47; --crit: #C00050; }
-:root[data-theme="dark"] { --afdb: #6FA3D8; --afdb-light: #8DB6DC; --accent: #F5BD47;
-  --s1: #6FA3D8; --s2: #E0457E; --s3: #A9CC8E; --s4: #F5BD47; --s5: #8DB6DC; --s6: #B57AD6; --s7: #FF9F70; --s8: #9A9CF0;
+:root { --afdb: #004C97; --afdb-dark: #002F6C; --afdb-light: #5E8AB4; --afdb-gold: #F2A900; --di4a: #5E8AB4;
+  --imf: #004C97; --imf-dark: #002F6C; --imf-mid: #5E8AB4; --imf-light: #CAE0FB; --imf-red: #DA291C; --imf-green: #78BE20;
+  --weo-gold: #F2A900; --night: #002F6C; --accent: #004C97;
+  --s1: #004C97; --s2: #DA291C; --s3: #78BE20; --s4: #F2A900; --s5: #5E8AB4; --s6: #8031A7; --s7: #FF8200; --s8: #001E60;
+  --grow: #004C97; --flat: #B1B3B3; --decline: #DA291C; --good: #2E8B57; --warn: #F2A900; --crit: #DA291C; }
+:root[data-theme="dark"] { --afdb: #6FA3D8; --afdb-light: #8DB6DC; --accent: #F2A900;
+  --s1: #6FA3D8; --s2: #E0457E; --s3: #A9CC8E; --s4: #F2A900; --s5: #8DB6DC; --s6: #B57AD6; --s7: #FF9F70; --s8: #9A9CF0;
   --grow: #6FA3D8; --flat: #77766f; --decline: #E0457E; }
-@media (prefers-color-scheme: dark) { :root:where(:not([data-theme="light"])) { --afdb: #6FA3D8; --afdb-light: #8DB6DC; --accent: #F5BD47;
-  --s1: #6FA3D8; --s2: #E0457E; --s3: #A9CC8E; --s4: #F5BD47; --s5: #8DB6DC; --s6: #B57AD6; --s7: #FF9F70; --s8: #9A9CF0;
+@media (prefers-color-scheme: dark) { :root:where(:not([data-theme="light"])) { --afdb: #6FA3D8; --afdb-light: #8DB6DC; --accent: #F2A900;
+  --s1: #6FA3D8; --s2: #E0457E; --s3: #A9CC8E; --s4: #F2A900; --s5: #8DB6DC; --s6: #B57AD6; --s7: #FF9F70; --s8: #9A9CF0;
   --grow: #6FA3D8; --flat: #77766f; --decline: #E0457E; } }
 .topbar { background: linear-gradient(120deg, #001A40 0%, #002F6C 45%, #004C97 100%); border-bottom-color: var(--weo-gold); }
 .controls select { background: #001A40; }
-.cobrand { background: rgba(75,130,173,.92); }
+.cobrand { background: rgba(94,138,180,.92); }
 .cobrand.imf { background: #fff; color: #004C97; border-color: #fff; }
 .kpi .value { color: var(--imf-dark); }
 .kpi:hover { box-shadow: 0 10px 24px -16px rgba(0,76,151,.55); }
 .play-btn { box-shadow: 0 2px 6px rgba(0,76,151,.35); }
 .map-year { background: rgba(0,47,108,.8); }
 .sp-a { fill: rgba(0,76,151,.14); }
-.lic-note { background: rgba(245,189,71,.12); }
+.lic-note { background: rgba(242,169,0,.12); }
 .fb-imf { font-weight: 800; color: var(--imf); }
 :root[data-theme="dark"] .fb-imf { color: #8DB6DC; }
 .disclaimer { flex-basis: 100%; color: var(--ink-2); font-size: .76rem; font-style: italic; margin: 4px 0 0; }
@@ -346,13 +346,13 @@ table.data td.num, table.data th.num { text-align: right; font-variant-numeric: 
 .conf { display: inline-block; font-size: .72rem; font-weight: 700; padding: 1px 8px; border-radius: 99px; border: 1px solid var(--border); }
 .conf.high { color: #2E8B57; } .conf.medium { color: #B07D00; } .conf.low { color: var(--imf-red); }
 .sent { display: inline-block; min-width: 4.2em; text-align: center; font-size: .74rem; font-weight: 700; padding: 1px 6px; border-radius: 6px; color: #fff; }
-.sent.negative { background: var(--imf-red); } .sent.neutral { background: #A6A8AC; } .sent.positive { background: var(--imf); }
+.sent.negative { background: var(--imf-red); } .sent.neutral { background: #B1B3B3; } .sent.positive { background: var(--imf); }
 .wc { width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--border); background: #fff; }
 .toggle { display: inline-flex; gap: 0; margin: 0 0 10px; }
 .news-list { max-height: 520px; overflow: auto; }
 .news-list a { text-decoration: none; } .news-list a:hover { text-decoration: underline; }
 .lit-ref { font-size: .86rem; color: var(--ink-2); } .lit-ref li { margin: 4px 0; }
-.callout { border-left: 4px solid var(--weo-gold); background: rgba(245,189,71,.10); padding: 9px 13px; border-radius: 0 8px 8px 0; font-size: .88rem; }
+.callout { border-left: 4px solid var(--weo-gold); background: rgba(242,169,0,.10); padding: 9px 13px; border-radius: 0 8px 8px 0; font-size: .88rem; }
 
 table.data.elec-t th, table.data.elec-t td { text-align: left; white-space: normal; vertical-align: top; }
 table.data.elec-t th:first-child, table.data.elec-t td:first-child { min-width: 0; white-space: nowrap; }
@@ -365,3 +365,19 @@ table.data.elec-t td.wide { min-width: 170px; white-space: normal; }
 #ag-years label { font-size: .84rem; white-space: nowrap; }
 #page-macro h3, #page-agri h3, #page-zones h3 { color: var(--ink); }
 .ind-wrap .map { height: clamp(420px, calc(100vh - 300px), 640px); }
+
+/* ==== v3: IMF brand palette, white backgrounds, Arial / Arial Black ==== */
+:root, :root[data-theme="light"] { --page: #FFFFFF; --surface: #FFFFFF; --surface-2: #FFFFFF;
+  --font: Arial, Helvetica, sans-serif; --font-title: "Arial Black", Arial, sans-serif;
+  --imf: #004C97; --imf-sky: #009CDE; --imf-red: #DA291C; --imf-green: #78BE20; --weo-gold: #F2A900;
+  --s1: #004C97; --s2: #FF8200; --s3: #009CDE; --s4: #78BE20; --s5: #DA291C; --s6: #8031A7; --s7: #F2A900; --s8: #001E60;
+  --grow: #004C97; --flat: #F2A900; --decline: #E35205; }
+body { font-family: var(--font) !important; background: var(--page); }
+h1, h2, .section-title, #country-title, .kpi .value, .lede strong { font-family: var(--font-title); font-weight: 900; letter-spacing: 0; }
+h3 { font-family: var(--font); font-weight: 700; }
+.map-wrap, .map-wrap .leaflet-container, .map-fallback { background: #FFFFFF; }
+table.data th { background: #FFFFFF; border-bottom: 2px solid var(--imf); }
+table.data tr:hover td { background: #F3F7FC; }
+.map-legend .sw.na { background: transparent !important; border: 1.5px dashed #707372; }
+.map-legend .classes div { display: flex; align-items: center; gap: 6px; font-size: .78rem; }
+.map-legend .sw { display: inline-block; width: 14px; height: 12px; border-radius: 2px; }

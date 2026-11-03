@@ -7,8 +7,8 @@
 <title>Night-Time Lights and Economic Activity</title>
 <meta name="description" content="Dashboard: economic activity measured with night-time lights (VIIRS) at national and subnational levels.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23004C97'/%3E%3Ccircle cx='11' cy='13' r='3' fill='%23F5BD47'/%3E%3Ccircle cx='21' cy='19' r='2' fill='%23F5BD47'/%3E%3Ccircle cx='19' cy='9' r='1.4' fill='%23fde7a6'/%3E%3C/svg%3E">
-<link rel="stylesheet" href="assets/vendor/leaflet.css?v=20261103072030">
-<link rel="stylesheet" href="assets/style.css?v=20261103072030">
+<link rel="stylesheet" href="assets/vendor/leaflet.css?v=20261103134746">
+<link rel="stylesheet" href="assets/style.css?v=20261103134746">
 <script>
   // apply the stored theme before first paint (no flash)
   try { const t = localStorage.getItem("ntl-theme"); if (t === "light" || t === "dark") document.documentElement.dataset.theme = t; } catch (e) {}
@@ -92,6 +92,8 @@
           <select id="map-level"></select></label>
         <label class="ctl" data-for="choro">Indicator
           <select id="map-indicator"></select></label>
+        <label class="ctl" data-for="choro">Year
+          <select id="map-ind-year"></select></label>
         <div class="ctl" data-for="ntl">
           <button type="button" id="map-play" class="play-btn" aria-label="Play the animation" title="Play the animation">▶</button>
           <label for="map-year">Year <span id="year-label" class="mono"></span></label>
@@ -312,12 +314,12 @@
   <p id="foot"></p>
 </footer>
 
-<script src="assets/vendor/leaflet.js?v=20261103072030"></script>
+<script src="assets/vendor/leaflet.js?v=20261103134746"></script>
 <script>window.L || document.write('<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"><script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"><\/script>')</script>
-<script src="assets/vendor/plotly.min.js?v=20261103072030" charset="utf-8"></script>
+<script src="assets/vendor/plotly.min.js?v=20261103134746" charset="utf-8"></script>
 <script>window.Plotly || document.write('<script src="https://cdn.jsdelivr.net/npm/plotly.js-dist-min@2.35.2/plotly.min.js" charset="utf-8"><\/script>')</script>
-<script src="assets/app.js?v=20261103072030"></script>
-<script src="assets/elec.js?v=20261103072030"></script>
-<script src="assets/econ.js?v=20261103072030"></script>
+<script src="assets/app.js?v=20261103134746"></script>
+<script src="assets/elec.js?v=20261103134746"></script>
+<script src="assets/econ.js?v=20261103134746"></script>
 </body>
 </html>
