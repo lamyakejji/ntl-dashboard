@@ -5,7 +5,7 @@
 const S = { iso: null, d: {}, rendered: {}, map: null, mapB: null, mapMode: "choro" };
 const $ = (s, el = document) => el.querySelector(s);
 const $$ = (s, el = document) => [...el.querySelectorAll(s)];
-const PAGES = ["overview", "map", "time", "regions", "inequality", "grid", "outages", "method", "data"];
+const PAGES = ["overview", "map", "time", "regions", "inequality", "macro", "agri", "zones", "industry", "ports", "grid", "outages", "method", "data"];
 
 /* ---------------------------------------------------------------- formatting (en-US) */
 const nf = (d = 0) => new Intl.NumberFormat("en-US", { minimumFractionDigits: d, maximumFractionDigits: d });
@@ -58,6 +58,9 @@ async function loadCountry(iso) {
     monthly: getCSV(base + "monthly_national.csv"), madm1: getCSV(base + "monthly_adm1.csv"),
     gdp: getJSON(base + "gdp.json"), breaks: getJSON(base + "breaks.json"), ineq: getJSON(base + "inequality.json"),
     growth: getJSON(base + "growth.json"), grid: getJSON(base + "grid.json"), gridLines: getJSON(base + "grid_lines.geojson"), gridPts: getJSON(base + "grid_points.geojson"),
+    macro: getJSON(base + "macro.json"), agri: getJSON(base + "agri.json"), zones: getJSON(base + "zones.json"),
+    zonesGeo: getJSON(base + "zones.geojson"), ports: getJSON(base + "ports.json"),
+    ind: getJSON(base + "industrial.geojson"), indmeta: getJSON(base + "industrial.json"),
     outages: getJSON(base + "outages.json"), outUnits: getJSON(base + "outage_units.geojson"), news: getJSON(base + "news.json"),
     adm0: getJSON(base + "adm0.geojson"), adm1: getJSON(base + "adm1.geojson"), adm2: getJSON(base + "adm2.geojson"),
   };
@@ -127,6 +130,9 @@ function route() {
   if (p === "map" && S.map) setTimeout(() => S.map.invalidateSize(), 50);
   if (p === "grid" && S.gmap) setTimeout(() => S.gmap.invalidateSize(), 50);
   if (p === "outages" && S.omap) setTimeout(() => S.omap.invalidateSize(), 50);
+  if (p === "industry" && S.imap) setTimeout(() => S.imap.invalidateSize(), 50);
+  if (p === "zones" && S.zmap) setTimeout(() => S.zmap.invalidateSize(), 50);
+  if (p === "ports" && S.pmap) setTimeout(() => S.pmap.invalidateSize(), 50);
   window.dispatchEvent(new Event("resize"));
 }
 
@@ -791,7 +797,7 @@ function addBaseControl(mp) {
 /* ================================================================ industrial zones */
 const IT = {
   lede: "Where are the industrial zones of {c}? Industrial sites shine at night like towns, but their buildings are mostly non-residential, few people live there and they emit nitrogen dioxide. Combining these signals, {n} candidate zones are detected.",
-  none: "Industrial zones have not been computed for this country yet: run section 10 of the notebook, then publish again.",
+  none: "Industrial zones have not been computed for this country yet: run section 11 of the notebook, then publish again.",
   k_n: "Zones detected", k_n_sub: "{a} major hubs · {b} energy sites",
   k_share: "Share of national light", k_share_sub: "emitted by the zones, {y}",
   k_area: "Total area", k_area_sub: "km² of candidate zones",
@@ -822,7 +828,7 @@ const IT = {
   val_ok: "{p} of detected zones (and {pt} of the 30 brightest) contain at least one OpenStreetMap <code>landuse=industrial</code> area within 1 km; these zones carry {pw} of the detected light. {rc} of the country's {n} OSM industrial areas are covered.",
   val_na: "The OpenStreetMap comparison could not be made (Overpass API unavailable at computation time).",
 };
-const ICOL = { major: "#F5C242", zone: "#F28C28", energy: "#E4572E" };
+const ICOL = { major: "#F5BD47", zone: "#FF8547", energy: "#C00050" };   // IMF gold, orange, red
 const fmtT = (s, o) => String(s).replace(/\{(\w+)\}/g, (_, k) => (o[k] ?? ""));
 function indYears(p) { return Object.keys(p).filter((k) => /^sol_\d{4}$/.test(k)).map((k) => +k.slice(4)).sort(); }
 function indSpark(p) {

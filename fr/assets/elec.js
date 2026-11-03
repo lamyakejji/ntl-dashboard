@@ -323,16 +323,16 @@ RENDER.outages = () => {
   } else { ["o-daily", "o-heat", "o-units"].forEach((id) => plot(id, [])); }
   // ---- news
   if (!n) { $("#n-kpis").innerHTML = `<p class="help">${esc(T.na)}</p>`; return; }
+  const scored = n.method !== "not run";
   const arts = n.articles || [], negs = arts.filter((a) => a.label === "negative").length;
   const tone = arts.reduce((s, a) => s + (isNum(a.score) ? a.score : 0), 0) / Math.max(1, arts.length);
   const mon = n.monthly || [], peak = mon.filter((r) => r.articles > 0).sort((a, b) => b.articles - a.articles)[0];
-  $("#n-kpis").innerHTML = kpi(T.kn_n, num(n.n), `${num(n.n_raw)} ${FR ? "collectés" : "collected"} · ${esc(n.method || "")}`) + kpi(T.kn_neg, pct(negs / Math.max(1, arts.length)), "") +
-    kpi(T.kn_tone, F.num(tone, 2), "−1 … +1") + kpi(T.kn_peak, peak ? new Date(peak.month + "-01T00:00:00Z").toLocaleDateString(FR ? "fr-FR" : "en-GB", { month: "short", year: "numeric", timeZone: "UTC" }) : "–", peak ? `${peak.articles} ${FR ? "articles" : "articles"}` : "");
+  $("#n-kpis").innerHTML = kpi(T.kn_n, num(n.n), `${num(n.n_raw)} ${FR ? "collectés" : "collected"} · ${esc(n.method || "")}`) + (scored ? kpi(T.kn_neg, pct(negs / Math.max(1, arts.length)), "") + kpi(T.kn_tone, F.num(tone, 2), "−1 … +1") : "") + kpi(T.kn_peak, peak ? new Date(peak.month + "-01T00:00:00Z").toLocaleDateString(FR ? "fr-FR" : "en-GB", { month: "short", year: "numeric", timeZone: "UTC" }) : "–", peak ? `${peak.articles} ${FR ? "articles" : "articles"}` : "");
   plot("n-monthly", mon.length ? [
     { type: "bar", x: mon.map((r) => r.month + "-01"), y: mon.map((r) => r.articles || 0), name: T.nm_art, marker: { color: IMF.mid }, hovertemplate: "%{x|%b %Y}: %{y}<extra></extra>" },
     ...(mon.some((r) => isNum(r.outages)) ? [{ x: mon.map((r) => r.month + "-01"), y: mon.map((r) => r.outages), name: T.nm_out, yaxis: "y2", mode: "lines", line: { color: IMF.red, width: 1.6 } }] : []),
-    { x: mon.filter((r) => isNum(r.sentiment)).map((r) => r.month + "-01"), y: mon.filter((r) => isNum(r.sentiment)).map((r) => r.sentiment), name: T.nm_tone, yaxis: "y3",
-      mode: "markers", marker: { color: IMF.navy, size: 6, symbol: "diamond" }, hovertemplate: "%{x|%b %Y}: %{y:.2f}<extra>" + T.nm_tone + "</extra>" },
+    ...(scored ? [{ x: mon.filter((r) => isNum(r.sentiment)).map((r) => r.month + "-01"), y: mon.filter((r) => isNum(r.sentiment)).map((r) => r.sentiment), name: T.nm_tone, yaxis: "y3",
+      mode: "markers", marker: { color: IMF.navy, size: 6, symbol: "diamond" }, hovertemplate: "%{x|%b %Y}: %{y:.2f}<extra>" + T.nm_tone + "</extra>" }] : []),
   ] : [], { yaxis: { title: { text: T.nm_y } }, yaxis2: { overlaying: "y", side: "right", title: { text: T.nm_y2 }, showgrid: false, rangemode: "tozero" },
     yaxis3: { overlaying: "y", side: "right", range: [-1, 1], visible: false }, xaxis: { type: "date" }, legend: { y: 1.18 }, margin: { r: 56 } });
   const wc = n.wordclouds || {}, img = $("#n-wc"), base = `data/${S.iso}/`;
@@ -345,7 +345,7 @@ RENDER.outages = () => {
     { xaxis: { title: { text: T.wc_bar } }, margin: { l: 10, t: 6 } });
   const rowsOf = (q) => arts.filter((a) => !q || `${a.title} ${a.source} ${a.concepts}`.toLowerCase().includes(q)).slice(0, 400).map((a) =>
     `<tr><td>${fmtDate(a.date)}</td><td class="wide">${link(a.url, a.title)}</td><td>${esc(a.source || "")}</td><td>${esc((a.lang || "").toUpperCase())}</td>` +
-    `<td><span class="sent ${esc(a.label)}" title="${F.num(a.score, 2)}">${esc(T.tone[a.label] || a.label)}</span></td><td>${esc(a.concepts || "")}</td></tr>`);
+    (scored ? `<td><span class="sent ${esc(a.label)}" title="${F.num(a.score, 2)}">${esc(T.tone[a.label] || a.label)}</span></td>` : "<td>–</td>") + `<td>${esc(a.concepts || "")}</td></tr>`);
   table("n-table", T.t_cols, rowsOf(""));
   $("#n-search").oninput = (e) => table("n-table", T.t_cols, rowsOf(e.target.value.trim().toLowerCase()));
 };

@@ -359,3 +359,9 @@ table.data.elec-t th:first-child, table.data.elec-t td:first-child { min-width: 
 table.data.elec-t td.num, table.data.elec-t th.num { text-align: right; white-space: nowrap; }
 table.data.elec-t td.wide { min-width: 170px; white-space: normal; }
 .leaflet-control-layers-toggle { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23004C97' d='M12 2 1 8l11 6 11-6-11-6zm0 13.2L3.3 10.5 1 11.8l11 6 11-6-2.3-1.3L12 15.2zm0 4L3.3 14.5 1 15.8l11 6 11-6-2.3-1.3L12 19.2z'/%3E%3C/svg%3E") !important; background-size: 22px 22px !important; }
+
+/* ---- v2: growth, agriculture, zones, ports (assets/econ.js) ---- */
+#page-agri .chart.short, #page-zones .chart.short { height: 230px; }
+#ag-years label { font-size: .84rem; white-space: nowrap; }
+#page-macro h3, #page-agri h3, #page-zones h3 { color: var(--ink); }
+.ind-wrap .map { height: clamp(420px, calc(100vh - 300px), 640px); }

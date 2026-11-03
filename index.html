@@ -7,8 +7,8 @@
 <title>Night-Time Lights and Economic Activity</title>
 <meta name="description" content="Dashboard: economic activity measured with night-time lights (VIIRS) at national and subnational levels.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23004C97'/%3E%3Ccircle cx='11' cy='13' r='3' fill='%23F5BD47'/%3E%3Ccircle cx='21' cy='19' r='2' fill='%23F5BD47'/%3E%3Ccircle cx='19' cy='9' r='1.4' fill='%23fde7a6'/%3E%3C/svg%3E">
-<link rel="stylesheet" href="assets/vendor/leaflet.css?v=20261102080444">
-<link rel="stylesheet" href="assets/style.css?v=20261102080444">
+<link rel="stylesheet" href="assets/vendor/leaflet.css?v=20261103072030">
+<link rel="stylesheet" href="assets/style.css?v=20261103072030">
 <script>
   // apply the stored theme before first paint (no flash)
   try { const t = localStorage.getItem("ntl-theme"); if (t === "light" || t === "dark") document.documentElement.dataset.theme = t; } catch (e) {}
@@ -45,6 +45,11 @@
   <a href="#time" data-page="time">Trends</a>
   <a href="#regions" data-page="regions">Regions</a>
   <a href="#inequality" data-page="inequality">Inequality</a>
+  <a href="#macro" data-page="macro">Growth</a>
+  <a href="#agri" data-page="agri">Agriculture</a>
+  <a href="#zones" data-page="zones">Activity by zone</a>
+  <a href="#industry" data-page="industry">Industrial zones</a>
+  <a href="#ports" data-page="ports">Ports &amp; trade</a>
   <a href="#grid" data-page="grid">Electricity grid</a>
   <a href="#outages" data-page="outages">Power outages</a>
   <a href="#method" data-page="method">Methods &amp; limitations</a>
@@ -220,6 +225,60 @@
   </section>
 
   <!-- ================================ METHOD ================================ -->
+  <!-- ================================ INDUSTRY ================================ -->
+  <section class="page" id="page-industry" hidden>
+    <p class="lede" id="ind-lede"></p>
+    <div class="kpis" id="ind-kpis"></div>
+    <div class="card map-card ind-card">
+      <div class="map-toolbar" role="group" aria-label="Zone filters">
+        <div class="seg" id="ind-filter">
+          <button type="button" data-c="all" class="on">All</button>
+          <button type="button" data-c="major">Major hubs</button>
+          <button type="button" data-c="zone">Industrial / logistics zones</button>
+          <button type="button" data-c="energy">Energy / extraction</button>
+        </div>
+        <label class="ctl"><input type="checkbox" id="ind-ntl" checked> Night lights in the background</label>
+        <label class="ctl"><input type="checkbox" id="ind-poly" checked> Zone outlines</label>
+      </div>
+      <div class="map-wrap ind-wrap">
+        <div id="imap" class="map" role="region" aria-label="Map of industrial zones"></div>
+        <div class="map-legend" id="ind-legend"></div>
+      </div>
+      <p class="help">Each circle is a candidate zone; its area is proportional to the light it emits. Hover to identify it,
+        click for its profile (light trend, non-residential buildings, NO₂, OpenStreetMap validation).</p>
+      <p class="source">Sources: VIIRS VNL V2 (NOAA/EOG), GHSL BUILT-S R2023A (non-residential built-up) and GHS-POP (JRC),
+        Sentinel-5P TROPOMI NO₂ (ESA/Copernicus), OpenStreetMap (validation); computed on Google Earth Engine.</p>
+    </div>
+    <div class="grid two">
+      <article class="card">
+        <h2>The 15 zones emitting the most light</h2>
+        <p class="help">Share of national light emitted by each zone (latest year), colour = zone type.</p>
+        <div class="chart tall" id="ind-top"></div>
+      </article>
+      <article class="card">
+        <h2>Industrial signature of the zones</h2>
+        <p class="help">The further right (mostly non-residential buildings) and the higher (much light per resident), the
+          more industrial the profile. Size = light emitted.</p>
+        <div class="chart tall" id="ind-scatter"></div>
+      </article>
+    </div>
+    <article class="card">
+      <h2>All detected zones</h2>
+      <p class="help">Click a row to centre the map on the zone. Sortable columns.</p>
+      <div class="table-wrap ind-table-wrap"><table class="data" id="ind-table"></table></div>
+    </article>
+    <article class="card prose">
+      <h2>Method, validation and limitations</h2>
+      <div id="ind-method"></div>
+    </article>
+  </section>
+
+  <!-- ======================= GROWTH / AGRICULTURE / ZONES / PORTS (rendered by assets/econ.js) ======================= -->
+  <section class="page" id="page-macro" hidden></section>
+  <section class="page" id="page-agri" hidden></section>
+  <section class="page" id="page-zones" hidden></section>
+  <section class="page" id="page-ports" hidden></section>
+
   <!-- ======================= ELECTRICITY GRID / OUTAGES (rendered by assets/elec.js) ======================= -->
   <section class="page" id="page-grid" hidden></section>
   <section class="page" id="page-outages" hidden></section>
@@ -253,11 +312,12 @@
   <p id="foot"></p>
 </footer>
 
-<script src="assets/vendor/leaflet.js?v=20261102080444"></script>
+<script src="assets/vendor/leaflet.js?v=20261103072030"></script>
 <script>window.L || document.write('<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"><script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"><\/script>')</script>
-<script src="assets/vendor/plotly.min.js?v=20261102080444" charset="utf-8"></script>
+<script src="assets/vendor/plotly.min.js?v=20261103072030" charset="utf-8"></script>
 <script>window.Plotly || document.write('<script src="https://cdn.jsdelivr.net/npm/plotly.js-dist-min@2.35.2/plotly.min.js" charset="utf-8"><\/script>')</script>
-<script src="assets/app.js?v=20261102080444"></script>
-<script src="assets/elec.js?v=20261102080444"></script>
+<script src="assets/app.js?v=20261103072030"></script>
+<script src="assets/elec.js?v=20261103072030"></script>
+<script src="assets/econ.js?v=20261103072030"></script>
 </body>
 </html>
