@@ -5,7 +5,7 @@
 
 <p align="center"><b><a href="https://lamyakejji.github.io/ntl-dashboard/fr/">🌍 Tableau de bord</a> &nbsp;·&nbsp; <a href="https://lamyakejji.github.io/ntl-dashboard/fr/#map">🗺️ Carte</a> &nbsp;·&nbsp; <a href="https://lamyakejji.github.io/ntl-dashboard/fr/#time">📈 Évolution</a> &nbsp;·&nbsp; <a href="https://lamyakejji.github.io/ntl-dashboard/fr/#grid">⚡ Réseau électrique</a> &nbsp;·&nbsp; <a href="https://lamyakejji.github.io/ntl-dashboard/fr/#outages">🔌 Coupures</a> &nbsp;·&nbsp; <a href="https://lamyakejji.github.io/ntl-dashboard/fr/#method">📐 Méthode</a> &nbsp;·&nbsp; <a href="https://lamyakejji.github.io/ntl-dashboard/fr/#data">⬇️ Données</a> &nbsp;·&nbsp; <a href="README.md">🌐 English</a></b></p>
 
-<p align="center"><a href="https://lamyakejji.github.io/ntl-dashboard/fr/"><img alt="Tableau de bord" src="https://img.shields.io/badge/Tableau_de_bord-en_ligne-004C97?style=for-the-badge&logo=githubpages&logoColor=white"></a> <a href="https://lamyakejji.github.io/ntl-dashboard/"><img alt="Dashboard" src="https://img.shields.io/badge/Dashboard-English-4B82AD?style=for-the-badge"></a> <img alt="period" src="https://img.shields.io/badge/p%C3%A9riode-2014%E2%80%932025-D49A00?style=for-the-badge"> <img alt="data" src="https://img.shields.io/badge/donn%C3%A9es-VIIRS_%C2%B7_GHSL_%C2%B7_Sentinel-231F20?style=for-the-badge"> <img alt="Earth Engine" src="https://img.shields.io/badge/Google-Earth_Engine-4285F4?style=for-the-badge&logo=googleearth&logoColor=white"> <a href="LICENSE"><img alt="licence" src="https://img.shields.io/badge/licence-CC_BY_4.0_%C2%B7_MIT-5E6964?style=for-the-badge"></a></p>
+<p align="center"><a href="https://lamyakejji.github.io/ntl-dashboard/fr/"><img alt="Tableau de bord" src="https://img.shields.io/badge/Tableau_de_bord-en_ligne-004C97?style=for-the-badge&logo=githubpages&logoColor=white"></a> <a href="https://lamyakejji.github.io/ntl-dashboard/"><img alt="Dashboard" src="https://img.shields.io/badge/Dashboard-English-5E8AB4?style=for-the-badge"></a> <img alt="period" src="https://img.shields.io/badge/p%C3%A9riode-2014%E2%80%932025-D49A00?style=for-the-badge"> <img alt="data" src="https://img.shields.io/badge/donn%C3%A9es-VIIRS_%C2%B7_GHSL_%C2%B7_Sentinel-231F20?style=for-the-badge"> <img alt="Earth Engine" src="https://img.shields.io/badge/Google-Earth_Engine-4285F4?style=for-the-badge&logo=googleearth&logoColor=white"> <a href="LICENSE"><img alt="licence" src="https://img.shields.io/badge/licence-CC_BY_4.0_%C2%B7_MIT-5E6964?style=for-the-badge"></a></p>
 
 > [!NOTE]
 > Ce dépôt héberge le **tableau de bord public** de l'activité économique de **Mauritanie** mesurée par les lumières nocturnes vues par satellite (2014–2025). Le site est bilingue (français / anglais), entièrement statique et régénéré à chaque exécution du notebook.
@@ -39,24 +39,36 @@
    <sub>🟠 moyenne · relation nette mais seulement 12 années</sub>
 5. **Inégalités et accès** — Le Gini de la lumière par habitant (ADM2) vaut 0,69 en 2025 (évolution non significative depuis 2014). Environ 2,06 million(s) de personnes vivent dans des zones habitées sans lumière détectable (41 % de la population habitée).  
    <sub>🟠 moyenne · sensible au seuil de radiance (de 0,00 à 2,37 M selon le seuil) ; proxy d'éclairage extérieur, pas de raccordement</sub>
-6. **Réseau électrique** — Le réseau électrique cartographié (OpenStreetMap) totalise 2 813 km de lignes. Entre 2014 et 2025, la lumière des villes à moins de 15 km d'une ligne de transport a varié de +204 %, contre +867 % au-delà de 50 km (descriptif : les lignes OSM ne sont pas datées).  
+6. **Zones industrielles** — 7 zones industrielles candidates sont détectées (3 pôles majeurs, 0 sites énergétiques), sur 5 km². Elles émettent 1 % de la lumière nationale ; la première est Nouadhibou (Dakhlet Nouadhibou). Leur lumière évolue de +6,3 % par an.  
+   <sub>🟠 moyenne · 100 % des zones confirmées par OpenStreetMap ; candidats à vérifier</sub>
+7. **Réseau électrique** — Le réseau électrique cartographié (OpenStreetMap) totalise 2 813 km de lignes. Entre 2014 et 2025, la lumière des villes à moins de 15 km d'une ligne de transport a varié de +204 %, contre +867 % au-delà de 50 km (descriptif : les lignes OSM ne sont pas datées).  
    <sub>low · couverture OSM variable, lignes non datées</sub>
-7. **Bâti sans lumière** — En 2020, la part du bâti (GHSL) sans lumière détectable est la plus élevée à Barkéol 79%, Maghama 72%, Tintane 68% : l'expansion urbaine y devance le service électrique.  
+8. **Bâti sans lumière** — En 2020, la part du bâti (GHSL) sans lumière détectable est la plus élevée à Barkéol 79%, Maghama 72%, Tintane 68% : l'expansion urbaine y devance le service électrique.  
    <sub>medium · le halo lumineux sous-estime cette part dans les grandes villes</sub>
-8. **Effet des investissements** — Études d'événements (villes traitées vs jamais traitées) — Raccordement haute tension (2 villes) : -0,49 points log, p bootstrap = 0,20; Renforcement de la production (9 villes) : +0,08 points log, p bootstrap = 0,80.  
+9. **Effet des investissements** — Études d'événements (villes traitées vs jamais traitées) — Raccordement haute tension (2 villes) : -0,49 points log, p bootstrap = 0,20; Renforcement de la production (9 villes) : +0,08 points log, p bootstrap = 0,80.  
    <sub>low · peu de villes traitées ; dates d'événements de confiance moyenne/faible</sub>
-9. **Coupures d'électricité** — À Nouakchott, 1,0 % des nuits claires de 2026 (jusqu'au 26/10) montrent une baisse de lumière à l'échelle de la ville compatible avec une coupure (contre 1,0 % en 2014). L'épisode le plus marqué débute le 11/06/2021 : lumière à 9 % de la normale, 96 % des pixels assombris.  
+10. **Coupures d'électricité** — À Nouakchott, 1,0 % des nuits claires de 2026 (jusqu'au 27/10) montrent une baisse de lumière à l'échelle de la ville compatible avec une coupure (contre 1,0 % en 2014). L'épisode le plus marqué débute le 11/06/2021 : lumière à 9 % de la normale, 96 % des pixels assombris.  
    <sub>medium · un passage satellite par nuit (≈ 01 h 30) : coupures de jour invisibles ; 2/4 épisodes documentés observables détectés</sub>
-10. **Presse et coupures** — 246 articles de presse en ligne (FR, AR, EN) traitent de coupures à Nouakchott. Le pic de couverture est en 08/2026 (42 articles). Thèmes économiques les plus cités : Generation capacity & demand, Investment & finance, Heat & air conditioning, Water supply.  
+11. **Presse et coupures** — 246 articles de presse en ligne (FR, AR, EN) traitent de coupures à Nouakchott. Le pic de couverture est en 08/2026 (42 articles). Thèmes économiques les plus cités : Generation capacity & demand, Investment & finance, Heat & air conditioning, Water supply.  
    <sub>low · couverture en ligne inégale dans le temps ; ton estimé par un modèle</sub>
-11. **Agriculture (NDVI)** — Saison 2025 (juillet–octobre) : NDVI des zones cultivées +43 % par rapport à la moyenne de long terme ; région la plus en retard : Brakna (+29 %).  
+12. **Activité par zone** — 2025 : les sites extractifs émettent 4 % de la lumière du pays ; lumière +5 % sur un an dans les mines, +13 % dans le reste du pays.  
+   <sub>medium · VIIRS mensuel nettoyé ; coordonnées des mines approximatives</sub>
+13. **Ports et commerce** — Commerce maritime 2026T3 (PortWatch) : importations +12 %, exportations +3 % sur un an (tonnages estimés).  
+   <sub>medium · positions AIS des navires ; tonnage estimé, pas les déclarations douanières</sub>
+14. **Agriculture (NDVI)** — Saison 2025 (juillet–octobre) : NDVI des zones cultivées +43 % par rapport à la moyenne de long terme ; région la plus en retard : Brakna (+29 %).  
    <sub>medium · NDVI METOP sur zones cultivées ; la récolte dépend aussi des crues et de l'irrigation</sub>
-12. **NDVI et PIB agricole** — Élasticité de la valeur ajoutée agricole au NDVI de saison : 0,18 (1991–2025, p = 0,01).  
+15. **NDVI et PIB agricole** — Élasticité de la valeur ajoutée agricole au NDVI de saison : 0,18 (1991–2025, p = 0,01).  
    <sub>medium · 35 années, erreurs HAC</sub>
-13. **Croissance officielle** — PIB réel 2026T2 : +2,8 % sur un trimestre (CVS), +6,6 % sur un an ; hors gaz +5,9 % sur un an.  
+16. **Croissance officielle** — PIB réel 2026T2 : +2,8 % sur un trimestre (CVS), +6,6 % sur un an ; hors gaz +5,9 % sur un an.  
    <sub>high · ANSADE, comptes trimestriels</sub>
-14. **Satellites et comptes nationaux** — Meilleur indicateur avancé : NDVI des zones cultivées (national) pour « Agriculture » (corrélation de rang 0,45, même signe 57 % du temps).  
-   <sub>low · 14 trimestres</sub>
+17. **Satellites et comptes nationaux** — Meilleur indicateur avancé : Escales (PortWatch) pour « Transport » (corrélation de rang 0,71, même signe 67 % du temps).  
+   <sub>medium · 6 trimestres</sub>
+
+## 🛰️ Le jour et la nuit
+
+<p align="center"><img src="docs/img/daynight.png" alt="Le jour et la nuit" width="100%"></p>
+
+Le principal pôle économique du pays (Ksar (Nouakchott)), le jour vu par Sentinel-2 et la nuit vu par VIIRS. Ce que le satellite voit la nuit — l'éclairage des villes, des ports, des usines et des routes — est l'indicateur indirect d'activité utilisé dans tout ce projet.
 
 ## 🌃 Ce qui a changé
 
@@ -69,6 +81,22 @@ Composites annuels VIIRS VNL V2 (torchères masquées), même échelle logarithm
 <p align="center"><img src="docs/img/series.png" alt="series" width="100%"></p>
 
 La courbe désaisonnalisée retire les effets de saison (neige, végétation, fêtes) : c'est elle qu'il faut lire pour juger d'une hausse ou d'une baisse.
+
+## 🏭 Zones industrielles
+
+<p align="center"><img src="docs/img/industry.png" alt="industry" width="80%"></p>
+
+Les sites industriels brillent la nuit comme les villes, mais leurs bâtiments sont surtout non résidentiels, peu de gens y habitent et ils émettent du NO₂. En combinant VIIRS, GHSL (bâti non résidentiel, population) et Sentinel-5P, **7 zones candidates** sont détectées ; elles émettent **1 %** de la lumière nationale. 100 % d'entre elles contiennent une zone industrielle répertoriée dans OpenStreetMap (± 1 km).
+
+| # | Zone | Type | Surface | Part de la lumière nationale | Croissance / an |
+|---:|---|---|---:|---:|---:|
+| 1 | Nouadhibou (Dakhlet Nouadhibou) | Pôle industriel majeur | 1,8 km² | 0,3 % | +4,3 % |
+| 2 | Zoueratt (Tiris Zemmour) | Pôle industriel majeur | 0,8 km² | 0,1 % | +0,1 % |
+| 3 | Ouad Naga (Trarza) | Pôle industriel majeur | 0,6 km² | 0,1 % | +1,7 % |
+| 4 | El Mina (Nouakchott) | Zone industrielle / logistique | 0,4 km² | 0,1 % | +8,9 % |
+| 5 | El Mina (Nouakchott) | Zone industrielle / logistique | 0,4 km² | 0,1 % | +12,3 % |
+| 6 | El Mina (Nouakchott) | Zone industrielle / logistique | 0,6 km² | 0,1 % | +6,9 % |
+| 7 | El Mina (Nouakchott) | Zone industrielle / logistique | 0,6 km² | 0,1 % | +7,5 % |
 
 ## 🧭 Ce que contient le tableau de bord
 
@@ -105,7 +133,7 @@ flowchart LR
     C --> G
     D & E & F & G --> H["🌍 Tableau de bord bilingue<br/>GitHub Pages"]
     classDef default fill:#EAF2FB,stroke:#004C97,color:#231F20;
-    class H fill:#004C97,color:#fff,stroke:#F5BD47
+    class H fill:#004C97,color:#fff,stroke:#F2A900
 ```
 
 <details>

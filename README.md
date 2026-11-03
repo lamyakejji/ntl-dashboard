@@ -5,7 +5,7 @@
 
 <p align="center"><b><a href="https://lamyakejji.github.io/ntl-dashboard/">🌍 Dashboard</a> &nbsp;·&nbsp; <a href="https://lamyakejji.github.io/ntl-dashboard/#map">🗺️ Map</a> &nbsp;·&nbsp; <a href="https://lamyakejji.github.io/ntl-dashboard/#time">📈 Trends</a> &nbsp;·&nbsp; <a href="https://lamyakejji.github.io/ntl-dashboard/#grid">⚡ Electricity grid</a> &nbsp;·&nbsp; <a href="https://lamyakejji.github.io/ntl-dashboard/#outages">🔌 Power outages</a> &nbsp;·&nbsp; <a href="https://lamyakejji.github.io/ntl-dashboard/#method">📐 Method</a> &nbsp;·&nbsp; <a href="https://lamyakejji.github.io/ntl-dashboard/#data">⬇️ Data</a> &nbsp;·&nbsp; <a href="README.fr.md">🌐 Français</a></b></p>
 
-<p align="center"><a href="https://lamyakejji.github.io/ntl-dashboard/"><img alt="Dashboard" src="https://img.shields.io/badge/Dashboard-live-004C97?style=for-the-badge&logo=githubpages&logoColor=white"></a> <a href="https://lamyakejji.github.io/ntl-dashboard/fr/"><img alt="Tableau de bord" src="https://img.shields.io/badge/Tableau_de_bord-fran%C3%A7ais-4B82AD?style=for-the-badge"></a> <img alt="period" src="https://img.shields.io/badge/period-2014%E2%80%932025-D49A00?style=for-the-badge"> <img alt="data" src="https://img.shields.io/badge/data-VIIRS_%C2%B7_GHSL_%C2%B7_Sentinel-231F20?style=for-the-badge"> <img alt="Earth Engine" src="https://img.shields.io/badge/Google-Earth_Engine-4285F4?style=for-the-badge&logo=googleearth&logoColor=white"> <a href="LICENSE"><img alt="licence" src="https://img.shields.io/badge/licence-CC_BY_4.0_%C2%B7_MIT-5E6964?style=for-the-badge"></a></p>
+<p align="center"><a href="https://lamyakejji.github.io/ntl-dashboard/"><img alt="Dashboard" src="https://img.shields.io/badge/Dashboard-live-004C97?style=for-the-badge&logo=githubpages&logoColor=white"></a> <a href="https://lamyakejji.github.io/ntl-dashboard/fr/"><img alt="Tableau de bord" src="https://img.shields.io/badge/Tableau_de_bord-fran%C3%A7ais-5E8AB4?style=for-the-badge"></a> <img alt="period" src="https://img.shields.io/badge/period-2014%E2%80%932025-D49A00?style=for-the-badge"> <img alt="data" src="https://img.shields.io/badge/data-VIIRS_%C2%B7_GHSL_%C2%B7_Sentinel-231F20?style=for-the-badge"> <img alt="Earth Engine" src="https://img.shields.io/badge/Google-Earth_Engine-4285F4?style=for-the-badge&logo=googleearth&logoColor=white"> <a href="LICENSE"><img alt="licence" src="https://img.shields.io/badge/licence-CC_BY_4.0_%C2%B7_MIT-5E6964?style=for-the-badge"></a></p>
 
 > [!NOTE]
 > This repository hosts the **public dashboard** of economic activity in **Mauritania** measured with night-time lights seen from space (2014–2025). The site is bilingual (English / French), fully static and regenerated each time the notebook runs.
@@ -39,24 +39,36 @@
    <sub>🟠 medium · clear relationship but only 12 years</sub>
 5. **Inequality and access** — The Gini coefficient of light per capita (ADM2) is 0.69 in 2025 (no significant change since 2014). About 2.06 million people live in inhabited areas with no detectable light (41% of the inhabited population).  
    <sub>🟠 medium · sensitive to the radiance threshold (from 0.00 to 2.37 M depending on the threshold); a proxy for outdoor lighting, not for grid connection</sub>
-6. **Electricity grid** — The mapped grid (OpenStreetMap) totals 2,813 km of line. Between 2014 and 2025, light in towns within 15 km of a transmission line changed by +204%, against +867% beyond 50 km (descriptive: OSM lines carry no dates).  
+6. **Industrial zones** — 7 candidate industrial zones are detected (3 major hubs, 0 energy sites), covering 5 km². They emit 1% of national light; the largest is Nouadhibou (Dakhlet Nouadhibou). Their light changes by +6.3% per year.  
+   <sub>🟠 medium · 100% of zones confirmed by OpenStreetMap; candidates to be checked</sub>
+7. **Electricity grid** — The mapped grid (OpenStreetMap) totals 2,813 km of line. Between 2014 and 2025, light in towns within 15 km of a transmission line changed by +204%, against +867% beyond 50 km (descriptive: OSM lines carry no dates).  
    <sub>🔴 low · OSM coverage varies, lines are undated</sub>
-7. **Built-up land left dark** — In 2020, the share of built-up land (GHSL) with no detectable light is highest in Barkéol 79%, Maghama 72%, Tintane 68%: urban expansion runs ahead of electricity service there.  
+8. **Built-up land left dark** — In 2020, the share of built-up land (GHSL) with no detectable light is highest in Barkéol 79%, Maghama 72%, Tintane 68%: urban expansion runs ahead of electricity service there.  
    <sub>🟠 medium · blooming understates this share in large cities</sub>
-8. **Effect of grid investments** — Event studies (treated vs never-treated towns) — HV connection (2 towns): -0.49 log points, wild-bootstrap p = 0.20; Generation upgrade (9 towns): +0.08 log points, wild-bootstrap p = 0.80.  
+9. **Effect of grid investments** — Event studies (treated vs never-treated towns) — HV connection (2 towns): -0.49 log points, wild-bootstrap p = 0.20; Generation upgrade (9 towns): +0.08 log points, wild-bootstrap p = 0.80.  
    <sub>🔴 low · few treated towns; event dates of medium/low confidence</sub>
-9. **Power outages** — In Nouakchott, 1.0% of clear nights in 2026 (to 26 Oct) show a citywide drop in light consistent with a power outage (against 1.0% in 2014). The deepest episode starts on 11 Jun 2021: light at 9% of normal, 96% of pixels dimmed.  
+10. **Power outages** — In Nouakchott, 1.0% of clear nights in 2026 (to 27 Oct) show a citywide drop in light consistent with a power outage (against 1.0% in 2014). The deepest episode starts on 11 Jun 2021: light at 9% of normal, 96% of pixels dimmed.  
    <sub>🟠 medium · one satellite pass per night (≈01:30): daytime cuts are invisible; 2/4 observable documented episodes detected</sub>
-10. **News on outages** — 246 online news articles (FR, AR, EN) cover power cuts in Nouakchott. Coverage peaks in Aug 2026 (42 articles). Most-cited economic themes: Generation capacity & demand, Investment & finance, Heat & air conditioning, Water supply.  
+11. **News on outages** — 246 online news articles (FR, AR, EN) cover power cuts in Nouakchott. Coverage peaks in Aug 2026 (42 articles). Most-cited economic themes: Generation capacity & demand, Investment & finance, Heat & air conditioning, Water supply.  
    <sub>🔴 low · uneven online coverage over time; tone estimated by a model</sub>
-11. **Agriculture (NDVI)** — 2025 growing season (July–October): cropland NDVI +43% vs its long-term average; weakest region: Brakna (+29%).  
+12. **Activity by zone** — 2025: extractive sites emit 4% of the country's light; light +5% y/y at the mines, +13% in the rest of the country.  
+   <sub>🟠 medium · cleaned monthly VIIRS; mine coordinates approximate</sub>
+13. **Ports and trade** — Seaborne trade 2026Q3 (PortWatch): imports +12%, exports +3% year on year (estimated tonnage).  
+   <sub>🟠 medium · AIS ship positions; estimated tonnage, not customs declarations</sub>
+14. **Agriculture (NDVI)** — 2025 growing season (July–October): cropland NDVI +43% vs its long-term average; weakest region: Brakna (+29%).  
    <sub>🟠 medium · METOP NDVI over cropland; harvests also depend on floods and irrigation</sub>
-12. **NDVI and agricultural GDP** — Elasticity of agricultural value added to growing-season NDVI: 0.18 (1991–2025, p = 0.01).  
+15. **NDVI and agricultural GDP** — Elasticity of agricultural value added to growing-season NDVI: 0.18 (1991–2025, p = 0.01).  
    <sub>🟠 medium · 35 years, HAC errors</sub>
-13. **Official growth** — Real GDP 2026Q2: +2.8% q/q (SA), +6.6% y/y; excluding gas +5.9% y/y.  
+16. **Official growth** — Real GDP 2026Q2: +2.8% q/q (SA), +6.6% y/y; excluding gas +5.9% y/y.  
    <sub>🟢 high · ANSADE quarterly accounts</sub>
-14. **Satellites vs national accounts** — Best satellite proxy: NDVI over cropland (national) for “Agriculture” (rank correlation 0.45, same sign 57% of the time).  
-   <sub>🔴 low · 14 quarters</sub>
+17. **Satellites vs national accounts** — Best satellite proxy: Port calls (PortWatch) for “Transport” (rank correlation 0.71, same sign 67% of the time).  
+   <sub>🟠 medium · 6 quarters</sub>
+
+## 🛰️ Day and night
+
+<p align="center"><img src="docs/img/daynight.png" alt="Day and night" width="100%"></p>
+
+The country's main economic pole (Ksar (Nouakchott)), by day as seen by Sentinel-2 and by night as seen by VIIRS. What the satellite sees at night — the lighting of cities, ports, factories and roads — is the proxy of activity used throughout this project.
 
 ## 🌃 What changed
 
@@ -69,6 +81,22 @@ VIIRS VNL V2 annual composites (gas flares masked), same logarithmic scale: left
 <p align="center"><img src="docs/img/series.png" alt="series" width="100%"></p>
 
 The seasonally adjusted curve removes seasonal effects (snow, vegetation, festivities): read it to judge a rise or a fall.
+
+## 🏭 Industrial zones
+
+<p align="center"><img src="docs/img/industry.png" alt="industry" width="80%"></p>
+
+Industrial sites shine at night like towns, but their buildings are mostly non-residential, few people live there and they emit NO₂. Combining VIIRS, GHSL (non-residential built-up, population) and Sentinel-5P, **7 candidate zones** are detected; they emit **1%** of national light. 100% of them contain an industrial area mapped in OpenStreetMap (± 1 km).
+
+| # | Zone | Type | Area | Share of national light | Growth / yr |
+|---:|---|---|---:|---:|---:|
+| 1 | Nouadhibou (Dakhlet Nouadhibou) | Major industrial hub | 1.8 km² | 0.3% | +4.3% |
+| 2 | Zoueratt (Tiris Zemmour) | Major industrial hub | 0.8 km² | 0.1% | +0.1% |
+| 3 | Ouad Naga (Trarza) | Major industrial hub | 0.6 km² | 0.1% | +1.7% |
+| 4 | El Mina (Nouakchott) | Industrial / logistics zone | 0.4 km² | 0.1% | +8.9% |
+| 5 | El Mina (Nouakchott) | Industrial / logistics zone | 0.4 km² | 0.1% | +12.3% |
+| 6 | El Mina (Nouakchott) | Industrial / logistics zone | 0.6 km² | 0.1% | +6.9% |
+| 7 | El Mina (Nouakchott) | Industrial / logistics zone | 0.6 km² | 0.1% | +7.5% |
 
 ## 🧭 What the dashboard contains
 
@@ -105,7 +133,7 @@ flowchart LR
     C --> G
     D & E & F & G --> H["🌍 Bilingual dashboard<br/>GitHub Pages"]
     classDef default fill:#EAF2FB,stroke:#004C97,color:#231F20;
-    class H fill:#004C97,color:#fff,stroke:#F5BD47
+    class H fill:#004C97,color:#fff,stroke:#F2A900
 ```
 
 <details>
