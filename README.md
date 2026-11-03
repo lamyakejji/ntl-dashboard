@@ -47,8 +47,16 @@
    <sub>🔴 low · few treated towns; event dates of medium/low confidence</sub>
 9. **Power outages** — In Nouakchott, 1.0% of clear nights in 2026 (to 26 Oct) show a citywide drop in light consistent with a power outage (against 1.0% in 2014). The deepest episode starts on 11 Jun 2021: light at 9% of normal, 96% of pixels dimmed.  
    <sub>🟠 medium · one satellite pass per night (≈01:30): daytime cuts are invisible; 2/4 observable documented episodes detected</sub>
-10. **News on outages** — 246 online news articles (FR, AR, EN) cover power cuts in Nouakchott; 63% are negative in tone. Coverage peaks in Aug 2026 (42 articles). Most-cited economic themes: Generation capacity & demand, Investment & finance, Heat & air conditioning, Water supply.  
+10. **News on outages** — 246 online news articles (FR, AR, EN) cover power cuts in Nouakchott. Coverage peaks in Aug 2026 (42 articles). Most-cited economic themes: Generation capacity & demand, Investment & finance, Heat & air conditioning, Water supply.  
    <sub>🔴 low · uneven online coverage over time; tone estimated by a model</sub>
+11. **Agriculture (NDVI)** — 2025 growing season (July–October): cropland NDVI +43% vs its long-term average; weakest region: Brakna (+29%).  
+   <sub>🟠 medium · METOP NDVI over cropland; harvests also depend on floods and irrigation</sub>
+12. **NDVI and agricultural GDP** — Elasticity of agricultural value added to growing-season NDVI: 0.18 (1991–2025, p = 0.01).  
+   <sub>🟠 medium · 35 years, HAC errors</sub>
+13. **Official growth** — Real GDP 2026Q2: +2.8% q/q (SA), +6.6% y/y; excluding gas +5.9% y/y.  
+   <sub>🟢 high · ANSADE quarterly accounts</sub>
+14. **Satellites vs national accounts** — Best satellite proxy: NDVI over cropland (national) for “Agriculture” (rank correlation 0.45, same sign 57% of the time).  
+   <sub>🔴 low · 14 quarters</sub>
 
 ## 🌃 What changed
 
@@ -72,7 +80,12 @@ The seasonally adjusted curve removes seasonal effects (snow, vegetation, festiv
 | [**Regions**](https://lamyakejji.github.io/ntl-dashboard/#regions) | growth by region and district, classes, concentration and convergence |
 | [**Electricity grid**](https://lamyakejji.github.io/ntl-dashboard/#grid) | OpenStreetMap lines, dated and sourced events, distance to the grid, built-up land left dark, event studies |
 | [**Inequality**](https://lamyakejji.github.io/ntl-dashboard/#inequality) | Gini, Lorenz curves, Theil, people “in the dark” |
-| [**Power outages**](https://lamyakejji.github.io/ntl-dashboard/#outages) | night-by-night outages (daily Black Marble), episodes, news: tone and economic vocabulary |
+| [**Power outages**](https://lamyakejji.github.io/ntl-dashboard/#outages) | night-by-night outages (daily Black Marble), episodes, news: economic vocabulary |
+| [**Growth**](https://lamyakejji.github.io/ntl-dashboard/#macro) | ANSADE quarterly accounts, sector contributions, IPI, satellite cross-checks |
+| [**Agriculture**](https://lamyakejji.github.io/ntl-dashboard/#agri) | NDVI over cropland by wilaya, current / previous year / long-term average, GDP elasticities |
+| [**Activity by zone**](https://lamyakejji.github.io/ntl-dashboard/#zones) | lights (VIIRS or Black Marble) and NO₂: mines, industrial zones, ports, rest of the country |
+| [**Industrial zones**](https://lamyakejji.github.io/ntl-dashboard/#industry) | candidate zones, score, trend, OpenStreetMap validation |
+| [**Ports & trade**](https://lamyakejji.github.io/ntl-dashboard/#ports) | port calls and import / export volumes (IMF PortWatch) |
 | [**Method & limitations**](https://lamyakejji.github.io/ntl-dashboard/#method) | sources, parameters, assumptions and known biases |
 | [**Data**](https://lamyakejji.github.io/ntl-dashboard/#data) | every downloadable table, reproducibility manifest |
 
@@ -171,4 +184,4 @@ Produced by the **African Development Bank** as part of **Data Innovation for Af
 ---
 
 <p align="center"><sub>© 2026 AfDB-DI4A · with the IMF Big Data Center · Any reuse must cite “Source: AfDB-DI4A” · The views expressed do not necessarily represent the views of the IMF</sub></p>
-<p align="center"><sub>Last update: 2026-11-02 · <a href="#top">↑</a></sub></p>
+<p align="center"><sub>Last update: 2026-11-03 · <a href="#top">↑</a></sub></p>

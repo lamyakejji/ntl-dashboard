@@ -47,8 +47,16 @@
    <sub>low · peu de villes traitées ; dates d'événements de confiance moyenne/faible</sub>
 9. **Coupures d'électricité** — À Nouakchott, 1,0 % des nuits claires de 2026 (jusqu'au 26/10) montrent une baisse de lumière à l'échelle de la ville compatible avec une coupure (contre 1,0 % en 2014). L'épisode le plus marqué débute le 11/06/2021 : lumière à 9 % de la normale, 96 % des pixels assombris.  
    <sub>medium · un passage satellite par nuit (≈ 01 h 30) : coupures de jour invisibles ; 2/4 épisodes documentés observables détectés</sub>
-10. **Presse et coupures** — 246 articles de presse en ligne (FR, AR, EN) traitent de coupures à Nouakchott ; 63 % ont un ton négatif. Le pic de couverture est en 08/2026 (42 articles). Thèmes économiques les plus cités : Generation capacity & demand, Investment & finance, Heat & air conditioning, Water supply.  
+10. **Presse et coupures** — 246 articles de presse en ligne (FR, AR, EN) traitent de coupures à Nouakchott. Le pic de couverture est en 08/2026 (42 articles). Thèmes économiques les plus cités : Generation capacity & demand, Investment & finance, Heat & air conditioning, Water supply.  
    <sub>low · couverture en ligne inégale dans le temps ; ton estimé par un modèle</sub>
+11. **Agriculture (NDVI)** — Saison 2025 (juillet–octobre) : NDVI des zones cultivées +43 % par rapport à la moyenne de long terme ; région la plus en retard : Brakna (+29 %).  
+   <sub>medium · NDVI METOP sur zones cultivées ; la récolte dépend aussi des crues et de l'irrigation</sub>
+12. **NDVI et PIB agricole** — Élasticité de la valeur ajoutée agricole au NDVI de saison : 0,18 (1991–2025, p = 0,01).  
+   <sub>medium · 35 années, erreurs HAC</sub>
+13. **Croissance officielle** — PIB réel 2026T2 : +2,8 % sur un trimestre (CVS), +6,6 % sur un an ; hors gaz +5,9 % sur un an.  
+   <sub>high · ANSADE, comptes trimestriels</sub>
+14. **Satellites et comptes nationaux** — Meilleur indicateur avancé : NDVI des zones cultivées (national) pour « Agriculture » (corrélation de rang 0,45, même signe 57 % du temps).  
+   <sub>low · 14 trimestres</sub>
 
 ## 🌃 Ce qui a changé
 
@@ -72,7 +80,12 @@ La courbe désaisonnalisée retire les effets de saison (neige, végétation, f�
 | [**Régions**](https://lamyakejji.github.io/ntl-dashboard/fr/#regions) | croissance par région et district, classes, concentration et convergence |
 | [**Réseau électrique**](https://lamyakejji.github.io/ntl-dashboard/fr/#grid) | lignes OpenStreetMap, événements datés et sourcés, distance au réseau, bâti dans le noir, études d'événements |
 | [**Inégalités**](https://lamyakejji.github.io/ntl-dashboard/fr/#inequality) | Gini, courbes de Lorenz, Theil, population « dans le noir » |
-| [**Coupures d'électricité**](https://lamyakejji.github.io/ntl-dashboard/fr/#outages) | coupures nuit après nuit (Black Marble quotidien), épisodes, presse : tonalité et vocabulaire économique |
+| [**Coupures d'électricité**](https://lamyakejji.github.io/ntl-dashboard/fr/#outages) | coupures nuit après nuit (Black Marble quotidien), épisodes, presse : vocabulaire économique |
+| [**Croissance**](https://lamyakejji.github.io/ntl-dashboard/fr/#macro) | comptes trimestriels de l'ANSADE, contributions des secteurs, IPI, recoupements satellitaires |
+| [**Agriculture**](https://lamyakejji.github.io/ntl-dashboard/fr/#agri) | NDVI des zones cultivées par wilaya, année en cours / précédente / moyenne, élasticités au PIB |
+| [**Activité par zone**](https://lamyakejji.github.io/ntl-dashboard/fr/#zones) | lumières (VIIRS ou Black Marble) et NO₂ : mines, zones industrielles, ports, reste du pays |
+| [**Zones industrielles**](https://lamyakejji.github.io/ntl-dashboard/fr/#industry) | zones candidates, score, tendance, validation OpenStreetMap |
+| [**Ports et commerce**](https://lamyakejji.github.io/ntl-dashboard/fr/#ports) | escales et volumes importés / exportés (FMI PortWatch) |
 | [**Méthode & limites**](https://lamyakejji.github.io/ntl-dashboard/fr/#method) | sources, paramètres, hypothèses et biais connus |
 | [**Données**](https://lamyakejji.github.io/ntl-dashboard/fr/#data) | toutes les tables téléchargeables, manifeste de reproductibilité |
 
@@ -171,4 +184,4 @@ Réalisé par la **Banque africaine de développement** dans le cadre de **Data 
 ---
 
 <p align="center"><sub>© 2026 AfDB-DI4A · avec l'IMF Big Data Center · Toute réutilisation doit mentionner « Source : AfDB-DI4A » · Les opinions exprimées ne reflètent pas nécessairement celles du FMI</sub></p>
-<p align="center"><sub>Dernière mise à jour : 2026-11-02 · <a href="#top">↑</a></sub></p>
+<p align="center"><sub>Dernière mise à jour : 2026-11-03 · <a href="#top">↑</a></sub></p>
