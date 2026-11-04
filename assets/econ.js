@@ -19,7 +19,7 @@ const COLON = FR ? " : " : ": ";
 const qlab = (q) => (FR ? String(q).replace("Q", "T") : String(q));
 const empty = (sec, msg) => { sec.innerHTML = `<article class="card"><p class="help">${esc(msg)}</p></article>`; };
 const T = FR ? {
-  na: "Données non disponibles : relancer la section correspondante du notebook, puis l'export (section 17).",
+  na: "Données non disponibles : relancer la section correspondante du notebook, puis l'export (section 19).",
   // growth
   m_lede: "Ce que disent les comptes nationaux trimestriels de l'ANSADE, et ce qu'en disent les satellites. Les chiffres officiels viennent des notes de croissance publiées ; les indicateurs satellitaires (lumières, NO₂, NDVI, trafic portuaire) servent de recoupement, trimestre par trimestre.",
   k_qoq: "PIB réel, sur un trimestre", k_yoy: "PIB réel, sur un an", k_xg: "Hors gaz, sur un an", k_y: "Croissance annuelle",
@@ -78,7 +78,7 @@ const T = FR ? {
     <li>Les exportations de Nouadhibou sont dominées par le minerai de fer de la SNIM (vrac sec).</li></ul>`,
   t_k: "kt",
 } : {
-  na: "Data not available: run the matching section of the notebook, then the export (section 17).",
+  na: "Data not available: run the matching section of the notebook, then the export (section 19).",
   m_lede: "What ANSADE's quarterly national accounts say, and what the satellites say about it. Official figures come from the published growth notes; satellite indicators (lights, NO₂, NDVI, port traffic) serve as quarter-by-quarter cross-checks.",
   k_qoq: "Real GDP, q/q", k_yoy: "Real GDP, y/y", k_xg: "Excluding gas, y/y", k_y: "Annual growth",
   c_h: "Contributions of sectors to GDP growth", c_help: "Bars: contribution of each sector (percentage points); line: GDP growth. 2023–2024: Q4-2024 note; 2025–2026: Q2-2026 note (different vintages).",

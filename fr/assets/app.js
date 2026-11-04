@@ -5,7 +5,7 @@
 const S = { iso: null, d: {}, rendered: {}, map: null, mapB: null, mapMode: "choro" };
 const $ = (s, el = document) => el.querySelector(s);
 const $$ = (s, el = document) => [...el.querySelectorAll(s)];
-const PAGES = ["overview", "map", "time", "regions", "inequality", "macro", "agri", "zones", "industry", "ports", "grid", "outages", "method", "data"];
+const PAGES = ["overview", "map", "time", "regions", "inequality", "macro", "agri", "zones", "industry", "ports", "labour", "climate", "grid", "outages", "method", "data"];
 
 /* ---------------------------------------------------------------- formatting (fr-FR) */
 const nf = (d = 0) => new Intl.NumberFormat("fr-FR", { minimumFractionDigits: d, maximumFractionDigits: d });
@@ -59,7 +59,7 @@ async function loadCountry(iso) {
     gdp: getJSON(base + "gdp.json"), breaks: getJSON(base + "breaks.json"), ineq: getJSON(base + "inequality.json"),
     growth: getJSON(base + "growth.json"), grid: getJSON(base + "grid.json"), gridLines: getJSON(base + "grid_lines.geojson"), gridPts: getJSON(base + "grid_points.geojson"),
     macro: getJSON(base + "macro.json"), agri: getJSON(base + "agri.json"), zones: getJSON(base + "zones.json"),
-    zonesGeo: getJSON(base + "zones.geojson"), ports: getJSON(base + "ports.json"),
+    zonesGeo: getJSON(base + "zones.geojson"), ports: getJSON(base + "ports.json"), labour: getJSON(base + "labour.json"), climate: getJSON(base + "climate.json"),
     ind: getJSON(base + "industrial.geojson"), indmeta: getJSON(base + "industrial.json"),
     outages: getJSON(base + "outages.json"), outUnits: getJSON(base + "outage_units.geojson"), news: getJSON(base + "news.json"),
     adm0: getJSON(base + "adm0.geojson"), adm1: getJSON(base + "adm1.geojson"), adm2: getJSON(base + "adm2.geojson"),
