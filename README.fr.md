@@ -47,7 +47,7 @@
    <sub>medium · le halo lumineux sous-estime cette part dans les grandes villes</sub>
 9. **Effet des investissements** — Études d'événements (villes traitées vs jamais traitées) — Raccordement haute tension (2 villes) : -0,49 points log, p bootstrap = 0,20; Renforcement de la production (9 villes) : +0,08 points log, p bootstrap = 0,80.  
    <sub>low · peu de villes traitées ; dates d'événements de confiance moyenne/faible</sub>
-10. **Coupures d'électricité** — À Nouakchott, 1,0 % des nuits claires de 2026 (jusqu'au 27/10) montrent une baisse de lumière à l'échelle de la ville compatible avec une coupure (contre 1,0 % en 2014). L'épisode le plus marqué débute le 11/06/2021 : lumière à 9 % de la normale, 96 % des pixels assombris.  
+10. **Coupures d'électricité** — À Nouakchott, 1,0 % des nuits claires de 2026 (jusqu'au 01/11) montrent une baisse de lumière à l'échelle de la ville compatible avec une coupure (contre 1,0 % en 2014). L'épisode le plus marqué débute le 11/06/2021 : lumière à 9 % de la normale, 96 % des pixels assombris.  
    <sub>medium · un passage satellite par nuit (≈ 01 h 30) : coupures de jour invisibles ; 2/4 épisodes documentés observables détectés</sub>
 11. **Presse et coupures** — 246 articles de presse en ligne (FR, AR, EN) traitent de coupures à Nouakchott. Le pic de couverture est en 08/2026 (42 articles). Thèmes économiques les plus cités : Generation capacity & demand, Investment & finance, Heat & air conditioning, Water supply.  
    <sub>low · couverture en ligne inégale dans le temps ; ton estimé par un modèle</sub>
@@ -59,9 +59,23 @@
    <sub>medium · NDVI METOP sur zones cultivées ; la récolte dépend aussi des crues et de l'irrigation</sub>
 15. **NDVI et PIB agricole** — Élasticité de la valeur ajoutée agricole au NDVI de saison : 0,18 (1991–2025, p = 0,01).  
    <sub>medium · 35 années, erreurs HAC</sub>
-16. **Croissance officielle** — PIB réel 2026T2 : +2,8 % sur un trimestre (CVS), +6,6 % sur un an ; hors gaz +5,9 % sur un an.  
+16. **Marché du travail** — 2026-T2 : chômage 13,2 % (+1,1 pt sur un an) ; jeunes 14-35 ans 23,5 %, femmes 21,7 %. Sous-utilisation au sens large (SU4) : 34,2 %, 47 % chez les jeunes et 50 % chez les femmes.  
+   <sub>high · enquête trimestrielle ANSADE, ~2 500 ménages par trimestre</sub>
+17. **Compétences** — Réserve pour la diversification : environ 193 milliers de chômeurs, dont 39 % de niveau secondaire ; le chômage des diplômés du supérieur atteint 17,4 %. Main-d'œuvre disponible, mais peu formée aux métiers techniques.  
+   <sub>medium · effectifs estimés (population × parts de l'enquête)</sub>
+18. **Formation et diversification** — Étudiants 2023-2024 : 65 % en sciences sociales, droit, commerce, lettres et arts ; 2,4 % en ingénierie, industrie et construction ; 79 en agriculture — face à des secteurs cibles (mines, gaz, hydrogène, agro-alimentaire, élevage) qui demandent des techniciens.  
+   <sub>high · annuaire ANSADE 2025 (inscrits, pas diplômés ; formation professionnelle non couverte)</sub>
+19. **Productivité par secteur** — Le secteur secondaire (mines comprises) produit 32 % de la valeur ajoutée avec 20 % des emplois ; le primaire, 22 % avec 25 %. Déplacer des travailleurs vers les secteurs plus productifs est le moteur de la transformation structurelle.  
+   <sub>medium · valeur ajoutée Banque mondiale, emplois ENTE : sources et années différentes</sub>
+20. **Emploi industriel** — Emplois du secondaire : 22,6 % au 2026-T2 (+82 milliers sur un an). Le saut depuis le T3-2025 (de 16 % à 22–25 %) est à confirmer : chantiers (gaz, infrastructures), mines, ou changement de classification.  
+   <sub>low · quelques trimestres seulement ; parts lues sur les graphiques des rapports</sub>
+21. **El Niño** — RONI JAS 2026 : +1,7 °C, El Niño fort pendant la saison des pluies. AGRHYMET (mai 2026) place l'ouest du Sahel, dont la Mauritanie, au plus haut risque de déficits et de pauses sèches.  
+   <sub>high · indice observé (NOAA CPC)</sub>
+22. **Plans de contingence** — La réponse passe par le Plan national de réponse (DCAN, CSA) fondé sur le Cadre harmonisé, les transferts Elmaouna de Taazour et l'assurance sécheresse ARC. Aucun plan propre à El Niño ni enveloppe internationale d'anticipation (l'appel FAO–PAM ne couvre pas la Mauritanie) n'a été identifié.  
+   <sub>medium · sources publiques consultées le 4 November 2026</sub>
+23. **Croissance officielle** — PIB réel 2026T2 : +2,8 % sur un trimestre (CVS), +6,6 % sur un an ; hors gaz +5,9 % sur un an.  
    <sub>high · ANSADE, comptes trimestriels</sub>
-17. **Satellites et comptes nationaux** — Meilleur indicateur avancé : Escales (PortWatch) pour « Transport » (corrélation de rang 0,71, même signe 67 % du temps).  
+24. **Satellites et comptes nationaux** — Meilleur indicateur avancé : Escales (PortWatch) pour « Transport » (corrélation de rang 0,71, même signe 67 % du temps).  
    <sub>medium · 6 trimestres</sub>
 
 ## 🛰️ Le jour et la nuit
@@ -114,6 +128,8 @@ Les sites industriels brillent la nuit comme les villes, mais leurs bâtiments s
 | [**Activité par zone**](https://lamyakejji.github.io/ntl-dashboard/fr/#zones) | lumières (VIIRS ou Black Marble) et NO₂ : mines, zones industrielles, ports, reste du pays |
 | [**Zones industrielles**](https://lamyakejji.github.io/ntl-dashboard/fr/#industry) | zones candidates, score, tendance, validation OpenStreetMap |
 | [**Ports et commerce**](https://lamyakejji.github.io/ntl-dashboard/fr/#ports) | escales et volumes importés / exportés (FMI PortWatch) |
+| [**Marché du travail**](https://lamyakejji.github.io/ntl-dashboard/fr/#labour) | emploi, chômage et sous-utilisation (ENTE), structure de l'emploi, compétences et domaines d'études |
+| [**Climat**](https://lamyakejji.github.io/ntl-dashboard/fr/#climate) | El Niño, saison des pluies, chaleur, végétation, plans de contingence |
 | [**Méthode & limites**](https://lamyakejji.github.io/ntl-dashboard/fr/#method) | sources, paramètres, hypothèses et biais connus |
 | [**Données**](https://lamyakejji.github.io/ntl-dashboard/fr/#data) | toutes les tables téléchargeables, manifeste de reproductibilité |
 
@@ -212,4 +228,4 @@ Réalisé par la **Banque africaine de développement** dans le cadre de **Data 
 ---
 
 <p align="center"><sub>© 2026 AfDB-DI4A · avec l'IMF Big Data Center · Toute réutilisation doit mentionner « Source : AfDB-DI4A » · Les opinions exprimées ne reflètent pas nécessairement celles du FMI</sub></p>
-<p align="center"><sub>Dernière mise à jour : 2026-11-03 · <a href="#top">↑</a></sub></p>
+<p align="center"><sub>Dernière mise à jour : 2026-11-04 · <a href="#top">↑</a></sub></p>

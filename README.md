@@ -47,7 +47,7 @@
    <sub>🟠 medium · blooming understates this share in large cities</sub>
 9. **Effect of grid investments** — Event studies (treated vs never-treated towns) — HV connection (2 towns): -0.49 log points, wild-bootstrap p = 0.20; Generation upgrade (9 towns): +0.08 log points, wild-bootstrap p = 0.80.  
    <sub>🔴 low · few treated towns; event dates of medium/low confidence</sub>
-10. **Power outages** — In Nouakchott, 1.0% of clear nights in 2026 (to 27 Oct) show a citywide drop in light consistent with a power outage (against 1.0% in 2014). The deepest episode starts on 11 Jun 2021: light at 9% of normal, 96% of pixels dimmed.  
+10. **Power outages** — In Nouakchott, 1.0% of clear nights in 2026 (to 01 Nov) show a citywide drop in light consistent with a power outage (against 1.0% in 2014). The deepest episode starts on 11 Jun 2021: light at 9% of normal, 96% of pixels dimmed.  
    <sub>🟠 medium · one satellite pass per night (≈01:30): daytime cuts are invisible; 2/4 observable documented episodes detected</sub>
 11. **News on outages** — 246 online news articles (FR, AR, EN) cover power cuts in Nouakchott. Coverage peaks in Aug 2026 (42 articles). Most-cited economic themes: Generation capacity & demand, Investment & finance, Heat & air conditioning, Water supply.  
    <sub>🔴 low · uneven online coverage over time; tone estimated by a model</sub>
@@ -63,6 +63,20 @@
    <sub>🟢 high · ANSADE quarterly accounts</sub>
 17. **Satellites vs national accounts** — Best satellite proxy: Port calls (PortWatch) for “Transport” (rank correlation 0.71, same sign 67% of the time).  
    <sub>🟠 medium · 6 quarters</sub>
+18. **Labour market** — 2026-Q2: unemployment 13.2% (+1.1 pt over a year); youth 14-35 23.5%, women 21.7%. Broad underutilisation (SU4): 34.2%, 47% for youth and 50% for women.  
+   <sub>🟢 high · ANSADE quarterly survey, ~2,500 households per quarter</sub>
+19. **Skills** — Reserve for diversification: about 193 thousand unemployed, 39% of them with secondary education; unemployment of tertiary graduates is 17.4%. Labour is available, but few are trained for technical trades.  
+   <sub>🟠 medium · counts estimated (population × survey shares)</sub>
+20. **Education and diversification** — Students 2023-2024: 65% in social sciences, law, business, arts and humanities; 2.4% in engineering, manufacturing and construction; 79 in agriculture — while the target sectors (mining, gas, hydrogen, agro-food, livestock) need technicians.  
+   <sub>🟢 high · ANSADE yearbook 2025 (enrolment, not graduates; vocational training not covered)</sub>
+21. **Productivity by sector** — The secondary sector (mining included) produces 32% of value added with 20% of jobs; the primary sector 22% with 25%. Moving workers to more productive sectors is what structural transformation is about.  
+   <sub>🟠 medium · value added from the World Bank, jobs from the ENTE: different sources and years</sub>
+22. **Industrial jobs** — Secondary-sector jobs: 22.6% in 2026-Q2 (+82 thousand over a year). The jump since Q3-2025 (from 16% to 22–25%) needs confirming: construction (gas, infrastructure), mining, or a change in classification.  
+   <sub>🔴 low · few quarters; shares read from the reports' charts</sub>
+23. **El Niño** — JAS 2026 RONI: +1.7 °C, a strong El Niño over the rainy season. AGRHYMET (May 2026) puts the western Sahel, Mauritania included, at the highest risk of deficits and dry spells.  
+   <sub>🟢 high · observed index (NOAA CPC)</sub>
+24. **Contingency plans** — The response runs through the National Response Plan (DCAN, CSA) built on the Cadre Harmonisé, Taazour's Elmaouna transfers and ARC drought insurance. No El Niño-specific plan and no international anticipatory envelope (the FAO–WFP appeal does not cover Mauritania) were identified.  
+   <sub>🟠 medium · public sources consulted on 4 November 2026</sub>
 
 ## 🛰️ Day and night
 
@@ -114,6 +128,8 @@ Industrial sites shine at night like towns, but their buildings are mostly non-r
 | [**Activity by zone**](https://lamyakejji.github.io/ntl-dashboard/#zones) | lights (VIIRS or Black Marble) and NO₂: mines, industrial zones, ports, rest of the country |
 | [**Industrial zones**](https://lamyakejji.github.io/ntl-dashboard/#industry) | candidate zones, score, trend, OpenStreetMap validation |
 | [**Ports & trade**](https://lamyakejji.github.io/ntl-dashboard/#ports) | port calls and import / export volumes (IMF PortWatch) |
+| [**Labour market**](https://lamyakejji.github.io/ntl-dashboard/#labour) | employment, unemployment and underutilisation (ENTE), employment structure, skills and fields of study |
+| [**Climate**](https://lamyakejji.github.io/ntl-dashboard/#climate) | El Niño, rainy season, heat, vegetation, contingency plans |
 | [**Method & limitations**](https://lamyakejji.github.io/ntl-dashboard/#method) | sources, parameters, assumptions and known biases |
 | [**Data**](https://lamyakejji.github.io/ntl-dashboard/#data) | every downloadable table, reproducibility manifest |
 
@@ -212,4 +228,4 @@ Produced by the **African Development Bank** as part of **Data Innovation for Af
 ---
 
 <p align="center"><sub>© 2026 AfDB-DI4A · with the IMF Big Data Center · Any reuse must cite “Source: AfDB-DI4A” · The views expressed do not necessarily represent the views of the IMF</sub></p>
-<p align="center"><sub>Last update: 2026-11-03 · <a href="#top">↑</a></sub></p>
+<p align="center"><sub>Last update: 2026-11-04 · <a href="#top">↑</a></sub></p>
