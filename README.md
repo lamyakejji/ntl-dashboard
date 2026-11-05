@@ -77,6 +77,26 @@
    <sub>🟢 high · observed index (NOAA CPC)</sub>
 24. **Contingency plans** — The response runs through the National Response Plan (DCAN, CSA) built on the Cadre Harmonisé, Taazour's Elmaouna transfers and ARC drought insurance. No El Niño-specific plan and no international anticipatory envelope (the FAO–WFP appeal does not cover Mauritania) were identified.  
    <sub>🟠 medium · public sources consulted on 4 November 2026</sub>
+25. **Urbanisation** — Nouakchott holds 29.4% of Mauritanians in 2023 (21% in 1988) and grows 4.2%/yr (2013–2023), against 3.4% for the country.  
+   <sub>🟢 high · censuses</sub>
+26. **Secondary towns** — The ten other secondary towns are speeding up: 3.8%/yr in 2013–2023 against 1.6% in 1988–2000; the rest of the country falls from 65% to 58% of the population. Urbanisation is spreading down the urban hierarchy.  
+   <sub>🟠 medium · communes: boundaries change between censuses</sub>
+27. **Urban and rural** — Towns gain about 91 thousand people a year (3.4%/yr), rural areas 35 thousand (1.5%/yr): every year, the equivalent of a town the size of Kiffa is added to the urban population.  
+   <sub>🟠 medium · ANSADE projections on the 2023 census base</sub>
+28. **Lights and towns** — Lights partly confirm town growth: rank correlation of -0.48 between 2013–2023 population growth and the growth of the district's lights.  
+   <sub>🟠 medium · 12 towns; whole district, not only the town</sub>
+29. **Rural exodus** — Working-age people are 63% of the urban population against 50% in rural areas: young adults move to the towns, children and older people stay behind.  
+   <sub>🟠 medium · ENTE 2026Q2</sub>
+30. **Electricity** — 49% of households have electricity in 2023 (20% in 2004): over 90% in Nouakchott, Nouadhibou and Zouérate, under 25% in the two Hodhs, Assaba, Gorgol and Guidimakha. Every new urban resident is a connection to finance.  
+   <sub>🟢 high · RGPH-5 2023, EPCV</sub>
+31. **Internet use** — 46% of Mauritanians use the internet in 2024 (Senegal 60%, Morocco 91%).  
+   <sub>🟢 high · ITU / World Bank</sub>
+32. **Internet speed** — Mobile internet in 2026Q3: 124 Mbps in Nouakchott against 47 Mbps outside the towns.  
+   <sub>🟠 medium · voluntary tests: more where there are more users</sub>
+33. **Digital readiness** — Network Readiness Index 2025: rank 126 of 127. The 'people' pillar (skills, use) is the weakest (14.5/100).  
+   <sub>🟢 high · Portulans Institute</sub>
+34. **Internet shutdowns** — 3 internet shutdowns since 2019, including 22 days without mobile internet in July 2024 after the presidential election, and cuts during the baccalauréat exams.  
+   <sub>🟢 high · CIVICUS, Internet Society</sub>
 
 ## 🛰️ Day and night
 
@@ -122,6 +142,7 @@ Industrial sites shine at night like towns, but their buildings are mostly non-r
 | [**Regions**](https://lamyakejji.github.io/ntl-dashboard/#regions) | growth by region and district, classes, concentration and convergence |
 | [**Electricity grid**](https://lamyakejji.github.io/ntl-dashboard/#grid) | OpenStreetMap lines, dated and sourced events, distance to the grid, built-up land left dark, event studies |
 | [**Inequality**](https://lamyakejji.github.io/ntl-dashboard/#inequality) | Gini, Lorenz curves, Theil, people “in the dark” |
+| [**Population & urbanisation**](https://lamyakejji.github.io/ntl-dashboard/#urban) | censuses 1988–2023, growth of Nouakchott and the secondary towns, urban / rural, lights and towns, electricity access |
 | [**Power outages**](https://lamyakejji.github.io/ntl-dashboard/#outages) | night-by-night outages (daily Black Marble), episodes, news: economic vocabulary |
 | [**Growth**](https://lamyakejji.github.io/ntl-dashboard/#macro) | ANSADE quarterly accounts, sector contributions, IPI, satellite cross-checks |
 | [**Agriculture**](https://lamyakejji.github.io/ntl-dashboard/#agri) | NDVI over cropland by wilaya, current / previous year / long-term average, GDP elasticities |
@@ -129,6 +150,7 @@ Industrial sites shine at night like towns, but their buildings are mostly non-r
 | [**Industrial zones**](https://lamyakejji.github.io/ntl-dashboard/#industry) | candidate zones, score, trend, OpenStreetMap validation |
 | [**Ports & trade**](https://lamyakejji.github.io/ntl-dashboard/#ports) | port calls and import / export volumes (IMF PortWatch) |
 | [**Labour market**](https://lamyakejji.github.io/ntl-dashboard/#labour) | employment, unemployment and underutilisation (ENTE), employment structure, skills and fields of study |
+| [**Digital**](https://lamyakejji.github.io/ntl-dashboard/#digital) | internet speed (Ookla), internet use, Network Readiness Index, shutdowns |
 | [**Climate**](https://lamyakejji.github.io/ntl-dashboard/#climate) | El Niño, rainy season, heat, vegetation, contingency plans |
 | [**Method & limitations**](https://lamyakejji.github.io/ntl-dashboard/#method) | sources, parameters, assumptions and known biases |
 | [**Data**](https://lamyakejji.github.io/ntl-dashboard/#data) | every downloadable table, reproducibility manifest |
@@ -213,7 +235,7 @@ flowchart LR
 
 ## 🔁 Reproduce or adapt to another country
 
-The site is produced by the **Night-time lights and economic activity** notebook (part 3) (Colab). Changing the `ISO3` code in the parameters cell is enough to analyse another country; sections 12 and 13 export and re-publish this repository.
+The site is produced by the **Night-time lights and economic activity** notebook (part 3) (Colab). Changing the `ISO3` code in the parameters cell is enough to analyse another country; sections 21 and 22 export and re-publish this repository.
 
 ## 🤝 Credits and citation
 
@@ -228,4 +250,4 @@ Produced by the **African Development Bank** as part of **Data Innovation for Af
 ---
 
 <p align="center"><sub>© 2026 AfDB-DI4A · with the IMF Big Data Center · Any reuse must cite “Source: AfDB-DI4A” · The views expressed do not necessarily represent the views of the IMF</sub></p>
-<p align="center"><sub>Last update: 2026-11-04 · <a href="#top">↑</a></sub></p>
+<p align="center"><sub>Last update: 2026-11-05 · <a href="#top">↑</a></sub></p>

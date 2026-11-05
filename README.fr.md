@@ -73,9 +73,29 @@
    <sub>high · indice observé (NOAA CPC)</sub>
 22. **Plans de contingence** — La réponse passe par le Plan national de réponse (DCAN, CSA) fondé sur le Cadre harmonisé, les transferts Elmaouna de Taazour et l'assurance sécheresse ARC. Aucun plan propre à El Niño ni enveloppe internationale d'anticipation (l'appel FAO–PAM ne couvre pas la Mauritanie) n'a été identifié.  
    <sub>medium · sources publiques consultées le 4 November 2026</sub>
-23. **Croissance officielle** — PIB réel 2026T2 : +2,8 % sur un trimestre (CVS), +6,6 % sur un an ; hors gaz +5,9 % sur un an.  
+23. **Urbanisation** — Nouakchott regroupe 29,4 % des Mauritaniens en 2023 (21 % en 1988) et croît de 4,2 %/an (2013–2023), contre 3,4 % pour le pays.  
+   <sub>high · recensements</sub>
+24. **Villes secondaires** — Les dix autres villes secondaires accélèrent : 3,8 %/an en 2013–2023 contre 1,6 % en 1988–2000 ; le reste du pays passe de 65 % à 58 % de la population. L'urbanisation descend dans la hiérarchie urbaine.  
+   <sub>medium · communes : les limites changent d'un recensement à l'autre</sub>
+25. **Urbain et rural** — Les villes gagnent environ 91 milliers d'habitants par an (3,4 %/an), les zones rurales 35 milliers (1,5 %/an) : chaque année, une ville de la taille de Kiffa s'ajoute aux villes.  
+   <sub>medium · projections ANSADE sur la base du recensement 2023</sub>
+26. **Lumières et villes** — Les lumières confirment en partie la croissance des villes : corrélation de rang de -0,48 entre la croissance démographique 2013–2023 et celle des lumières du district.  
+   <sub>medium · 12 villes ; district entier, pas seulement la ville</sub>
+27. **Exode rural** — Les personnes en âge de travailler font 63 % de la population urbaine contre 50 % en milieu rural : les jeunes adultes partent en ville, les enfants et les personnes âgées restent.  
+   <sub>medium · ENTE 2026Q2</sub>
+28. **Électricité** — 49 % des ménages ont l'électricité en 2023 (20 % en 2004) : plus de 90 % à Nouakchott, Nouadhibou et Zouérate, moins de 25 % dans les deux Hodh, l'Assaba, le Gorgol et le Guidimakha. Chaque nouvel habitant urbain est un raccordement à financer.  
+   <sub>high · RGPH-5 2023, EPCV</sub>
+29. **Usage d'internet** — 46 % des Mauritaniens utilisent internet en 2024 (Sénégal 60 %, Maroc 91 %).  
+   <sub>high · UIT / Banque mondiale</sub>
+30. **Débit d'internet** — Internet mobile au 2026e trimestre 3 : 124 Mbit/s à Nouakchott contre 47 Mbit/s hors des villes.  
+   <sub>medium · tests volontaires : plus nombreux là où il y a plus d'utilisateurs</sub>
+31. **Préparation numérique** — Network Readiness Index 2025 : rang 126 sur 127. Le pilier « personnes » (compétences, usage) est le plus faible (14,5/100).  
+   <sub>high · Portulans Institute</sub>
+32. **Coupures d'internet** — 3 coupures d'internet depuis 2019, dont 22 jours d'internet mobile coupé en juillet 2024 après la présidentielle et des coupures pendant le baccalauréat.  
+   <sub>high · CIVICUS, Internet Society</sub>
+33. **Croissance officielle** — PIB réel 2026T2 : +2,8 % sur un trimestre (CVS), +6,6 % sur un an ; hors gaz +5,9 % sur un an.  
    <sub>high · ANSADE, comptes trimestriels</sub>
-24. **Satellites et comptes nationaux** — Meilleur indicateur avancé : Escales (PortWatch) pour « Transport » (corrélation de rang 0,71, même signe 67 % du temps).  
+34. **Satellites et comptes nationaux** — Meilleur indicateur avancé : Escales (PortWatch) pour « Transport » (corrélation de rang 0,71, même signe 67 % du temps).  
    <sub>medium · 6 trimestres</sub>
 
 ## 🛰️ Le jour et la nuit
@@ -122,6 +142,7 @@ Les sites industriels brillent la nuit comme les villes, mais leurs bâtiments s
 | [**Régions**](https://lamyakejji.github.io/ntl-dashboard/fr/#regions) | croissance par région et district, classes, concentration et convergence |
 | [**Réseau électrique**](https://lamyakejji.github.io/ntl-dashboard/fr/#grid) | lignes OpenStreetMap, événements datés et sourcés, distance au réseau, bâti dans le noir, études d'événements |
 | [**Inégalités**](https://lamyakejji.github.io/ntl-dashboard/fr/#inequality) | Gini, courbes de Lorenz, Theil, population « dans le noir » |
+| [**Population et urbanisation**](https://lamyakejji.github.io/ntl-dashboard/fr/#urban) | recensements 1988–2023, croissance de Nouakchott et des villes secondaires, urbain / rural, lumières et villes, accès à l'électricité |
 | [**Coupures d'électricité**](https://lamyakejji.github.io/ntl-dashboard/fr/#outages) | coupures nuit après nuit (Black Marble quotidien), épisodes, presse : vocabulaire économique |
 | [**Croissance**](https://lamyakejji.github.io/ntl-dashboard/fr/#macro) | comptes trimestriels de l'ANSADE, contributions des secteurs, IPI, recoupements satellitaires |
 | [**Agriculture**](https://lamyakejji.github.io/ntl-dashboard/fr/#agri) | NDVI des zones cultivées par wilaya, année en cours / précédente / moyenne, élasticités au PIB |
@@ -129,6 +150,7 @@ Les sites industriels brillent la nuit comme les villes, mais leurs bâtiments s
 | [**Zones industrielles**](https://lamyakejji.github.io/ntl-dashboard/fr/#industry) | zones candidates, score, tendance, validation OpenStreetMap |
 | [**Ports et commerce**](https://lamyakejji.github.io/ntl-dashboard/fr/#ports) | escales et volumes importés / exportés (FMI PortWatch) |
 | [**Marché du travail**](https://lamyakejji.github.io/ntl-dashboard/fr/#labour) | emploi, chômage et sous-utilisation (ENTE), structure de l'emploi, compétences et domaines d'études |
+| [**Numérique**](https://lamyakejji.github.io/ntl-dashboard/fr/#digital) | vitesse d'internet (Ookla), usage d'internet, Network Readiness Index, coupures |
 | [**Climat**](https://lamyakejji.github.io/ntl-dashboard/fr/#climate) | El Niño, saison des pluies, chaleur, végétation, plans de contingence |
 | [**Méthode & limites**](https://lamyakejji.github.io/ntl-dashboard/fr/#method) | sources, paramètres, hypothèses et biais connus |
 | [**Données**](https://lamyakejji.github.io/ntl-dashboard/fr/#data) | toutes les tables téléchargeables, manifeste de reproductibilité |
@@ -213,7 +235,7 @@ flowchart LR
 
 ## 🔁 Reproduire ou adapter à un autre pays
 
-Le site est produit par le notebook **Lumières nocturnes et activité économique** (partie 3) (Colab). Changer le code `ISO3` dans la cellule de paramètres suffit pour analyser un autre pays ; les sections 12 et 13 exportent puis republient ce dépôt.
+Le site est produit par le notebook **Lumières nocturnes et activité économique** (partie 3) (Colab). Changer le code `ISO3` dans la cellule de paramètres suffit pour analyser un autre pays ; les sections 21 et 22 exportent puis republient ce dépôt.
 
 ## 🤝 Crédits et citation
 
@@ -228,4 +250,4 @@ Réalisé par la **Banque africaine de développement** dans le cadre de **Data 
 ---
 
 <p align="center"><sub>© 2026 AfDB-DI4A · avec l'IMF Big Data Center · Toute réutilisation doit mentionner « Source : AfDB-DI4A » · Les opinions exprimées ne reflètent pas nécessairement celles du FMI</sub></p>
-<p align="center"><sub>Dernière mise à jour : 2026-11-04 · <a href="#top">↑</a></sub></p>
+<p align="center"><sub>Dernière mise à jour : 2026-11-05 · <a href="#top">↑</a></sub></p>
