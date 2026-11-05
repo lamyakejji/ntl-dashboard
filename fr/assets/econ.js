@@ -19,7 +19,7 @@ const COLON = FR ? " : " : ": ";
 const qlab = (q) => (FR ? String(q).replace("Q", "T") : String(q));
 const empty = (sec, msg) => { sec.innerHTML = `<article class="card"><p class="help">${esc(msg)}</p></article>`; };
 const T = FR ? {
-  na: "Données non disponibles : relancer la section correspondante du notebook, puis l'export (section 19).",
+  na: "Données non disponibles : relancer la section correspondante du notebook, puis l'export (section 21).",
   // growth
   m_lede: "Ce que disent les comptes nationaux trimestriels de l'ANSADE, et ce qu'en disent les satellites. Les chiffres officiels viennent des notes de croissance publiées ; les indicateurs satellitaires (lumières, NO₂, NDVI, trafic portuaire) servent de recoupement, trimestre par trimestre.",
   k_qoq: "PIB réel, sur un trimestre", k_yoy: "PIB réel, sur un an", k_xg: "Hors gaz, sur un an", k_y: "Croissance annuelle",
@@ -78,7 +78,7 @@ const T = FR ? {
     <li>Les exportations de Nouadhibou sont dominées par le minerai de fer de la SNIM (vrac sec).</li></ul>`,
   t_k: "kt",
 } : {
-  na: "Data not available: run the matching section of the notebook, then the export (section 19).",
+  na: "Data not available: run the matching section of the notebook, then the export (section 21).",
   m_lede: "What ANSADE's quarterly national accounts say, and what the satellites say about it. Official figures come from the published growth notes; satellite indicators (lights, NO₂, NDVI, port traffic) serve as quarter-by-quarter cross-checks.",
   k_qoq: "Real GDP, q/q", k_yoy: "Real GDP, y/y", k_xg: "Excluding gas, y/y", k_y: "Annual growth",
   c_h: "Contributions of sectors to GDP growth", c_help: "Bars: contribution of each sector (percentage points); line: GDP growth. 2023–2024: Q4-2024 note; 2025–2026: Q2-2026 note (different vintages).",
@@ -316,12 +316,12 @@ RENDER.agri = () => {
 RENDER.zones = () => {
   const sec = $("#page-zones"), z = S.d.zones;
   if (!z) { empty(sec, T.na); return; }
-  const st = { ind: "ntl", src: "viirs", f: "M", view: "idx" };
+  const st = { ind: "ntl", src: S.src === "bm" ? "bm" : "viirs", f: "M", view: "idx" };
   const groups = Object.keys(z.groups || {}), col = z.colors || {};
   sec.innerHTML = `<p class="lede">${esc(T.z_lede)}</p>
     <div class="card"><div class="map-toolbar" style="flex-wrap:wrap;gap:10px 18px">
       <label class="ctl">${esc(T.z_ind)} ${seg("z-ind", [["ntl", T.z_ntl], ["no2", T.z_no2]], "ntl")}</label>
-      <label class="ctl">${esc(T.z_src)} ${seg("z-src", [["viirs", T.z_viirs], ["bm", T.z_bm]], "viirs")}</label>
+      <label class="ctl">${esc(T.z_src)} ${seg("z-src", [["viirs", T.z_viirs], ["bm", T.z_bm]], st.src)}</label>
       <label class="ctl">${esc(T.z_freq)} ${seg("z-f", [["M", T.f_M], ["Q", T.f_Q], ["A", T.f_A]], "M")}</label>
       <label class="ctl">${esc(T.z_view)} ${seg("z-v", [["idx", T.z_idx], ["yoy", T.z_yoy], ["lvl", T.z_lvl]], "idx")}</label></div>
       <h2>${esc(T.z_main)}</h2><p class="help">${esc(T.z_main_help)}</p><div class="chart tall" id="z-main"></div><p class="source" id="z-src-note"></p></div>

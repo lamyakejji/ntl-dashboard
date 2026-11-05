@@ -7,8 +7,8 @@
 <title>Night-Time Lights and Economic Activity</title>
 <meta name="description" content="Dashboard: economic activity measured with night-time lights (VIIRS) at national and subnational levels.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23004C97'/%3E%3Ccircle cx='11' cy='13' r='3' fill='%23F5BD47'/%3E%3Ccircle cx='21' cy='19' r='2' fill='%23F5BD47'/%3E%3Ccircle cx='19' cy='9' r='1.4' fill='%23fde7a6'/%3E%3C/svg%3E">
-<link rel="stylesheet" href="assets/vendor/leaflet.css?v=20261104133229">
-<link rel="stylesheet" href="assets/style.css?v=20261104133229">
+<link rel="stylesheet" href="assets/vendor/leaflet.css?v=20261105130543">
+<link rel="stylesheet" href="assets/style.css?v=20261105130543">
 <script>
   // apply the stored theme before first paint (no flash)
   try { const t = localStorage.getItem("ntl-theme"); if (t === "light" || t === "dark") document.documentElement.dataset.theme = t; } catch (e) {}
@@ -27,6 +27,7 @@
   <div class="controls">
     <span class="cobrand">AfDB × DI4A</span>
     <span class="cobrand imf">IMF Big Data Center</span>
+    <div id="ntl-src" class="ntl-src" hidden></div>
     <a id="lang-switch" class="lang-btn" href="#" title="Version française" hreflang="fr">FR</a>
     <label class="sr" for="country-select">Country</label>
     <select id="country-select" hidden></select>
@@ -45,16 +46,18 @@
   <a href="#time" data-page="time">Trends</a>
   <a href="#regions" data-page="regions">Regions</a>
   <a href="#inequality" data-page="inequality">Inequality</a>
-  <a href="#macro" data-page="macro">Growth</a>
-  <a href="#agri" data-page="agri">Agriculture</a>
-  <a href="#zones" data-page="zones">Activity by zone</a>
-  <a href="#industry" data-page="industry">Industrial zones</a>
-  <a href="#ports" data-page="ports">Ports &amp; trade</a>
-  <a href="#labour" data-page="labour">Labour market</a>
-  <a href="#climate" data-page="climate">Climate</a>
+  <a href="#urban" data-page="urban">Population &amp; urbanisation</a>
   <a href="#grid" data-page="grid">Electricity grid</a>
   <a href="#outages" data-page="outages">Power outages</a>
-  <a href="#method" data-page="method">Methods &amp; limitations</a>
+  <a href="#industry" data-page="industry">Industrial zones</a>
+  <a href="#zones" data-page="zones">Activity by zone</a>
+  <a href="#ports" data-page="ports">Ports &amp; trade</a>
+  <a href="#agri" data-page="agri">Agriculture</a>
+  <a href="#macro" data-page="macro">Growth</a>
+  <a href="#labour" data-page="labour">Labour market</a>
+  <a href="#digital" data-page="digital">Digital</a>
+  <a href="#climate" data-page="climate">Climate</a>
+  <a href="#method" data-page="method">Methods &amp; data sources</a>
   <a href="#data" data-page="data">Data</a>
 </nav>
 
@@ -282,7 +285,9 @@
   <section class="page" id="page-agri" hidden></section>
   <section class="page" id="page-zones" hidden></section>
   <section class="page" id="page-ports" hidden></section>
+  <section class="page" id="page-urban" hidden></section>
   <section class="page" id="page-labour" hidden></section>
+  <section class="page" id="page-digital" hidden></section>
   <section class="page" id="page-climate" hidden></section>
 
   <!-- ======================= ELECTRICITY GRID / OUTAGES (rendered by assets/elec.js) ======================= -->
@@ -298,7 +303,7 @@
     <article class="card">
       <h2>Download the data</h2>
       <p class="help">All tables shown can be downloaded. Licences: VIIRS and Black Marble (public domain,
-        attribution requested), geoBoundaries and WorldPop (CC BY 4.0), GHSL (CC BY 4.0), World Bank (CC BY 4.0).</p>
+        attribution requested), geoBoundaries and WorldPop (CC BY 4.0), GHSL (CC BY 4.0), World Bank (CC BY 4.0), Ookla Speedtest open data (CC BY-NC-SA 4.0, non-commercial use).</p>
       <p class="lic-note"><b>© 2026 AfDB-DI4A — CC BY 4.0.</b> Any reuse of these tables, maps or figures must cite: <b>“Source: African Development Bank – Data Innovation for Africa (AfDB-DI4A)”</b>. Full terms in <code>LICENSE.txt</code>.</p>
       <p class="lic-note"><b>Disclaimer: the views expressed are those of the authors and do not necessarily represent the views of the IMF, its Executive Board, or IMF management.</b></p>
       <ul class="downloads" id="downloads"></ul>
@@ -318,13 +323,14 @@
   <p id="foot"></p>
 </footer>
 
-<script src="assets/vendor/leaflet.js?v=20261104133229"></script>
+<script src="assets/vendor/leaflet.js?v=20261105130543"></script>
 <script>window.L || document.write('<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"><script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"><\/script>')</script>
-<script src="assets/vendor/plotly.min.js?v=20261104133229" charset="utf-8"></script>
+<script src="assets/vendor/plotly.min.js?v=20261105130543" charset="utf-8"></script>
 <script>window.Plotly || document.write('<script src="https://cdn.jsdelivr.net/npm/plotly.js-dist-min@2.35.2/plotly.min.js" charset="utf-8"><\/script>')</script>
-<script src="assets/app.js?v=20261104133229"></script>
-<script src="assets/elec.js?v=20261104133229"></script>
-<script src="assets/econ.js?v=20261104133229"></script>
-<script src="assets/lc.js?v=20261104133229"></script>
+<script src="assets/app.js?v=20261105130543"></script>
+<script src="assets/elec.js?v=20261105130543"></script>
+<script src="assets/econ.js?v=20261105130543"></script>
+<script src="assets/lc.js?v=20261105130543"></script>
+<script src="assets/ud.js?v=20261105130543"></script>
 </body>
 </html>

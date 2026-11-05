@@ -1,0 +1,1 @@
+{"default": "viirs", "alt": "bm", "dir": "alt", "sources": ["viirs", "bm"], "labels": {"viirs": "VIIRS (NOAA/EOG VCMSLCFG, VNL V2.2)", "bm": "Black Marble (NASA VNP46A2)"}, "files": ["adm1.geojson", "adm2.geojson", "annual_units.csv", "breaks.json", "gdp.json", "growth.json", "inequality.json", "monthly_adm1.csv", "monthly_national.csv", "regions.csv", "summary.json"]}

@@ -20,7 +20,7 @@ const PH = { "El Niño": IMF.rust, "La Niña": IMF.blue, Neutral: IMF.grey };
 const RN = (r) => (FR && r === "Agro-pastoral south" ? "Sud agro-pastoral" : r);
 
 const T = FR ? {
-  na: "Données non disponibles : relancer la section correspondante du notebook, puis l'export (section 19).",
+  na: "Données non disponibles : relancer la section correspondante du notebook, puis l'export (section 21).",
   l_lede: "Qui travaille, où, avec quelle formation — et qui pourrait occuper les emplois des nouveaux secteurs (mines, gaz, hydrogène vert, agro-alimentaire, élevage, numérique). Source principale : l'enquête nationale trimestrielle sur l'emploi (ENTE) de l'ANSADE, complétée par l'annuaire sociodémographique 2025.",
   k_su1: "Chômage (SU1)", k_su4: "Sous-utilisation (SU4)", k_part: "Taux de participation", k_youth: "Chômage des 14-35 ans", k_emp: "Personnes en emploi",
   vs: "sur un an", pts: "pt", th: "milliers",
@@ -60,7 +60,7 @@ const T = FR ? {
   tr_h: "La saison en cours, wilaya par wilaya", tr_help: "Pluie cumulée depuis mai, en % de la normale à la même décade ; trait : moyenne des années El Niño passées à la même date.",
   tr_y: "% par rapport à la normale", tr_cur: "Saison en cours", tr_en: "Moyenne des El Niño passés",
   tr_cols: ["Wilaya", "Pluie jusqu'à", "Pluie (% normale)", "NDVI cultures (%)", "NDVI pâturages (%)", "Tmax (°C)"],
-  no_el: "Les indicateurs détaillés (pluie, chaleur, NDVI des pâturages, empreinte El Niño, suivi de la saison) viennent du notebook El Niño : l'exécuter, puis relancer les sections 17 et 19 de celui-ci.",
+  no_el: "Les indicateurs détaillés (pluie, chaleur, NDVI des pâturages, empreinte El Niño, suivi de la saison) viennent du notebook El Niño : l'exécuter, puis relancer les sections 19 et 21 de celui-ci.",
   pl_h: "Plans de contingence et dispositifs de réponse", pl_help: "Mécanismes nationaux, régionaux et internationaux qui répondent à la sécheresse et à El Niño, d'après les sources publiques consultées.",
   pl_lv: { national: "Mauritanie", regional: "Sahel", international: "International" }, pl_trig: "Déclencheur", pl_el: "Pour El Niño 2026", pl_who: "Qui",
   gap_h: "Ce qui manque", gap: `<ul><li>Aucun plan de contingence propre à El Niño n'a été trouvé : la réponse passe par le Plan national de réponse annuel, fixé par le Cadre harmonisé de novembre.</li>
@@ -69,7 +69,7 @@ const T = FR ? {
     <li>Le Cadre harmonisé projetait 0,5 million de personnes en phase 3+ pour la soudure 2026, avant l'El Niño : le cycle de novembre 2026 dira l'ampleur des besoins pour 2027.</li></ul>`,
   cm_h: "Sources et limites", as_of: "Situation au",
 } : {
-  na: "Data not available: run the matching section of the notebook, then the export (section 19).",
+  na: "Data not available: run the matching section of the notebook, then the export (section 21).",
   l_lede: "Who works, where, with what education — and who could take the jobs of the new sectors (mining, gas, green hydrogen, agro-food, livestock, digital). Main source: ANSADE's quarterly labour force survey (ENTE), with the 2025 socio-demographic yearbook.",
   k_su1: "Unemployment (SU1)", k_su4: "Underutilisation (SU4)", k_part: "Participation rate", k_youth: "Youth unemployment (14-35)", k_emp: "Persons employed",
   vs: "over a year", pts: "pt", th: "thousand",
@@ -108,7 +108,7 @@ const T = FR ? {
   tr_h: "The season so far, wilaya by wilaya", tr_help: "Cumulative rainfall since May, % of the normal to the same dekad; tick: average of past El Niño years at the same date.",
   tr_y: "% against normal", tr_cur: "Current season", tr_en: "Past El Niño average",
   tr_cols: ["Wilaya", "Rain to", "Rain (% of normal)", "Crop NDVI (%)", "Pasture NDVI (%)", "Tmax (°C)"],
-  no_el: "The detailed indicators (rain, heat, pasture NDVI, El Niño fingerprint, season tracker) come from the El Niño notebook: run it, then run sections 17 and 19 of this one again.",
+  no_el: "The detailed indicators (rain, heat, pasture NDVI, El Niño fingerprint, season tracker) come from the El Niño notebook: run it, then run sections 19 and 21 of this one again.",
   pl_h: "Contingency plans and response mechanisms", pl_help: "National, regional and international mechanisms that respond to drought and El Niño, from the public sources consulted.",
   pl_lv: { national: "Mauritania", regional: "Sahel", international: "International" }, pl_trig: "Trigger", pl_el: "For El Niño 2026", pl_who: "Who",
   gap_h: "What is missing", gap: `<ul><li>No El Niño-specific contingency plan was found: the response runs through the annual National Response Plan, set by the November Cadre Harmonisé.</li>

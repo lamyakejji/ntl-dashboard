@@ -381,3 +381,19 @@ table.data tr:hover td { background: #F3F7FC; }
 .map-legend .sw.na { background: transparent !important; border: 1.5px dashed #707372; }
 .map-legend .classes div { display: flex; align-items: center; gap: 6px; font-size: .78rem; }
 .map-legend .sw { display: inline-block; width: 14px; height: 12px; border-radius: 2px; }
+
+/* v5: light-source switch, info banner, data-sources table */
+.ntl-src { display: inline-flex; align-items: center; gap: 6px; }
+.ntl-src .ntl-lab { color: rgba(255,255,255,.85); font-size: .78rem; }
+.ntl-src .seg button { padding: 4px 9px; font-size: .78rem; }
+.ntl-src .seg { background: rgba(255,255,255,.12); }
+.ntl-src .seg button:not(.on) { color: #fff; }
+.banner.info { background: #e8f1fb; color: #0b3a6b; border-bottom-color: #b9d3f0; }
+.src-table td, .src-table th { font-size: .82rem; vertical-align: top; }
+.src-table td:first-child { white-space: nowrap; }
+ul.small { font-size: .85rem; }
+@media (max-width: 760px) { .ntl-src .ntl-lab { display: none; } }
+.ud-left th, .ud-left td { text-align: left !important; white-space: normal !important; }
+.src-table td:nth-child(2) { min-width: 200px; } .src-table td:nth-child(3) { min-width: 240px; }
+.ntl-src .seg button { white-space: nowrap; }
+.ntl-src .seg button.on { background: #F2A900; color: #001A40; font-weight: 700; }

@@ -5,7 +5,7 @@
 const S = { iso: null, d: {}, rendered: {}, map: null, mapB: null, mapMode: "choro" };
 const $ = (s, el = document) => el.querySelector(s);
 const $$ = (s, el = document) => [...el.querySelectorAll(s)];
-const PAGES = ["overview", "map", "time", "regions", "inequality", "macro", "agri", "zones", "industry", "ports", "labour", "climate", "grid", "outages", "method", "data"];
+const PAGES = ["overview", "map", "time", "regions", "inequality", "urban", "macro", "agri", "zones", "industry", "ports", "labour", "digital", "climate", "grid", "outages", "method", "data"];
 
 /* ---------------------------------------------------------------- formatting (fr-FR) */
 const nf = (d = 0) => new Intl.NumberFormat("fr-FR", { minimumFractionDigits: d, maximumFractionDigits: d });
@@ -59,7 +59,7 @@ async function loadCountry(iso) {
     gdp: getJSON(base + "gdp.json"), breaks: getJSON(base + "breaks.json"), ineq: getJSON(base + "inequality.json"),
     growth: getJSON(base + "growth.json"), grid: getJSON(base + "grid.json"), gridLines: getJSON(base + "grid_lines.geojson"), gridPts: getJSON(base + "grid_points.geojson"),
     macro: getJSON(base + "macro.json"), agri: getJSON(base + "agri.json"), zones: getJSON(base + "zones.json"),
-    zonesGeo: getJSON(base + "zones.geojson"), ports: getJSON(base + "ports.json"), labour: getJSON(base + "labour.json"), climate: getJSON(base + "climate.json"),
+    zonesGeo: getJSON(base + "zones.geojson"), ports: getJSON(base + "ports.json"), urban: getJSON(base + "urban.json"), digital: getJSON(base + "digital.json"), ntlsrc: getJSON(base + "ntl_sources.json"), labour: getJSON(base + "labour.json"), climate: getJSON(base + "climate.json"),
     ind: getJSON(base + "industrial.geojson"), indmeta: getJSON(base + "industrial.json"),
     outages: getJSON(base + "outages.json"), outUnits: getJSON(base + "outage_units.geojson"), news: getJSON(base + "news.json"),
     adm0: getJSON(base + "adm0.geojson"), adm1: getJSON(base + "adm1.geojson"), adm2: getJSON(base + "adm2.geojson"),
@@ -113,9 +113,10 @@ function renderHeader() {
   $("#country-title").textContent = `${m.name} · ${m.period[0]}–${m.period[1]}`;
   document.title = `${m.name} — lumières nocturnes et activité économique`;
   $("#synthetic-banner").hidden = !m.synthetic;
+  if (window.ntlSourceUI && !S.srcUI) { S.srcUI = true; window.ntlSourceUI(); }
   $("#foot").innerHTML = `Mis à jour le ${new Date(m.generated_at).toLocaleString("fr-FR")} · Données VIIRS (NOAA/EOG, NASA), ` +
     `limites ${esc((m.boundaries && m.boundaries.ADM1) || "geoBoundaries")}, population ${esc(m.pop_source || "GHSL")}, ` +
-    `Banque mondiale · Code et méthode : voir la page « Méthode & limites ».`;
+    `Banque mondiale · Code et méthode : voir la page « Méthode & sources ».`;
 }
 
 function route() {
@@ -517,7 +518,7 @@ function overlay(f) {
   const [w, s, e, n] = R.bounds;
   return L.imageOverlay(rasterUrl(f), [[s, w], [n, e]], { pane: "raster", opacity: 0.95, interactive: false });
 }
-const outline = (gj) => L.geoJSON(gj, { interactive: false, style: { color: "rgba(255,255,255,0.8)", weight: 1, fill: false } });
+const outline = (gj) => L.geoJSON(gj, { interactive: false, style: { color: "rgba(255,255,255,0.45)", weight: 0.4, fill: false } });
 function showLayer(mp, lyr, on) { if (!mp || !lyr) return; if (on && !mp.hasLayer(lyr)) lyr.addTo(mp); if (!on && mp.hasLayer(lyr)) mp.removeLayer(lyr); }
 function mapFail(msg) { const fb = $("#map-fallback"); fb.textContent = msg || TXT.fail; fb.hidden = false; fb.style.display = "grid"; }
 
@@ -535,8 +536,8 @@ RENDER.map = async () => {
   if (ca && cb) { const o = years.map((y) => `<option>${y}</option>`).join(""); ca.innerHTML = cb.innerHTML = o; ca.value = years[0]; cb.value = years[years.length - 1]; }
   const noR = !years.length, noD = !Object.keys((m.rasters && m.rasters.dark) || {}).length;
   $$("#map-mode button").forEach((b) => { const k = b.dataset.mode; const off = (k === "ntl" || k === "compare") ? noR : k === "dark" ? noD : false;
-    b.disabled = off; b.classList.toggle("off", off); if (off) b.title = k === "dark" && !noR ? "L'image « zones dans le noir » n'a pas été exportée (refus d'Earth Engine) : les autres modes fonctionnent." : 'Images non exportées lors de ce calcul : relancer la section 3.3 avec Earth Engine, puis la section 12.'; });
-  if (noR) $("#map-help").textContent = 'Images non exportées lors de ce calcul : relancer la section 3.3 avec Earth Engine, puis la section 12.';
+    b.disabled = off; b.classList.toggle("off", off); if (off) b.title = k === "dark" && !noR ? "L'image « zones dans le noir » n'a pas été exportée (refus d'Earth Engine) : les autres modes fonctionnent." : 'Images non exportées lors de ce calcul : relancer la section 3.3 avec Earth Engine, puis la section 21.'; });
+  if (noR) $("#map-help").textContent = 'Images non exportées lors de ce calcul : relancer la section 3.3 avec Earth Engine, puis la section 21.';
   if (!window.L) { mapFail("La bibliothèque cartographique (Leaflet) n'a pas pu être chargée. Rechargez la page ; les tableaux des autres pages restent disponibles."); return; }
   try {
     S.map = newMap("map");

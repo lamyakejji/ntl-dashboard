@@ -5,7 +5,7 @@
 (() => {
 const FR = (document.documentElement.lang || "en").toLowerCase().startsWith("fr");
 const T = FR ? {
-  na: "Données non disponibles pour ce pays ou cette période (relancer les sections 08 et 10 du notebook, puis la section 12).",
+  na: "Données non disponibles pour ce pays ou cette période (relancer les sections 10 et 11 du notebook, puis la section 21).",
   g_lede: "Où passe le réseau électrique, quels investissements datés ont eu lieu, et les lumières des villes ont-elles changé ensuite ? La géométrie vient d'OpenStreetMap (non datée) ; les dates viennent d'un tableau d'événements sourcés.",
   k_km: "Lignes cartographiées", k_hv: "Dont ≥ 150 kV", k_sub: "Postes et centrales", k_ev: "Événements datés", k_near: "Villes à < 15 km d'une ligne",
   map_h: "Réseau, événements et villes", map_help: "Lignes colorées par tension (OpenStreetMap) ; anneaux = événements datés ; cercles bleus = villes (taille ∝ lumière de la dernière année). Survoler pour le détail ; cliquer un événement pour sa source.",
@@ -52,7 +52,7 @@ const T = FR ? {
     <p><b>Presse.</b> GDELT et Google News (français, arabe, anglais), filtrage sur les termes de coupure et le lieu, dédoublonnage ; ton estimé par un modèle multilingue (score = P(positif) − P(négatif)) ; vocabulaire économique repéré par un lexique multilingue.</p>
     <p><b>Limites.</b> Un passage par nuit (≈ 01 h 30) : coupures de jour, courtes ou programmées invisibles ; nuits nuageuses manquantes ; l'éclairage public, la poussière ou la fumée peuvent aussi assombrir. La presse en ligne surreprésente les grands épisodes et s'étoffe avec le temps.</p>`,
 } : {
-  na: "Data not available for this country or period (run sections 08 and 10 of the notebook, then section 12).",
+  na: "Data not available for this country or period (run sections 10 and 11 of the notebook, then section 21).",
   g_lede: "Where the electricity grid runs, which dated investments took place, and whether town lights changed afterwards. Geometry comes from OpenStreetMap (undated); dates come from a table of sourced events.",
   k_km: "Mapped power lines", k_hv: "of which ≥ 150 kV", k_sub: "Substations and plants", k_ev: "Dated events", k_near: "Towns < 15 km from a line",
   map_h: "Grid, events and towns", map_help: "Lines coloured by voltage (OpenStreetMap); rings = dated events; blue circles = towns (size ∝ light in the latest year). Hover for details; click an event for its source.",

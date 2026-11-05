@@ -5,7 +5,7 @@
 const S = { iso: null, d: {}, rendered: {}, map: null, mapB: null, mapMode: "choro" };
 const $ = (s, el = document) => el.querySelector(s);
 const $$ = (s, el = document) => [...el.querySelectorAll(s)];
-const PAGES = ["overview", "map", "time", "regions", "inequality", "macro", "agri", "zones", "industry", "ports", "labour", "climate", "grid", "outages", "method", "data"];
+const PAGES = ["overview", "map", "time", "regions", "inequality", "urban", "macro", "agri", "zones", "industry", "ports", "labour", "digital", "climate", "grid", "outages", "method", "data"];
 
 /* ---------------------------------------------------------------- formatting (en-US) */
 const nf = (d = 0) => new Intl.NumberFormat("en-US", { minimumFractionDigits: d, maximumFractionDigits: d });
@@ -59,7 +59,7 @@ async function loadCountry(iso) {
     gdp: getJSON(base + "gdp.json"), breaks: getJSON(base + "breaks.json"), ineq: getJSON(base + "inequality.json"),
     growth: getJSON(base + "growth.json"), grid: getJSON(base + "grid.json"), gridLines: getJSON(base + "grid_lines.geojson"), gridPts: getJSON(base + "grid_points.geojson"),
     macro: getJSON(base + "macro.json"), agri: getJSON(base + "agri.json"), zones: getJSON(base + "zones.json"),
-    zonesGeo: getJSON(base + "zones.geojson"), ports: getJSON(base + "ports.json"), labour: getJSON(base + "labour.json"), climate: getJSON(base + "climate.json"),
+    zonesGeo: getJSON(base + "zones.geojson"), ports: getJSON(base + "ports.json"), urban: getJSON(base + "urban.json"), digital: getJSON(base + "digital.json"), ntlsrc: getJSON(base + "ntl_sources.json"), labour: getJSON(base + "labour.json"), climate: getJSON(base + "climate.json"),
     ind: getJSON(base + "industrial.geojson"), indmeta: getJSON(base + "industrial.json"),
     outages: getJSON(base + "outages.json"), outUnits: getJSON(base + "outage_units.geojson"), news: getJSON(base + "news.json"),
     adm0: getJSON(base + "adm0.geojson"), adm1: getJSON(base + "adm1.geojson"), adm2: getJSON(base + "adm2.geojson"),
@@ -113,9 +113,10 @@ function renderHeader() {
   $("#country-title").textContent = `${m.name} · ${m.period[0]}–${m.period[1]}`;
   document.title = `${m.name} — night-time lights and economic activity`;
   $("#synthetic-banner").hidden = !m.synthetic;
+  if (window.ntlSourceUI && !S.srcUI) { S.srcUI = true; window.ntlSourceUI(); }
   $("#foot").innerHTML = `Updated ${new Date(m.generated_at).toLocaleString("en-US")} · VIIRS data (NOAA/EOG, NASA), ` +
     `boundaries ${esc((m.boundaries && m.boundaries.ADM1) || "geoBoundaries")}, population ${esc(m.pop_source || "GHSL")}, ` +
-    `World Bank · Code and methodology: see the "Methods & limitations" page.`;
+    `World Bank · Code and methodology: see the "Methods & data sources" page.`;
 }
 
 function route() {
@@ -517,7 +518,7 @@ function overlay(f) {
   const [w, s, e, n] = R.bounds;
   return L.imageOverlay(rasterUrl(f), [[s, w], [n, e]], { pane: "raster", opacity: 0.95, interactive: false });
 }
-const outline = (gj) => L.geoJSON(gj, { interactive: false, style: { color: "rgba(255,255,255,0.8)", weight: 1, fill: false } });
+const outline = (gj) => L.geoJSON(gj, { interactive: false, style: { color: "rgba(255,255,255,0.45)", weight: 0.4, fill: false } });
 function showLayer(mp, lyr, on) { if (!mp || !lyr) return; if (on && !mp.hasLayer(lyr)) lyr.addTo(mp); if (!on && mp.hasLayer(lyr)) mp.removeLayer(lyr); }
 function mapFail(msg) { const fb = $("#map-fallback"); fb.textContent = msg || TXT.fail; fb.hidden = false; fb.style.display = "grid"; }
 
@@ -535,8 +536,8 @@ RENDER.map = async () => {
   if (ca && cb) { const o = years.map((y) => `<option>${y}</option>`).join(""); ca.innerHTML = cb.innerHTML = o; ca.value = years[0]; cb.value = years[years.length - 1]; }
   const noR = !years.length, noD = !Object.keys((m.rasters && m.rasters.dark) || {}).length;
   $$("#map-mode button").forEach((b) => { const k = b.dataset.mode; const off = (k === "ntl" || k === "compare") ? noR : k === "dark" ? noD : false;
-    b.disabled = off; b.classList.toggle("off", off); if (off) b.title = k === "dark" && !noR ? 'The “areas in the dark” image was not exported in this run (Earth Engine refused it): the other modes work.' : 'Raster images were not exported in this run: re-run section 3.3 with Earth Engine, then section 12.'; });
-  if (noR) $("#map-help").textContent = 'Raster images were not exported in this run: re-run section 3.3 with Earth Engine, then section 12.';
+    b.disabled = off; b.classList.toggle("off", off); if (off) b.title = k === "dark" && !noR ? 'The “areas in the dark” image was not exported in this run (Earth Engine refused it): the other modes work.' : 'Raster images were not exported in this run: re-run section 3.3 with Earth Engine, then section 21.'; });
+  if (noR) $("#map-help").textContent = 'Raster images were not exported in this run: re-run section 3.3 with Earth Engine, then section 21.';
   if (!window.L) { mapFail("The mapping library (Leaflet) could not be loaded. Reload the page; the tables on the other pages remain available."); return; }
   try {
     S.map = newMap("map");
@@ -678,7 +679,7 @@ async function boot() {
   matchMedia("(prefers-color-scheme: dark)").addEventListener?.("change", () => { if (!document.documentElement.dataset.theme) rethemed(); });
   let countries = [];
   try { countries = await getJSON("data/countries.json"); } catch (e) { /* handled below */ }
-  if (!countries.length) { $("#country-title").textContent = "No data published"; $("#lede").textContent = "Run section 12 of the notebook to export the data."; return; }
+  if (!countries.length) { $("#country-title").textContent = "No data published"; $("#lede").textContent = "Run section 21 of the notebook to export the data."; return; }
   const want = (new URLSearchParams(location.search).get("country") || (new URLSearchParams(location.search).get("country") || new URLSearchParams(location.search).get("pays"))) || store.get("ntl-country");
   const iso = (countries.find((c) => c.iso3 === want) || countries[0]).iso3;
   const sel = $("#country-select");
@@ -826,7 +827,7 @@ function addBaseControl(mp) {
 /* ================================================================ industrial zones */
 const IT = {
   lede: "Where are the industrial zones of {c}? Industrial sites shine at night like towns, but their buildings are mostly non-residential, few people live there and they emit nitrogen dioxide. Combining these signals, {n} candidate zones are detected.",
-  none: "Industrial zones have not been computed for this country yet: run section 11 of the notebook, then publish again.",
+  none: "Industrial zones have not been computed for this country yet: run section 12 of the notebook, then publish again.",
   k_n: "Zones detected", k_n_sub: "{a} major hubs · {b} energy sites",
   k_share: "Share of national light", k_share_sub: "emitted by the zones, {y}",
   k_area: "Total area", k_area_sub: "km² of candidate zones",
