@@ -15,7 +15,7 @@
 <table>
 <tr>
 <td align="center" width="33%"><sub>📈 Croissance annuelle de la lumière</sub><br/><h3>+11,6 %</h3><sub>2014–2025, pente robuste (Theil–Sen)</sub></td>
-<td align="center" width="33%"><sub>🗓️ 12 derniers mois vs 12 précédents</sub><br/><h3>+13,4 %</h3><sub>série désaisonnalisée, jusqu'à 12/2025</sub></td>
+<td align="center" width="33%"><sub>🗓️ 12 derniers mois vs 12 précédents</sub><br/><h3>+6,8 %</h3><sub>série désaisonnalisée, jusqu'à 09/2026</sub></td>
 <td align="center" width="33%"><sub>💹 Élasticité lumière–PIB</sub><br/><h3>3,30</h3><sub>IC 95 % 2,80 à 3,79 · confiance moyenne</sub></td>
 </tr>
 <tr>
@@ -29,7 +29,7 @@
 
 ## 💡 Messages clés
 
-1. **Tendance nationale** — Entre 2014 et 2025, la lumière nocturne de Mauritanie a évolué de +11,6 % par an (IC 95 % : +9,9 % à +12,5 %). Sur les 12 derniers mois, le niveau désaisonnalisé est +13,4 % par rapport aux 12 mois précédents.  
+1. **Tendance nationale** — Entre 2014 et 2025, la lumière nocturne de Mauritanie a évolué de +11,6 % par an (IC 95 % : +9,9 % à +12,5 %). Sur les 12 derniers mois, le niveau désaisonnalisé est +6,8 % par rapport aux 12 mois précédents.  
    <sub>🟢 élevée · tendance significative (p < 0,01 ; n = 12)</sub>
 2. **Régions** — Sur 57 unités ADM2, 41 sont en croissance significative, 16 stagnent et 0 déclinent. L'activité lumineuse reste concentrée : Nouakchott concentre 67 % de la lumière nationale.  
    <sub>🟠 moyenne · classement sur 57 unités, seuil ±1 %/an et p < 0,10</sub>
@@ -38,64 +38,66 @@
 4. **Lien avec le PIB** — L'élasticité de la lumière au PIB réel est de 3,30 en niveaux (IC 95 % : 2,80 à 3,79, R² = 0,97, 12 années) et de 1,68 en taux de croissance (IC : −0,03 à 3,39). En pseudo temps réel (chaque année prédite à partir des seules années antérieures), la croissance de la lumière suit celle du PIB avec une corrélation de 0,33 (erreur absolue moyenne : 2,5 point(s) de croissance, pas mieux que la meilleure prévision naïve, rapport d'erreur 1,14).  
    <sub>🟠 moyenne · relation nette mais seulement 12 années</sub>
 5. **Inégalités et accès** — Le Gini de la lumière par habitant (ADM2) vaut 0,69 en 2025 (évolution non significative depuis 2014). Environ 2,06 million(s) de personnes vivent dans des zones habitées sans lumière détectable (41 % de la population habitée).  
-   <sub>🟠 moyenne · sensible au seuil de radiance (de 0,00 à 2,37 M selon le seuil) ; proxy d'éclairage extérieur, pas de raccordement</sub>
+   <sub>🟠 moyenne · sensible au seuil de radiance (de 1,97 à 2,37 M selon le seuil) ; proxy d'éclairage extérieur, pas de raccordement</sub>
 6. **Zones industrielles** — 7 zones industrielles candidates sont détectées (3 pôles majeurs, 0 sites énergétiques), sur 5 km². Elles émettent 1 % de la lumière nationale ; la première est Nouadhibou (Dakhlet Nouadhibou). Leur lumière évolue de +6,3 % par an.  
    <sub>🟠 moyenne · 100 % des zones confirmées par OpenStreetMap ; candidats à vérifier</sub>
 7. **Réseau électrique** — Le réseau électrique cartographié (OpenStreetMap) totalise 2 813 km de lignes. Entre 2014 et 2025, la lumière des villes à moins de 15 km d'une ligne de transport a varié de +204 %, contre +867 % au-delà de 50 km (descriptif : les lignes OSM ne sont pas datées).  
    <sub>low · couverture OSM variable, lignes non datées</sub>
 8. **Bâti sans lumière** — En 2020, la part du bâti (GHSL) sans lumière détectable est la plus élevée à Barkéol 79%, Maghama 72%, Tintane 68% : l'expansion urbaine y devance le service électrique.  
    <sub>medium · le halo lumineux sous-estime cette part dans les grandes villes</sub>
-9. **Effet des investissements** — Études d'événements (villes traitées vs jamais traitées) — Raccordement haute tension (2 villes) : -0,49 points log, p bootstrap = 0,20; Renforcement de la production (9 villes) : +0,08 points log, p bootstrap = 0,80.  
+9. **Effet des investissements** — Études d'événements (villes traitées vs jamais traitées) — Raccordement haute tension (6 villes) : +0,26 points log, p bootstrap = 0,34; Renforcement de la production (12 villes) : +0,21 points log, p bootstrap = 0,50.  
    <sub>low · peu de villes traitées ; dates d'événements de confiance moyenne/faible</sub>
-10. **Coupures d'électricité** — À Nouakchott, 1,0 % des nuits claires de 2026 (jusqu'au 01/11) montrent une baisse de lumière à l'échelle de la ville compatible avec une coupure (contre 1,0 % en 2014). L'épisode le plus marqué débute le 11/06/2021 : lumière à 9 % de la normale, 96 % des pixels assombris.  
+10. **Coupures d'électricité** — À Nouakchott, 1,0 % des nuits claires de 2026 (jusqu'au 02/11) montrent une baisse de lumière à l'échelle de la ville compatible avec une coupure (contre 1,0 % en 2014). L'épisode le plus marqué débute le 11/06/2021 : lumière à 9 % de la normale, 96 % des pixels assombris.  
    <sub>medium · un passage satellite par nuit (≈ 01 h 30) : coupures de jour invisibles ; 2/4 épisodes documentés observables détectés</sub>
 11. **Presse et coupures** — 246 articles de presse en ligne (FR, AR, EN) traitent de coupures à Nouakchott. Le pic de couverture est en 08/2026 (42 articles). Thèmes économiques les plus cités : Generation capacity & demand, Investment & finance, Heat & air conditioning, Water supply.  
    <sub>low · couverture en ligne inégale dans le temps ; ton estimé par un modèle</sub>
-12. **Activité par zone** — 2025 : les sites extractifs émettent 4 % de la lumière du pays ; lumière +5 % sur un an dans les mines, +13 % dans le reste du pays.  
+12. **Activité par zone** — 2025 : les sites extractifs émettent 8 % de la lumière du pays ; lumière +85 % sur un an dans les mines, +14 % dans le reste du pays.  
    <sub>medium · VIIRS mensuel nettoyé ; coordonnées des mines approximatives</sub>
-13. **Ports et commerce** — Commerce maritime 2026T3 (PortWatch) : importations +12 %, exportations +3 % sur un an (tonnages estimés).  
+13. **NO₂ aux sites** — 2025 : NO₂ en excès sur un anneau de 10 à 30 km (µmol/m²) — zones industrielles (hors extractif) +6.4, zones portuaires +2.4, sites extractifs +1.3. Une moyenne nationale ne peut pas montrer ces sites : ils couvrent moins de 0,1 % du territoire.  
+   <sub>low · pixels Sentinel-5P d'environ 3,5 × 5,5 km : les petits sites lisent aussi la ville voisine</sub>
+14. **Ports et commerce** — Commerce maritime 2026T3 (PortWatch) : importations +12 %, exportations +3 % sur un an (tonnages estimés).  
    <sub>medium · positions AIS des navires ; tonnage estimé, pas les déclarations douanières</sub>
-14. **Agriculture (NDVI)** — Saison 2025 (juillet–octobre) : NDVI des zones cultivées +43 % par rapport à la moyenne de long terme ; région la plus en retard : Brakna (+29 %).  
+15. **Agriculture (NDVI)** — Saison 2025 (juillet–octobre) : NDVI des zones cultivées +43 % par rapport à la moyenne de long terme ; région la plus en retard : Brakna (+29 %).  
    <sub>medium · NDVI METOP sur zones cultivées ; la récolte dépend aussi des crues et de l'irrigation</sub>
-15. **NDVI et PIB agricole** — Élasticité de la valeur ajoutée agricole au NDVI de saison : 0,18 (1991–2025, p = 0,01).  
+16. **NDVI et PIB agricole** — Élasticité de la valeur ajoutée agricole au NDVI de saison : 0,18 (1991–2025, p = 0,01).  
    <sub>medium · 35 années, erreurs HAC</sub>
-16. **Marché du travail** — 2026-T2 : chômage 13,2 % (+1,1 pt sur un an) ; jeunes 14-35 ans 23,5 %, femmes 21,7 %. Sous-utilisation au sens large (SU4) : 34,2 %, 47 % chez les jeunes et 50 % chez les femmes.  
+17. **Marché du travail** — 2026-T2 : chômage 13,2 % (+1,1 pt sur un an) ; jeunes 14-35 ans 23,5 %, femmes 21,7 %. Sous-utilisation au sens large (SU4) : 34,2 %, 47 % chez les jeunes et 50 % chez les femmes.  
    <sub>high · enquête trimestrielle ANSADE, ~2 500 ménages par trimestre</sub>
-17. **Compétences** — Réserve pour la diversification : environ 193 milliers de chômeurs, dont 39 % de niveau secondaire ; le chômage des diplômés du supérieur atteint 17,4 %. Main-d'œuvre disponible, mais peu formée aux métiers techniques.  
+18. **Compétences** — Réserve pour la diversification : environ 193 milliers de chômeurs, dont 39 % de niveau secondaire ; le chômage des diplômés du supérieur atteint 17,4 %. Main-d'œuvre disponible, mais peu formée aux métiers techniques.  
    <sub>medium · effectifs estimés (population × parts de l'enquête)</sub>
-18. **Formation et diversification** — Étudiants 2023-2024 : 65 % en sciences sociales, droit, commerce, lettres et arts ; 2,4 % en ingénierie, industrie et construction ; 79 en agriculture — face à des secteurs cibles (mines, gaz, hydrogène, agro-alimentaire, élevage) qui demandent des techniciens.  
+19. **Formation et diversification** — Étudiants 2023-2024 : 65 % en sciences sociales, droit, commerce, lettres et arts ; 2,4 % en ingénierie, industrie et construction ; 79 en agriculture — face à des secteurs cibles (mines, gaz, hydrogène, agro-alimentaire, élevage) qui demandent des techniciens.  
    <sub>high · annuaire ANSADE 2025 (inscrits, pas diplômés ; formation professionnelle non couverte)</sub>
-19. **Productivité par secteur** — Le secteur secondaire (mines comprises) produit 32 % de la valeur ajoutée avec 20 % des emplois ; le primaire, 22 % avec 25 %. Déplacer des travailleurs vers les secteurs plus productifs est le moteur de la transformation structurelle.  
+20. **Productivité par secteur** — Le secteur secondaire (mines comprises) produit 32 % de la valeur ajoutée avec 20 % des emplois ; le primaire, 22 % avec 25 %. Déplacer des travailleurs vers les secteurs plus productifs est le moteur de la transformation structurelle.  
    <sub>medium · valeur ajoutée Banque mondiale, emplois ENTE : sources et années différentes</sub>
-20. **Emploi industriel** — Emplois du secondaire : 22,6 % au 2026-T2 (+82 milliers sur un an). Le saut depuis le T3-2025 (de 16 % à 22–25 %) est à confirmer : chantiers (gaz, infrastructures), mines, ou changement de classification.  
+21. **Emploi industriel** — Emplois du secondaire : 22,6 % au 2026-T2 (+82 milliers sur un an). Le saut depuis le T3-2025 (de 16 % à 22–25 %) est à confirmer : chantiers (gaz, infrastructures), mines, ou changement de classification.  
    <sub>low · quelques trimestres seulement ; parts lues sur les graphiques des rapports</sub>
-21. **El Niño** — RONI JAS 2026 : +1,7 °C, El Niño fort pendant la saison des pluies. AGRHYMET (mai 2026) place l'ouest du Sahel, dont la Mauritanie, au plus haut risque de déficits et de pauses sèches.  
+22. **El Niño** — RONI JAS 2026 : +1,7 °C, El Niño fort pendant la saison des pluies. AGRHYMET (mai 2026) place l'ouest du Sahel, dont la Mauritanie, au plus haut risque de déficits et de pauses sèches.  
    <sub>high · indice observé (NOAA CPC)</sub>
-22. **Plans de contingence** — La réponse passe par le Plan national de réponse (DCAN, CSA) fondé sur le Cadre harmonisé, les transferts Elmaouna de Taazour et l'assurance sécheresse ARC. Aucun plan propre à El Niño ni enveloppe internationale d'anticipation (l'appel FAO–PAM ne couvre pas la Mauritanie) n'a été identifié.  
+23. **Plans de contingence** — La réponse passe par le Plan national de réponse (DCAN, CSA) fondé sur le Cadre harmonisé, les transferts Elmaouna de Taazour et l'assurance sécheresse ARC. Aucun plan propre à El Niño ni enveloppe internationale d'anticipation (l'appel FAO–PAM ne couvre pas la Mauritanie) n'a été identifié.  
    <sub>medium · sources publiques consultées le 4 November 2026</sub>
-23. **Urbanisation** — Nouakchott regroupe 29,4 % des Mauritaniens en 2023 (21 % en 1988) et croît de 4,2 %/an (2013–2023), contre 3,4 % pour le pays.  
+24. **Urbanisation** — Nouakchott regroupe 29,4 % des Mauritaniens en 2023 (21 % en 1988) et croît de 4,2 %/an (2013–2023), contre 3,4 % pour le pays.  
    <sub>high · recensements</sub>
-24. **Villes secondaires** — Les dix autres villes secondaires accélèrent : 3,8 %/an en 2013–2023 contre 1,6 % en 1988–2000 ; le reste du pays passe de 65 % à 58 % de la population. L'urbanisation descend dans la hiérarchie urbaine.  
+25. **Villes secondaires** — Les neuf autres villes secondaires accélèrent : 4,1 %/an en 2013–2023 contre 1,7 % en 1988–2000 ; le reste du pays passe de 67 % à 59 % de la population. L'urbanisation descend dans la hiérarchie urbaine.  
    <sub>medium · communes : les limites changent d'un recensement à l'autre</sub>
-25. **Urbain et rural** — Les villes gagnent environ 91 milliers d'habitants par an (3,4 %/an), les zones rurales 35 milliers (1,5 %/an) : chaque année, une ville de la taille de Kiffa s'ajoute aux villes.  
+26. **Urbain et rural** — Les villes gagnent environ 91 milliers d'habitants par an (3,4 %/an), les zones rurales 35 milliers (1,5 %/an) : chaque année, une ville de la taille de Kiffa s'ajoute aux villes.  
    <sub>medium · projections ANSADE sur la base du recensement 2023</sub>
-26. **Lumières et villes** — Les lumières confirment en partie la croissance des villes : corrélation de rang de -0,48 entre la croissance démographique 2013–2023 et celle des lumières du district.  
-   <sub>medium · 12 villes ; district entier, pas seulement la ville</sub>
-27. **Exode rural** — Les personnes en âge de travailler font 63 % de la population urbaine contre 50 % en milieu rural : les jeunes adultes partent en ville, les enfants et les personnes âgées restent.  
+27. **Lumières et villes** — Les lumières évoluent à l'inverse de la croissance des villes : corrélation de rang de -0,41 entre la croissance démographique 2013–2023 et la croissance de la lumière de la ville (zone tampon) (2014–2023). La lumière croît le plus vite à Tidjikja, Sélibabi, Aïoun : l'électrification progresse plus vite que la population.  
+   <sub>low · 12 villes ; zone tampon autour de la ville</sub>
+28. **Exode rural** — Les personnes en âge de travailler font 63 % de la population urbaine contre 50 % en milieu rural : les jeunes adultes partent en ville, les enfants et les personnes âgées restent.  
    <sub>medium · ENTE 2026Q2</sub>
-28. **Électricité** — 49 % des ménages ont l'électricité en 2023 (20 % en 2004) : plus de 90 % à Nouakchott, Nouadhibou et Zouérate, moins de 25 % dans les deux Hodh, l'Assaba, le Gorgol et le Guidimakha. Chaque nouvel habitant urbain est un raccordement à financer.  
+29. **Électricité** — 49 % des ménages ont l'électricité en 2023 (20 % en 2004) : plus de 90 % à Nouakchott, Nouadhibou et Zouérate, moins de 25 % dans les deux Hodh, l'Assaba, le Gorgol et le Guidimakha. Chaque nouvel habitant urbain est un raccordement à financer.  
    <sub>high · RGPH-5 2023, EPCV</sub>
-29. **Usage d'internet** — 46 % des Mauritaniens utilisent internet en 2024 (Sénégal 60 %, Maroc 91 %).  
+30. **Usage d'internet** — 46 % des Mauritaniens utilisent internet en 2024 (Sénégal 60 %, Maroc 91 %).  
    <sub>high · UIT / Banque mondiale</sub>
-30. **Débit d'internet** — Internet mobile au 2026e trimestre 3 : 124 Mbit/s à Nouakchott contre 47 Mbit/s hors des villes.  
+31. **Débit d'internet** — Internet mobile au 2026e trimestre 3 : 124 Mbit/s à Nouakchott contre 47 Mbit/s hors des villes.  
    <sub>medium · tests volontaires : plus nombreux là où il y a plus d'utilisateurs</sub>
-31. **Préparation numérique** — Network Readiness Index 2025 : rang 126 sur 127. Le pilier « personnes » (compétences, usage) est le plus faible (14,5/100).  
+32. **Préparation numérique** — Network Readiness Index 2025 : rang 126 sur 127. Le pilier « personnes » (compétences, usage) est le plus faible (14,5/100).  
    <sub>high · Portulans Institute</sub>
-32. **Coupures d'internet** — 3 coupures d'internet depuis 2019, dont 22 jours d'internet mobile coupé en juillet 2024 après la présidentielle et des coupures pendant le baccalauréat.  
+33. **Coupures d'internet** — 3 coupures d'internet depuis 2019, dont 22 jours d'internet mobile coupé en juillet 2024 après la présidentielle et des coupures pendant le baccalauréat.  
    <sub>high · CIVICUS, Internet Society</sub>
-33. **Croissance officielle** — PIB réel 2026T2 : +2,8 % sur un trimestre (CVS), +6,6 % sur un an ; hors gaz +5,9 % sur un an.  
+34. **Croissance officielle** — PIB réel 2026T2 : +2,8 % sur un trimestre (CVS), +6,6 % sur un an ; hors gaz +5,9 % sur un an.  
    <sub>high · ANSADE, comptes trimestriels</sub>
-34. **Satellites et comptes nationaux** — Meilleur indicateur avancé : Escales (PortWatch) pour « Transport » (corrélation de rang 0,71, même signe 67 % du temps).  
+35. **Satellites et comptes nationaux** — Meilleur indicateur avancé : Escales (PortWatch) pour « Transport » (corrélation de rang 0,71, même signe 67 % du temps).  
    <sub>medium · 6 trimestres</sub>
 
 ## 🛰️ Le jour et la nuit
@@ -250,4 +252,4 @@ Réalisé par la **Banque africaine de développement** dans le cadre de **Data 
 ---
 
 <p align="center"><sub>© 2026 AfDB-DI4A · avec l'IMF Big Data Center · Toute réutilisation doit mentionner « Source : AfDB-DI4A » · Les opinions exprimées ne reflètent pas nécessairement celles du FMI</sub></p>
-<p align="center"><sub>Dernière mise à jour : 2026-11-05 · <a href="#top">↑</a></sub></p>
+<p align="center"><sub>Dernière mise à jour : 2026-11-06 · <a href="#top">↑</a></sub></p>

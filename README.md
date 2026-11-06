@@ -15,7 +15,7 @@
 <table>
 <tr>
 <td align="center" width="33%"><sub>📈 Annual growth of light</sub><br/><h3>+11.6%</h3><sub>2014–2025, robust slope (Theil–Sen)</sub></td>
-<td align="center" width="33%"><sub>🗓️ Last 12 months vs previous 12</sub><br/><h3>+13.4%</h3><sub>seasonally adjusted series, up to 12/2025</sub></td>
+<td align="center" width="33%"><sub>🗓️ Last 12 months vs previous 12</sub><br/><h3>+6.8%</h3><sub>seasonally adjusted series, up to 09/2026</sub></td>
 <td align="center" width="33%"><sub>💹 Light–GDP elasticity</sub><br/><h3>3.30</h3><sub>95% CI 2.80 to 3.79 · confidence medium</sub></td>
 </tr>
 <tr>
@@ -29,7 +29,7 @@
 
 ## 💡 Key messages
 
-1. **National trend** — Between 2014 and 2025, night-time light in Mauritania changed by +11.6% per year (95% CI: +9.9% to +12.5%). Over the last 12 months, the seasonally adjusted level is +13.4% relative to the previous 12 months.  
+1. **National trend** — Between 2014 and 2025, night-time light in Mauritania changed by +11.6% per year (95% CI: +9.9% to +12.5%). Over the last 12 months, the seasonally adjusted level is +6.8% relative to the previous 12 months.  
    <sub>🟢 high · significant trend (p < 0.01; n = 12)</sub>
 2. **Regions** — Of 57 ADM2 units, 41 show significant growth, 16 are stagnating and 0 are declining. Light remains concentrated: Nouakchott accounts for 67% of national light.  
    <sub>🟠 medium · classification of 57 units, threshold ±1%/yr and p < 0.10</sub>
@@ -38,64 +38,66 @@
 4. **Link with GDP** — The elasticity of light with respect to real GDP is 3.30 in levels (95% CI: 2.80 to 3.79, R² = 0.97, 12 years) and 1.68 in growth rates (CI: −0.03 to 3.39). In pseudo-real time (each year predicted from earlier years only), light growth tracks GDP growth with a correlation of 0.33 (mean absolute error: 2.5 percentage points of growth, no better than the best naive forecast, error ratio 1.14).  
    <sub>🟠 medium · clear relationship but only 12 years</sub>
 5. **Inequality and access** — The Gini coefficient of light per capita (ADM2) is 0.69 in 2025 (no significant change since 2014). About 2.06 million people live in inhabited areas with no detectable light (41% of the inhabited population).  
-   <sub>🟠 medium · sensitive to the radiance threshold (from 0.00 to 2.37 M depending on the threshold); a proxy for outdoor lighting, not for grid connection</sub>
+   <sub>🟠 medium · sensitive to the radiance threshold (from 1.97 to 2.37 M depending on the threshold); a proxy for outdoor lighting, not for grid connection</sub>
 6. **Industrial zones** — 7 candidate industrial zones are detected (3 major hubs, 0 energy sites), covering 5 km². They emit 1% of national light; the largest is Nouadhibou (Dakhlet Nouadhibou). Their light changes by +6.3% per year.  
    <sub>🟠 medium · 100% of zones confirmed by OpenStreetMap; candidates to be checked</sub>
 7. **Electricity grid** — The mapped grid (OpenStreetMap) totals 2,813 km of line. Between 2014 and 2025, light in towns within 15 km of a transmission line changed by +204%, against +867% beyond 50 km (descriptive: OSM lines carry no dates).  
    <sub>🔴 low · OSM coverage varies, lines are undated</sub>
 8. **Built-up land left dark** — In 2020, the share of built-up land (GHSL) with no detectable light is highest in Barkéol 79%, Maghama 72%, Tintane 68%: urban expansion runs ahead of electricity service there.  
    <sub>🟠 medium · blooming understates this share in large cities</sub>
-9. **Effect of grid investments** — Event studies (treated vs never-treated towns) — HV connection (2 towns): -0.49 log points, wild-bootstrap p = 0.20; Generation upgrade (9 towns): +0.08 log points, wild-bootstrap p = 0.80.  
+9. **Effect of grid investments** — Event studies (treated vs never-treated towns) — HV connection (6 towns): +0.26 log points, wild-bootstrap p = 0.34; Generation upgrade (12 towns): +0.21 log points, wild-bootstrap p = 0.50.  
    <sub>🔴 low · few treated towns; event dates of medium/low confidence</sub>
-10. **Power outages** — In Nouakchott, 1.0% of clear nights in 2026 (to 01 Nov) show a citywide drop in light consistent with a power outage (against 1.0% in 2014). The deepest episode starts on 11 Jun 2021: light at 9% of normal, 96% of pixels dimmed.  
+10. **Power outages** — In Nouakchott, 1.0% of clear nights in 2026 (to 02 Nov) show a citywide drop in light consistent with a power outage (against 1.0% in 2014). The deepest episode starts on 11 Jun 2021: light at 9% of normal, 96% of pixels dimmed.  
    <sub>🟠 medium · one satellite pass per night (≈01:30): daytime cuts are invisible; 2/4 observable documented episodes detected</sub>
 11. **News on outages** — 246 online news articles (FR, AR, EN) cover power cuts in Nouakchott. Coverage peaks in Aug 2026 (42 articles). Most-cited economic themes: Generation capacity & demand, Investment & finance, Heat & air conditioning, Water supply.  
    <sub>🔴 low · uneven online coverage over time; tone estimated by a model</sub>
-12. **Activity by zone** — 2025: extractive sites emit 4% of the country's light; light +5% y/y at the mines, +13% in the rest of the country.  
+12. **Activity by zone** — 2025: extractive sites emit 8% of the country's light; light +85% y/y at the mines, +14% in the rest of the country.  
    <sub>🟠 medium · cleaned monthly VIIRS; mine coordinates approximate</sub>
-13. **Ports and trade** — Seaborne trade 2026Q3 (PortWatch): imports +12%, exports +3% year on year (estimated tonnage).  
+13. **NO₂ at the sites** — 2025: NO₂ excess over a 10–30 km ring (µmol/m²) — industrial zones (excl. extractive) +6.4, port areas +2.4, extractive sites +1.3. A national mean cannot show these sites: they cover under 0.1% of the country.  
+   <sub>🔴 low · Sentinel-5P pixels are about 3.5 × 5.5 km: small sites also read the nearby town</sub>
+14. **Ports and trade** — Seaborne trade 2026Q3 (PortWatch): imports +12%, exports +3% year on year (estimated tonnage).  
    <sub>🟠 medium · AIS ship positions; estimated tonnage, not customs declarations</sub>
-14. **Agriculture (NDVI)** — 2025 growing season (July–October): cropland NDVI +43% vs its long-term average; weakest region: Brakna (+29%).  
+15. **Agriculture (NDVI)** — 2025 growing season (July–October): cropland NDVI +43% vs its long-term average; weakest region: Brakna (+29%).  
    <sub>🟠 medium · METOP NDVI over cropland; harvests also depend on floods and irrigation</sub>
-15. **NDVI and agricultural GDP** — Elasticity of agricultural value added to growing-season NDVI: 0.18 (1991–2025, p = 0.01).  
+16. **NDVI and agricultural GDP** — Elasticity of agricultural value added to growing-season NDVI: 0.18 (1991–2025, p = 0.01).  
    <sub>🟠 medium · 35 years, HAC errors</sub>
-16. **Official growth** — Real GDP 2026Q2: +2.8% q/q (SA), +6.6% y/y; excluding gas +5.9% y/y.  
+17. **Official growth** — Real GDP 2026Q2: +2.8% q/q (SA), +6.6% y/y; excluding gas +5.9% y/y.  
    <sub>🟢 high · ANSADE quarterly accounts</sub>
-17. **Satellites vs national accounts** — Best satellite proxy: Port calls (PortWatch) for “Transport” (rank correlation 0.71, same sign 67% of the time).  
+18. **Satellites vs national accounts** — Best satellite proxy: Port calls (PortWatch) for “Transport” (rank correlation 0.71, same sign 67% of the time).  
    <sub>🟠 medium · 6 quarters</sub>
-18. **Labour market** — 2026-Q2: unemployment 13.2% (+1.1 pt over a year); youth 14-35 23.5%, women 21.7%. Broad underutilisation (SU4): 34.2%, 47% for youth and 50% for women.  
+19. **Labour market** — 2026-Q2: unemployment 13.2% (+1.1 pt over a year); youth 14-35 23.5%, women 21.7%. Broad underutilisation (SU4): 34.2%, 47% for youth and 50% for women.  
    <sub>🟢 high · ANSADE quarterly survey, ~2,500 households per quarter</sub>
-19. **Skills** — Reserve for diversification: about 193 thousand unemployed, 39% of them with secondary education; unemployment of tertiary graduates is 17.4%. Labour is available, but few are trained for technical trades.  
+20. **Skills** — Reserve for diversification: about 193 thousand unemployed, 39% of them with secondary education; unemployment of tertiary graduates is 17.4%. Labour is available, but few are trained for technical trades.  
    <sub>🟠 medium · counts estimated (population × survey shares)</sub>
-20. **Education and diversification** — Students 2023-2024: 65% in social sciences, law, business, arts and humanities; 2.4% in engineering, manufacturing and construction; 79 in agriculture — while the target sectors (mining, gas, hydrogen, agro-food, livestock) need technicians.  
+21. **Education and diversification** — Students 2023-2024: 65% in social sciences, law, business, arts and humanities; 2.4% in engineering, manufacturing and construction; 79 in agriculture — while the target sectors (mining, gas, hydrogen, agro-food, livestock) need technicians.  
    <sub>🟢 high · ANSADE yearbook 2025 (enrolment, not graduates; vocational training not covered)</sub>
-21. **Productivity by sector** — The secondary sector (mining included) produces 32% of value added with 20% of jobs; the primary sector 22% with 25%. Moving workers to more productive sectors is what structural transformation is about.  
+22. **Productivity by sector** — The secondary sector (mining included) produces 32% of value added with 20% of jobs; the primary sector 22% with 25%. Moving workers to more productive sectors is what structural transformation is about.  
    <sub>🟠 medium · value added from the World Bank, jobs from the ENTE: different sources and years</sub>
-22. **Industrial jobs** — Secondary-sector jobs: 22.6% in 2026-Q2 (+82 thousand over a year). The jump since Q3-2025 (from 16% to 22–25%) needs confirming: construction (gas, infrastructure), mining, or a change in classification.  
+23. **Industrial jobs** — Secondary-sector jobs: 22.6% in 2026-Q2 (+82 thousand over a year). The jump since Q3-2025 (from 16% to 22–25%) needs confirming: construction (gas, infrastructure), mining, or a change in classification.  
    <sub>🔴 low · few quarters; shares read from the reports' charts</sub>
-23. **El Niño** — JAS 2026 RONI: +1.7 °C, a strong El Niño over the rainy season. AGRHYMET (May 2026) puts the western Sahel, Mauritania included, at the highest risk of deficits and dry spells.  
+24. **El Niño** — JAS 2026 RONI: +1.7 °C, a strong El Niño over the rainy season. AGRHYMET (May 2026) puts the western Sahel, Mauritania included, at the highest risk of deficits and dry spells.  
    <sub>🟢 high · observed index (NOAA CPC)</sub>
-24. **Contingency plans** — The response runs through the National Response Plan (DCAN, CSA) built on the Cadre Harmonisé, Taazour's Elmaouna transfers and ARC drought insurance. No El Niño-specific plan and no international anticipatory envelope (the FAO–WFP appeal does not cover Mauritania) were identified.  
+25. **Contingency plans** — The response runs through the National Response Plan (DCAN, CSA) built on the Cadre Harmonisé, Taazour's Elmaouna transfers and ARC drought insurance. No El Niño-specific plan and no international anticipatory envelope (the FAO–WFP appeal does not cover Mauritania) were identified.  
    <sub>🟠 medium · public sources consulted on 4 November 2026</sub>
-25. **Urbanisation** — Nouakchott holds 29.4% of Mauritanians in 2023 (21% in 1988) and grows 4.2%/yr (2013–2023), against 3.4% for the country.  
+26. **Urbanisation** — Nouakchott holds 29.4% of Mauritanians in 2023 (21% in 1988) and grows 4.2%/yr (2013–2023), against 3.4% for the country.  
    <sub>🟢 high · censuses</sub>
-26. **Secondary towns** — The ten other secondary towns are speeding up: 3.8%/yr in 2013–2023 against 1.6% in 1988–2000; the rest of the country falls from 65% to 58% of the population. Urbanisation is spreading down the urban hierarchy.  
+27. **Secondary towns** — The nine other secondary towns are speeding up: 4.1%/yr in 2013–2023 against 1.7% in 1988–2000; the rest of the country falls from 67% to 59% of the population. Urbanisation is spreading down the urban hierarchy.  
    <sub>🟠 medium · communes: boundaries change between censuses</sub>
-27. **Urban and rural** — Towns gain about 91 thousand people a year (3.4%/yr), rural areas 35 thousand (1.5%/yr): every year, the equivalent of a town the size of Kiffa is added to the urban population.  
+28. **Urban and rural** — Towns gain about 91 thousand people a year (3.4%/yr), rural areas 35 thousand (1.5%/yr): every year, the equivalent of a town the size of Kiffa is added to the urban population.  
    <sub>🟠 medium · ANSADE projections on the 2023 census base</sub>
-28. **Lights and towns** — Lights partly confirm town growth: rank correlation of -0.48 between 2013–2023 population growth and the growth of the district's lights.  
-   <sub>🟠 medium · 12 towns; whole district, not only the town</sub>
-29. **Rural exodus** — Working-age people are 63% of the urban population against 50% in rural areas: young adults move to the towns, children and older people stay behind.  
+29. **Lights and towns** — Lights move against town growth: rank correlation of -0.41 between 2013–2023 population growth and the growth of the town's own light (2014–2023). Light grows fastest in Tidjikja, Sélibabi, Aïoun: electrification is moving faster than population, so light measures access to power more than town size.  
+   <sub>🔴 low · 12 towns; buffer around the town</sub>
+30. **Rural exodus** — Working-age people are 63% of the urban population against 50% in rural areas: young adults move to the towns, children and older people stay behind.  
    <sub>🟠 medium · ENTE 2026Q2</sub>
-30. **Electricity** — 49% of households have electricity in 2023 (20% in 2004): over 90% in Nouakchott, Nouadhibou and Zouérate, under 25% in the two Hodhs, Assaba, Gorgol and Guidimakha. Every new urban resident is a connection to finance.  
+31. **Electricity** — 49% of households have electricity in 2023 (20% in 2004): over 90% in Nouakchott, Nouadhibou and Zouérate, under 25% in the two Hodhs, Assaba, Gorgol and Guidimakha. Every new urban resident is a connection to finance.  
    <sub>🟢 high · RGPH-5 2023, EPCV</sub>
-31. **Internet use** — 46% of Mauritanians use the internet in 2024 (Senegal 60%, Morocco 91%).  
+32. **Internet use** — 46% of Mauritanians use the internet in 2024 (Senegal 60%, Morocco 91%).  
    <sub>🟢 high · ITU / World Bank</sub>
-32. **Internet speed** — Mobile internet in 2026Q3: 124 Mbps in Nouakchott against 47 Mbps outside the towns.  
+33. **Internet speed** — Mobile internet in 2026Q3: 124 Mbps in Nouakchott against 47 Mbps outside the towns.  
    <sub>🟠 medium · voluntary tests: more where there are more users</sub>
-33. **Digital readiness** — Network Readiness Index 2025: rank 126 of 127. The 'people' pillar (skills, use) is the weakest (14.5/100).  
+34. **Digital readiness** — Network Readiness Index 2025: rank 126 of 127. The 'people' pillar (skills, use) is the weakest (14.5/100).  
    <sub>🟢 high · Portulans Institute</sub>
-34. **Internet shutdowns** — 3 internet shutdowns since 2019, including 22 days without mobile internet in July 2024 after the presidential election, and cuts during the baccalauréat exams.  
+35. **Internet shutdowns** — 3 internet shutdowns since 2019, including 22 days without mobile internet in July 2024 after the presidential election, and cuts during the baccalauréat exams.  
    <sub>🟢 high · CIVICUS, Internet Society</sub>
 
 ## 🛰️ Day and night
@@ -250,4 +252,4 @@ Produced by the **African Development Bank** as part of **Data Innovation for Af
 ---
 
 <p align="center"><sub>© 2026 AfDB-DI4A · with the IMF Big Data Center · Any reuse must cite “Source: AfDB-DI4A” · The views expressed do not necessarily represent the views of the IMF</sub></p>
-<p align="center"><sub>Last update: 2026-11-05 · <a href="#top">↑</a></sub></p>
+<p align="center"><sub>Last update: 2026-11-06 · <a href="#top">↑</a></sub></p>
