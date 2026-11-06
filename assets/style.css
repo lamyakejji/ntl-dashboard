@@ -397,3 +397,16 @@ ul.small { font-size: .85rem; }
 .src-table td:nth-child(2) { min-width: 200px; } .src-table td:nth-child(3) { min-width: 240px; }
 .ntl-src .seg button { white-space: nowrap; }
 .ntl-src .seg button.on { background: #F2A900; color: #001A40; font-weight: 700; }
+
+/* v6: topics with sub-tabs */
+.topics { position: sticky; top: 0; z-index: 1210; display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; padding: 6px 12px 0;
+  background: var(--surface, #fff); border-bottom: 1px solid var(--border, #e3e6e4); }
+.topics::-webkit-scrollbar { display: none; }
+.topics a { flex: none; padding: 9px 14px 8px; border-radius: 10px 10px 0 0; text-decoration: none; color: var(--ink-2); font-weight: 650; font-size: .95rem; }
+.topics a:hover { color: var(--ink); background: rgba(0,76,151,.06); }
+.topics a[aria-current="true"] { color: #fff; background: var(--afdb, #004C97); }
+.tabs { top: 44px; background: rgba(0,76,151,.04); }
+.tabs a[hidden] { display: none; }
+.tabs a { font-size: .9rem; }
+.panel-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 12px; }
+.panel-grid .chart { height: 240px; }

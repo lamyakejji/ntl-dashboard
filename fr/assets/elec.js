@@ -19,7 +19,7 @@ const T = FR ? {
   b_sol: "Somme des lumières", b_lit: "Surface éclairée", b_y: "Variation (%)",
   d_h: "Bâti laissé dans le noir", d_help: "Part de la surface bâtie (GHSL 2020) sans lumière détectable : l'urbanisation y devance le service électrique. Le halo lumineux sous-estime cette part dans les grandes villes.",
   d_x: "% du bâti sans lumière (2020)",
-  a_h: "Régions avec événements", a_lab: "Région", a_sol: "Somme des lumières (indice)", a_lit: "Surface éclairée (indice)", a_y: "Indice (100 = première année)",
+  a_h: "Régions avec événements", a_lab: "Région", a_sol: "Somme des lumières (indice)", a_lit: "Surface éclairée (indice)", a_y: "Indice (première année = 100)", pa_h: "Toutes les régions avec événements", pa_help: "Somme des lumières, première année = 100 ; tirets = événements datés, avec leur nom. Les événements postérieurs aux données ne sont pas tracés.", pt_h: "Villes avec événements", pt_help: "Somme des lumières dans la zone tampon de la ville (25 km Nouakchott, 12 km Nouadhibou, 6 à 8 km ailleurs), première année = 100 ; tirets = événements datés.",
   meth_h: "Méthode et limites", meth: `<ul><li><b>Réseau</b> — lignes OpenStreetMap <code>power=line|minor_line|cable</code>, postes et centrales ; la distance au réseau utilise toutes les lignes <code>power=line</code> (même sans tension renseignée) : les lignes HT les plus récentes sont souvent tracées avant d'être étiquetées.</li>
     <li><b>Villes</b> — liste de villes + localités OSM ; tampon de 6 km (capitales plus larges) ; lumière VNL V2 annuelle nettoyée comme ailleurs dans le tableau de bord ; bâti GHSL 2015 et 2020 (époques observées).</li>
     <li><b>Études d'événements</b> — chaque type d'événement contre les villes jamais traitées ; peu de villes traitées : p-valeurs par bootstrap sauvage. Résultats exploratoires.</li>
@@ -66,7 +66,7 @@ const T = FR ? {
   b_sol: "Sum of lights", b_lit: "Lit area", b_y: "Change (%)",
   d_h: "Built-up land left dark", d_help: "Share of built-up surface (GHSL 2020) with no detectable light: urban expansion runs ahead of electricity service. Blooming understates this share in large cities.",
   d_x: "% of built-up land unlit (2020)",
-  a_h: "Regions with grid events", a_lab: "Region", a_sol: "Sum of lights (index)", a_lit: "Lit area (index)", a_y: "Index (100 = first year)",
+  a_h: "Regions with grid events", a_lab: "Region", a_sol: "Sum of lights (index)", a_lit: "Lit area (index)", a_y: "Index (first year = 100)", pa_h: "All regions with grid events", pa_help: "Sum of lights, first year = 100; dashed lines = dated events, with their names. Events after the last year of data are not drawn.", pt_h: "Towns with grid events", pt_help: "Sum of lights in the town buffer (25 km Nouakchott, 12 km Nouadhibou, 6–8 km elsewhere), first year = 100; dashed lines = dated events.",
   meth_h: "Method and limits", meth: `<ul><li><b>Grid</b> — OpenStreetMap <code>power=line|minor_line|cable</code>, substations and plants; distance to the grid uses every <code>power=line</code> (even without a voltage tag): the newest HV lines are often mapped before they are tagged.</li>
     <li><b>Towns</b> — curated list + OSM places; 6 km buffers (larger for the main cities); annual VNL V2 light cleaned as elsewhere in the dashboard; GHSL built-up 2015 and 2020 (observed epochs).</li>
     <li><b>Event studies</b> — each event type against never-treated towns; few treated towns, hence wild-bootstrap p-values. Exploratory results.</li>
@@ -134,6 +134,8 @@ RENDER.grid = () => {
       <article class="card"><h2>${esc(T.d_h)}</h2><p class="help">${esc(T.d_help)}</p><div class="chart tall" id="g-dark"></div></article>
     </div>
     <article class="card"><h2>${esc(T.a_h)}</h2><label class="ctl">${esc(T.a_lab)} <select id="g-adm1"></select></label><div class="chart" id="g-adm1-chart"></div></article>
+    <article class="card"><h2>${esc(T.pa_h)}</h2><p class="help">${esc(T.pa_help)}</p><div class="panel-grid" id="g-panel-adm1"></div></article>
+    <article class="card"><h2>${esc(T.pt_h)}</h2><p class="help">${esc(T.pt_help)}</p><div class="panel-grid" id="g-panel-towns"></div></article>
     <article class="card prose"><h2>${esc(T.meth_h)}</h2>${T.meth}</article>`;
   const c = C(), gc = (g.colors || {}).group || {}, vc = (g.colors || {}).vclass || {};
   // ---- KPIs
@@ -215,19 +217,54 @@ RENDER.grid = () => {
   const nm = Object.fromEntries(ser.map((r) => [r.unit_id, r.name]));
   const sel = $("#g-adm1");
   sel.innerHTML = units.map((u) => `<option value="${esc(u)}">${esc(nm[u] || u)}</option>`).join("");
+  // one line per (year, event): towns sharing the same event are listed together
+  const evLab = (e) => (FR && e.label_fr) || e.label || e.group;
+  const merge = (evs) => { const m = new Map();
+    evs.forEach((e) => { const k = `${e.year}|${evLab(e)}`; if (!m.has(k)) m.set(k, { ...e, towns: [] }); if (!m.get(k).towns.includes(e.town)) m.get(k).towns.push(e.town); });
+    return [...m.values()].sort((x, y) => x.year - y.year); };
+  const evLayout = (evs, x0, x1, opt) => { const mid = (x0 + x1) / 2;
+    return { xaxis: { range: [x0 - 0.4, x1 + 0.4], dtick: opt.dtick },
+      shapes: evs.map((e) => ({ type: "line", xref: "x", yref: "paper", x0: e.year, x1: e.year, y0: 0, y1: 1, line: { color: gc[e.group] || IMF.red, width: opt.w, dash: opt.dash } })),
+      annotations: evs.map((e, i) => { const right = e.year > mid;
+        return { x: e.year, y: 0.99 - opt.step * (i % opt.rows), xref: "x", yref: "paper", text: opt.text(e), showarrow: false,
+          xanchor: right ? "right" : "left", align: right ? "right" : "left", xshift: right ? -3 : 3, yanchor: "top", font: { size: opt.size, color: gc[e.group] || IMF.red },
+          bgcolor: "rgba(255,255,255,.88)", hovertext: esc(`${e.towns.join(", ")} — ${e.description || evLab(e)}`) }; }) }; };
   const draw = () => {
     const u = sel.value, s = ser.filter((r) => r.unit_id === u).sort((a, b) => a.year - b.year);
     if (!s.length) { plot("g-adm1-chart", []); return; }
     const b0 = s.find((r) => r.sol > 0) || s[0], l0 = s.find((r) => r.lit_km2 > 0) || s[0];
-    const evs = ae.filter((e) => e.unit_id === u && e.year <= g.period[1]);
+    const evs = merge(ae.filter((e) => e.unit_id === u && e.year <= g.period[1]));
     plot("g-adm1-chart", [
       { x: s.map((r) => r.year), y: s.map((r) => (100 * r.sol) / b0.sol), name: T.a_sol, mode: "lines+markers", line: { color: IMF.blue, width: 2.4 } },
       { x: s.map((r) => r.year), y: s.map((r) => (100 * r.lit_km2) / (l0.lit_km2 || 1)), name: T.a_lit, mode: "lines", line: { color: IMF.mid, width: 1.6, dash: "dash" } },
-    ], { yaxis: { title: { text: T.a_y } }, xaxis: { dtick: 1 },
-      shapes: evs.map((e) => ({ type: "line", xref: "x", yref: "paper", x0: e.year, x1: e.year, y0: 0, y1: 1, line: { color: gc[e.group] || IMF.red, width: 2 } })),
-      annotations: evs.map((e, i) => ({ x: e.year, y: 1 - 0.09 * i, xref: "x", yref: "paper", text: esc(`${e.town}`), showarrow: false, xanchor: "left", font: { size: 10, color: gc[e.group] || IMF.red } })) });
+    ], { yaxis: { title: { text: T.a_y.replace(FR ? "première année" : "first year", String(b0.year)) } },
+      ...evLayout(evs, s[0].year, s[s.length - 1].year, { dtick: 1, w: 2, dash: "solid", step: 0.08, rows: 6, size: 11, text: (e) => esc(`${e.year} ${e.towns.join(", ")}: ${evLab(e)}`) }) });
   };
   sel.onchange = draw; if (units.length) draw(); else plot("g-adm1-chart", []);
+
+  // ---- event panels (v6): every region / town with a dated event, event names written on the chart
+  const small = (id, s, evs, key, withTowns) => {
+    const b = s.find((r) => r[key] > 0); if (!b) { plot(id, []); return; }
+    const ev = merge(evs);
+    plot(id, [{ x: s.map((r) => r.year), y: s.map((r) => (100 * r[key]) / b[key]), mode: "lines+markers", line: { color: IMF.blue, width: 2 }, marker: { size: 4 }, showlegend: false,
+      hovertemplate: "%{x}: %{y:.0f}<extra></extra>" }],
+    { margin: { l: 44, r: 8, t: 8, b: 30 }, yaxis: { title: { text: `${b.year} = 100`, font: { size: 10 } } },
+      ...evLayout(ev, s[0].year, s[s.length - 1].year, { dtick: 2, w: 1.6, dash: "dash", step: withTowns ? 0.2 : 0.12, rows: withTowns ? 3 : 4, size: 10,
+        text: (e) => withTowns && e.towns.length ? `${esc(`${e.year} ${evLab(e)}`)}<br>(${esc(e.towns.join(", "))})` : esc(`${e.year} ${evLab(e)}`) }) });
+  };
+  const pg = $("#g-panel-adm1");
+  if (pg) {
+    pg.innerHTML = units.map((u, i) => `<div><h3 style="margin:4px 0;font-size:.95rem">${esc(nm[u] || u)}</h3><div class="chart" id="g-pa-${i}"></div></div>`).join("");
+    units.forEach((u, i) => small(`g-pa-${i}`, ser.filter((r) => r.unit_id === u).sort((a, b) => a.year - b.year), ae.filter((e) => e.unit_id === u && e.year <= g.period[1]), "sol", true));
+  }
+  const pt = $("#g-panel-towns"), tser = g.town_series || [], tw = g.towns || [];
+  if (pt) {
+    const tev = (g.events || []).filter((e) => e.year <= g.period[1] && e.town_id);
+    const tids = [...new Set(tev.map((e) => e.town_id))];
+    const tname = Object.fromEntries(tw.map((t) => [t.town_id, t.town]));
+    pt.innerHTML = tids.map((t, i) => `<div><h3 style="margin:4px 0;font-size:.95rem">${esc(tname[t] || t)}</h3><div class="chart" id="g-pt-${i}"></div></div>`).join("");
+    tids.forEach((t, i) => small(`g-pt-${i}`, tser.filter((r) => r.town_id === t).sort((a, b) => a.year - b.year), tev.filter((e) => e.town_id === t), "sol", false));
+  }
 };
 
 /* ============================================================ POWER OUTAGES + NEWS */

@@ -188,13 +188,15 @@ RENDER.time = () => {
   if (madm1 && madm1.length) {
     const by = {}; madm1.forEach((r) => { (by[r.unit_id] = by[r.unit_id] || []).push(r); });
     const size = Object.entries(by).map(([k, v]) => [k, v[v.length - 1].sa]).sort((a, b) => b[1] - a[1]);
-    const top = size.slice(0, 6).map((x) => x[0]);
+    const top = size.slice(0, 6).map((x) => x[0]); let by0 = "";
     const traces = top.map((uid, i) => {
-      const v = by[uid]; const base = v.slice(0, 12).reduce((s, r) => s + r.sa, 0) / Math.min(12, v.length);
+      const v = by[uid]; const yrs = [...new Set(v.map((r) => String(r.date).slice(0, 4)))];
+      const fy = yrs.find((y) => v.filter((r) => String(r.date).startsWith(y) && r.sa != null).length >= 12) || yrs[0]; by0 = fy;
+      const bv = v.filter((r) => String(r.date).startsWith(fy)); const base = bv.reduce((s, r) => s + r.sa, 0) / bv.length;
       return { x: v.map((r) => r.date), y: v.map((r) => (100 * r.sa) / base), name: S.d.names[uid] || uid, mode: "lines", line: { color: c.s[i], width: 1.8 },
         hovertemplate: "%{x|%b %Y}<br>%{y:.0f}<extra>%{fullData.name}</extra>" };
     });
-    plot("t-regions", traces, { yaxis: { title: { text: "Index (100 = first year)" } }, legend: { y: 1.22 } });
+    plot("t-regions", traces, { yaxis: { title: { text: `Index (${by0} = 100, January–December mean)` } }, legend: { y: 1.22 } });
   } else plot("t-regions", []);
   renderGDP();
 };
@@ -365,7 +367,7 @@ RENDER.inequality = () => {
   const nat = q.national || [];
   const tr = [];
   if (yrs.length) tr.push({ x: [...yrs, ...yrs.slice().reverse()], y: [...band.map((b) => b[1]), ...band.map((b) => b[0]).reverse()], fill: "toself", fillcolor: "rgba(235,104,52,.15)",
-    line: { width: 0 }, name: "Range across thresholds", hoverinfo: "skip" });
+    line: { width: 0 }, name: "Cut-offs 0.25–1 nW (cleaned image)", hoverinfo: "skip" });
   tr.push({ x: nat.map((r) => r.year), y: nat.map((r) => 100 * r.lit_pop_share), mode: "lines+markers", name: "Population in lit settled areas (lights)", line: { color: c.s[1], width: 2 } });
   const ac = q.access_comparison || [];
   if (ac.length) tr.push({ x: ac.map((r) => r.year), y: ac.map((r) => r.elec_access_pct), mode: "lines+markers", name: "Access to electricity (World Bank)", line: { color: c.ink2, width: 2, dash: "dot" } });

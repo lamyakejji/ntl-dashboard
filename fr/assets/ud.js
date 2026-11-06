@@ -24,12 +24,12 @@ const T = FR ? {
   uk_sec: "Villes secondaires", uk_sec_s: "par an, 2013–2023 (pays : {n})", uk_add: "Habitants urbains en plus", uk_add_s: "par an, 2023–2025 (rural : {r})",
   uk_el: "Ménages avec électricité", uk_el_s: "2023 (20 % en 2004)",
   u_nkc_h: "Nouakchott, de 15 000 habitants à 1,5 million", u_nkc_help: "Barres : population (milliers) ; ligne : part de la population du pays (axe de droite). Avant 1988 : estimations ; 2024–2025 : projections ANSADE.",
-  u_sh_h: "Où vivent les Mauritaniens", u_sh_help: "Part de la population à chaque recensement. « 10 autres villes » : capitales de wilaya et Zouérate (communes).",
+  u_sh_h: "Où vivent les Mauritaniens", u_sh_help: "Part de la population à chaque recensement. « Autres villes » : capitales de wilaya et Zouérate présentes aux quatre recensements (communes).",
   u_gr_h: "Croissance entre recensements", u_gr_help: "Croissance annuelle moyenne (%/an) entre deux recensements. Les villes secondaires accélèrent : l'urbanisation descend dans la hiérarchie urbaine.",
   u_ct_h: "Croissance par ville, 2013–2023", u_ct_help: "Croissance annuelle moyenne de la population de la commune. Bleu : plus vite que le pays (ligne orange).",
   u_ur_h: "Urbain et rural", u_ur_help: "Gauche : population urbaine et rurale de l'annuaire (millions ; 2021–2022 : projections sur la base 2013, d'où la rupture en 2023). Droite : taux d'urbanisation, série longue de la Banque mondiale (ONU) et points de l'annuaire.",
   u_pc_h: "Quelle population utiliser ?", u_pc_help: "Population officielle par wilaya (annuaire ANSADE, recensement 2023 et projections) comparée à la population maillée utilisée pour la lumière par habitant. Écart en % au bout des barres. Le notebook peut remplacer la population maillée par l'officielle (POP_OFFICIAL).",
-  u_lv_h: "Les lumières confirment-elles la croissance des villes ?", u_lv_help: "Chaque point : une ville. Horizontal : croissance démographique 2013–2023 (recensements) ; vertical : croissance des lumières du district (ADM2) qui la contient, sur la période VIIRS. Taille : population 2023.",
+  u_lv_h: "Les lumières confirment-elles la croissance des villes ?", u_lv_help: "Chaque point : une ville. Horizontal : croissance démographique 2013–2023 (recensements) ; vertical : croissance de la lumière dans la zone tampon de la ville (25 km Nouakchott, 12 km Nouadhibou, 6 à 8 km ailleurs) sur 2014–2023. Taille : population 2023.",
   u_lv_m: "Mesure", u_lv_sol: "Somme des lumières", u_lv_lit: "Surface éclairée",
   u_ul_h: "Urbanisation vue du ciel", u_ul_help: "Part de la lumière émise par les zones urbaines (GHSL, degré d'urbanisation) et part de la population maillée qui y vit.",
   u_lb_h: "Marchés du travail urbain et rural", u_lb_help: "ENTE (ANSADE), par trimestre. La part de la population en âge de travailler est un signe de l'exode rural : les jeunes adultes partent en ville.",
@@ -54,7 +54,7 @@ const T = FR ? {
   src_h: "Sources de données", src_help: "Toutes les données utilisées, ce qu'elles mesurent, leur résolution et leur période. Les données de base (lumières, population, limites) sont présentées en premier.",
   src_cols: ["Thème", "Source", "Ce que l'on utilise", "Résolution / fréquence", "Période", "Accès et licence"],
   ntl_lab: "Lumières", ntl_v: "VIIRS", ntl_b: "Black Marble", ntl_tip: "Source des lumières pour les pages Vue d'ensemble, Carte, Tendances, Régions et Inégalités",
-  ntl_note: "Lumières : Black Marble (NASA VNP46A2) — séries recalculées ; les images de la carte restent VIIRS.",
+  ntl_note: "Lumières : Black Marble (NASA VNP46A2) — séries recalculées. Restent VIIRS : les images de la carte et la population « dans le noir » (image annuelle nettoyée).",
 } : {
   na: "Data not available: run the corresponding notebook section, then the export (section 21).",
   u_lede: "Mauritania is urbanising fast: in half a century a country of nomads has become a country of towns. Where the population grows, how fast, what the lights say about it, and what it asks of the power grid, housing and jobs.",
@@ -62,12 +62,12 @@ const T = FR ? {
   uk_sec: "Secondary towns", uk_sec_s: "per year, 2013–2023 (country: {n})", uk_add: "More urban residents", uk_add_s: "per year, 2023–2025 (rural: {r})",
   uk_el: "Households with electricity", uk_el_s: "2023 (20% in 2004)",
   u_nkc_h: "Nouakchott, from 15,000 people to 1.5 million", u_nkc_help: "Bars: population (thousands); line: share of the country's population (right axis). Before 1988: estimates; 2024–2025: ANSADE projections.",
-  u_sh_h: "Where Mauritanians live", u_sh_help: "Share of the population at each census. '10 other towns': wilaya capitals and Zouérat (communes).",
+  u_sh_h: "Where Mauritanians live", u_sh_help: "Share of the population at each census. 'Other towns': wilaya capitals and Zouérat counted at all four censuses (communes).",
   u_gr_h: "Growth between censuses", u_gr_help: "Average annual growth (%/yr) between two censuses. Secondary towns are speeding up: urbanisation is spreading down the urban hierarchy.",
   u_ct_h: "Growth by town, 2013–2023", u_ct_help: "Average annual growth of the commune's population. Blue: faster than the country (orange line).",
   u_ur_h: "Urban and rural", u_ur_help: "Left: urban and rural population in the yearbook (millions; 2021–2022 are projections on the 2013 base, hence the break in 2023). Right: urban share, World Bank long series (UN) and the yearbook points.",
   u_pc_h: "Which population to use?", u_pc_help: "Official population by wilaya (ANSADE yearbook, 2023 census and projections) against the gridded population used for light per capita. Gap in % at the end of the bars. The notebook can replace the gridded population by the official one (POP_OFFICIAL).",
-  u_lv_h: "Do the lights confirm town growth?", u_lv_help: "Each dot is a town. Horizontal: population growth 2013–2023 (censuses); vertical: growth of the lights of the district (ADM2) that contains it, over the VIIRS period. Size: 2023 population.",
+  u_lv_h: "Do the lights confirm town growth?", u_lv_help: "Each dot is a town. Horizontal: population growth 2013–2023 (censuses); vertical: growth of the light in the town buffer (25 km Nouakchott, 12 km Nouadhibou, 6–8 km elsewhere) over 2014–2023. Size: 2023 population.",
   u_lv_m: "Measure", u_lv_sol: "Sum of lights", u_lv_lit: "Lit area",
   u_ul_h: "Urbanisation seen from space", u_ul_help: "Share of light emitted by urban areas (GHSL degree of urbanisation) and share of the gridded population living there.",
   u_lb_h: "Urban and rural labour markets", u_lb_help: "ENTE (ANSADE), by quarter. The working-age share of the population is a sign of the rural exodus: young adults move to the towns.",
@@ -92,7 +92,7 @@ const T = FR ? {
   src_h: "Data sources", src_help: "Every dataset used, what it measures, its resolution and its period. The core data (lights, population, boundaries) come first.",
   src_cols: ["Topic", "Source", "What is used", "Resolution / frequency", "Period", "Access and licence"],
   ntl_lab: "Lights", ntl_v: "VIIRS", ntl_b: "Black Marble", ntl_tip: "Light source of the Overview, Map, Trends, Regions and Inequality pages",
-  ntl_note: "Lights: Black Marble (NASA VNP46A2) — series recomputed; the map images stay VIIRS.",
+  ntl_note: "Lights: Black Marble (NASA VNP46A2) — series recomputed. Still VIIRS: the map images and the people-in-the-dark figures (cleaned annual image).",
 };
 
 /* ==================================================================== POPULATION & URBANISATION */
@@ -293,6 +293,35 @@ RENDER.method = () => {
   el.insertBefore(box, first ? first.nextElementSibling && first.nextElementSibling.nextElementSibling : null);
 };
 
+
+/* ==================================================================== TOPICS: show the sub-tabs of the selected topic */
+function syncTopics() {
+  const page = (location.hash || "#overview").slice(1).split("?")[0];
+  const tab = document.querySelector(`.tabs a[data-page="${page}"]`) || document.querySelector(".tabs a");
+  const topic = tab ? tab.dataset.topic : null;
+  document.querySelectorAll(".topics a").forEach((a) => (a.dataset.topic === topic ? a.setAttribute("aria-current", "true") : a.removeAttribute("aria-current")));
+  document.querySelectorAll(".tabs a").forEach((a) => { a.hidden = a.dataset.topic !== topic; });
+}
+window.addEventListener("hashchange", syncTopics);
+document.addEventListener("DOMContentLoaded", syncTopics);
+syncTopics();
+
+/* ==================================================================== SOURCE CAPTIONS FOLLOW THE LIGHT SOURCE */
+const VIIRS_RE = /VIIRS(?: DNB)?(?: VNL V2(?:\.\d)?)?(?: monthly| annual| mensuel(?:le)?s?| annuel(?:le)?s?)?(?: \(VCMSLCFG\))?/g;
+function relabelSources() {
+  if (S.src !== "bm") { document.querySelectorAll("[data-orig-src]").forEach((el) => { el.textContent = el.dataset.origSrc; delete el.dataset.origSrc; }); return; }
+  const pages = ["overview", "time", "regions", "inequality"].map((p) => document.getElementById("page-" + p)).filter(Boolean);
+  pages.forEach((pg) => pg.querySelectorAll(".source, .help").forEach((el) => {
+    const t = el.dataset.origSrc || el.textContent;
+    if (!VIIRS_RE.test(t)) { VIIRS_RE.lastIndex = 0; return; }
+    VIIRS_RE.lastIndex = 0; el.dataset.origSrc = t;
+    el.textContent = t.replace(VIIRS_RE, "NASA Black Marble VNP46A2");
+  }));
+  const k = [...document.querySelectorAll("#kpis .kpi")].find((x) => /dark|noir/i.test(x.textContent));
+  if (k && !k.querySelector(".src-note")) k.insertAdjacentHTML("beforeend", `<div class="sub src-note">${FR ? "toujours VIIRS (image annuelle nettoyée)" : "always VIIRS (cleaned annual image)"}</div>`);
+}
+window.addEventListener("hashchange", () => setTimeout(relabelSources, 60));
+
 /* ==================================================================== VIIRS / BLACK MARBLE SWITCH */
 const CORE = { regions: "regions.csv", annual: "annual_units.csv", monthly: "monthly_national.csv", madm1: "monthly_adm1.csv", gdp: "gdp.json",
   breaks: "breaks.json", ineq: "inequality.json", growth: "growth.json", adm1: "adm1.geojson", adm2: "adm2.geojson", summary: "summary.json" };
@@ -319,6 +348,7 @@ async function setSource(src) {
   RESET.forEach((p) => { S.rendered[p] = false; });
   const n = $("#ntl-note"); if (n) n.hidden = src === "viirs";
   route();
+  setTimeout(relabelSources, 80);
 }
 window.ntlSourceUI = async () => {
   const box = $("#ntl-src"); if (!box) return;

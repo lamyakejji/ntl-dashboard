@@ -58,14 +58,14 @@ const T = FR ? {
   z_lede: "Où se fait l'activité ? Les lumières nocturnes et le dioxyde d'azote (NO₂) sont mesurés séparément sur les sites extractifs, les zones industrielles, les ports et le reste du pays, chaque mois depuis 2014 (NO₂ : depuis mi-2018).",
   z_ind: "Indicateur", z_ntl: "Lumières nocturnes", z_no2: "NO₂", z_src: "Lumières", z_viirs: "VIIRS (mensuel)", z_bm: "Black Marble (quotidien)",
   z_freq: "Fréquence", z_view: "Affichage", z_idx: "Indice (1re année complète = 100)", z_yoy: "Variation sur un an (%)", z_lvl: "Niveau",
-  z_main: "Évolution par zone", z_main_help: "Cliquer sur une zone de la légende pour la masquer. Indice : 100 = moyenne de la première année complète de la zone.",
+  z_main: "Évolution par zone", z_main_help: "Cliquer sur une zone de la légende pour la masquer. Indice : 100 = moyenne de la première année complète (janvier–décembre) de la zone, indiquée sur l'axe. Le NO₂ en excès est montré en niveau.",
   z_panels: "Lumières et NO₂, zone par zone", z_panels_help: "Pour chaque groupe de zones : lumières (source choisie) et NO₂, en indice. Une hausse du NO₂ sans hausse des lumières signale plutôt de la combustion (groupes électrogènes, trafic, fours) que de l'éclairage.",
   z_site: "Un site en particulier", z_site_lab: "Site", z_map: "Carte des zones", z_map_help: "Rouge : sites extractifs ; or : zones industrielles ; bleu : zones portuaires.",
   z_share_h: "Poids des zones dans la lumière du pays", z_share_cols: ["Zone", "Surface (km²)", "Part de la lumière", "Variation sur un an"],
-  z_meth_h: "Méthode et limites", z_meth: `<ul><li><b>Zones</b> — sites miniers (liste établie, cercles de 3 à 8 km, coordonnées approximatives), zones industrielles candidates (onglet Zones industrielles, hors celles qui touchent une mine), cercles de 3 km autour des ports (PortWatch) ; « pays hors… » = différence géométrique.</li>
+  z_meth_h: "Méthode et limites", z_meth: `<ul><li><b>Zones</b> — sites miniers (liste établie, cercles de 3 à 8 km, coordonnées approximatives), zones industrielles candidates (onglet Zones industrielles, hors celles qui touchent une mine), cercles de 3 km autour des ports (PortWatch ; terminaux pétroliers et gaziers en mer comptés comme sites extractifs) ; « pays hors… » = différence géométrique. <b>Les groupes se recouvrent</b> : le pays contient tous les autres, et les groupes « hors… » ne s'additionnent pas.</li>
     <li><b>VIIRS</b> — composites mensuels VCMSLCFG nettoyés comme la série nationale (couverture sans nuages, valeurs négatives, pics, fond, pixels nuageux remplacés par leur valeur annuelle). <b>Black Marble</b> — moyenne des nuits claires de bonne qualité du mois (VNP46A2, corrigé de l'angle de vue et de la lune), sur les pixels éclairés du composite annuel.</li>
-    <li><b>NO₂</b> — colonne troposphérique Sentinel-5P (moyenne mensuelle, ~5 km) : sensible aux nuages et au vent ; à lire en tendance.</li>
-    <li>Trimestres et années = moyennes des mois (périodes complètes seulement) ; les mois couverts à moins de 50 % sont écartés.</li></ul>`,
+    <li><b>NO₂</b> — colonne troposphérique Sentinel-5P (moyenne mensuelle, ~5 km), moyennée sur la surface de la zone : sensible aux nuages et au vent ; à lire en tendance. Comme c'est une moyenne de surface, elle n'a pas de sens pour les groupes « pays » (surtout du désert). <b>NO₂ en excès</b> = moyenne de la zone moins la moyenne d'un anneau de 10 à 30 km autour, en µmol/m² : une valeur positive signale des émissions locales. Données à partir de juillet 2018, donc indices à partir de 2019.</li>
+    <li>Trimestres et années = moyennes des mois (périodes complètes seulement) ; les mois couverts à moins de 50 % sont écartés. Les points annuels sont placés au 1ᵉʳ janvier ; les indices partent de la première année complète (janvier–décembre) de chaque zone, indiquée sur l'axe.</li></ul>`,
   // ports
   p_lede: "Le trafic des ports mauritaniens vu par les positions des navires (AIS) : escales et tonnages importés et exportés estimés chaque jour par le FMI (PortWatch), par type de navire.",
   p_k_imp: "Importations", p_k_exp: "Exportations", p_k_calls: "Escales", p_k_ports: "Ports suivis",
@@ -114,14 +114,14 @@ const T = FR ? {
   z_lede: "Where does activity happen? Night-time lights and nitrogen dioxide (NO₂) are measured separately over extractive sites, industrial zones, ports and the rest of the country, every month since 2014 (NO₂: since mid-2018).",
   z_ind: "Indicator", z_ntl: "Night lights", z_no2: "NO₂", z_src: "Lights", z_viirs: "VIIRS (monthly)", z_bm: "Black Marble (daily)",
   z_freq: "Frequency", z_view: "Display", z_idx: "Index (first full year = 100)", z_yoy: "Year-on-year change (%)", z_lvl: "Level",
-  z_main: "Trend by zone", z_main_help: "Click a zone in the legend to hide it. Index: 100 = mean of the zone's first complete year.",
+  z_main: "Trend by zone", z_main_help: "Click a zone in the legend to hide it. Index: 100 = mean of the zone's first full January–December year (named on the axis). NO₂ excess is shown as a level.",
   z_panels: "Lights and NO₂, zone by zone", z_panels_help: "For each zone group: lights (chosen source) and NO₂, as indices. NO₂ rising without lights points to combustion (generators, traffic, kilns) rather than lighting.",
   z_site: "One site", z_site_lab: "Site", z_map: "Map of the zones", z_map_help: "Red: extractive sites; gold: industrial zones; blue: port areas.",
   z_share_h: "Weight of the zones in the country's light", z_share_cols: ["Zone", "Area (km²)", "Share of light", "Year-on-year change"],
-  z_meth_h: "Method and limits", z_meth: `<ul><li><b>Zones</b> — mining sites (curated list, 3–8 km circles, approximate coordinates), candidate industrial zones (Industrial zones tab, minus those touching a mine), 3 km circles around ports (PortWatch); “country excl.” = geometric difference.</li>
+  z_meth_h: "Method and limits", z_meth: `<ul><li><b>Zones</b> — mining sites (curated list, 3–8 km circles, approximate coordinates), candidate industrial zones (Industrial zones tab, minus those touching a mine), 3 km circles around ports (PortWatch; offshore oil and gas terminals counted as extractive sites); “country excl.” = geometric difference. <b>Groups overlap</b>: the country contains all the others, and the excluded groups are not meant to add up to it.</li>
     <li><b>VIIRS</b> — monthly VCMSLCFG composites cleaned like the national series (cloud-free coverage, negatives, spikes, background, cloudy pixels imputed with their annual value). <b>Black Marble</b> — mean of the month's high-quality clear nights (VNP46A2, view-angle and moonlight corrected), over pixels lit in the annual composite.</li>
-    <li><b>NO₂</b> — Sentinel-5P tropospheric column (monthly mean, ~5 km): sensitive to clouds and wind; read as a trend.</li>
-    <li>Quarters and years = means of months (complete periods only); months with < 50% coverage are dropped.</li></ul>`,
+    <li><b>NO₂</b> — Sentinel-5P tropospheric column (monthly mean, ~5 km), averaged over the zone's area: sensitive to clouds and wind; read as a trend. Because it is an area mean, it is meaningless for the country groups (mostly empty desert). <b>NO₂ excess</b> = zone mean minus the mean over a 10–30 km ring around it, in µmol/m²: positive values point to local emissions. Data start in July 2018, so indices start in 2019.</li>
+    <li>Quarters and years = means of months (complete periods only); months with < 50% coverage are dropped. Yearly points are placed on 1 January of the year; indices use each zone's first full January–December year, named on the axis.</li></ul>`,
   p_lede: "Traffic in Mauritania's ports seen through ship positions (AIS): port calls and import/export tonnage estimated daily by the IMF (PortWatch), by vessel type.",
   p_k_imp: "Imports", p_k_exp: "Exports", p_k_calls: "Port calls", p_k_ports: "Ports tracked",
   p_meas: "Measure", p_imp: "Imports (t)", p_exp: "Exports (t)", p_calls: "Port calls", p_by: "Breakdown", p_vessel: "By vessel type", p_port: "By port",
@@ -269,7 +269,7 @@ RENDER.agri = () => {
         const y = b[k].map((v, i) => (st.v === "ndvi" ? v : isNum(v) && isNum(bl[i]) && bl[i] > 0 ? 100 * (v / bl[i] - 1) : null));
         tr.push({ x: xl[st.f].slice(0, n), y, name: l, mode: "lines", showlegend: !small, line: { color: col, width: 2.2, dash: da } }); });
     } else {
-      const xs = s.year.map((y, i) => (st.f === "M" ? `${y}-${String(s.sub[i]).padStart(2, "0")}-15` : st.f === "Q" ? `${y}-${String(3 * s.sub[i] - 1).padStart(2, "0")}-15` : `${y}-07-01`));
+      const xs = s.year.map((y, i) => (st.f === "M" ? `${y}-${String(s.sub[i]).padStart(2, "0")}-15` : st.f === "Q" ? `${y}-${String(3 * s.sub[i] - 1).padStart(2, "0")}-15` : `${y}`));
       if (st.v === "anom") tr.push({ type: "bar", x: xs, y: s.ndvi.map((_, i) => val(i)), name: T.v_anom, showlegend: false,
         marker: { color: s.ndvi.map((_, i) => (val(i) < 0 ? IMF.red : IMF.blue)) } });
       else { tr.push({ x: xs, y: s.ndvi, name: T.v_ndvi, mode: "lines", showlegend: !small, line: { color: IMF.blue, width: small ? 1.2 : 1.6 } });
@@ -320,7 +320,7 @@ RENDER.zones = () => {
   const groups = Object.keys(z.groups || {}), col = z.colors || {};
   sec.innerHTML = `<p class="lede">${esc(T.z_lede)}</p>
     <div class="card"><div class="map-toolbar" style="flex-wrap:wrap;gap:10px 18px">
-      <label class="ctl">${esc(T.z_ind)} ${seg("z-ind", [["ntl", T.z_ntl], ["no2", T.z_no2]], "ntl")}</label>
+      <label class="ctl">${esc(T.z_ind)} ${seg("z-ind", [["ntl", T.z_ntl], ["no2", T.z_no2], ["no2x", FR ? "NO₂ en excès (anneau 10–30 km)" : "NO₂ excess (10–30 km ring)"]], "ntl")}</label>
       <label class="ctl">${esc(T.z_src)} ${seg("z-src", [["viirs", T.z_viirs], ["bm", T.z_bm]], st.src)}</label>
       <label class="ctl">${esc(T.z_freq)} ${seg("z-f", [["M", T.f_M], ["Q", T.f_Q], ["A", T.f_A]], "M")}</label>
       <label class="ctl">${esc(T.z_view)} ${seg("z-v", [["idx", T.z_idx], ["yoy", T.z_yoy], ["lvl", T.z_lvl]], "idx")}</label></div>
@@ -330,22 +330,28 @@ RENDER.zones = () => {
       <article class="card"><h2>${esc(T.z_map)}</h2><p class="help">${esc(T.z_map_help)}</p><div id="zmap" class="elec-map" style="height:360px"></div></article></div>
     <article class="card"><h2>${esc(T.z_share_h)}</h2><div class="table-wrap"><table class="data" id="z-share"></table></div></article>
     <article class="card prose"><h2>${esc(T.z_meth_h)}</h2>${T.z_meth}</article>`;
-  const colOf = () => (st.ind === "no2" ? "no2" : st.src === "bm" ? "ntl_bm" : "ntl_viirs");
-  const xOf = (p) => (st.f === "M" ? p + "-15" : st.f === "Q" ? `${p.slice(0, 4)}-${String(3 * +p.slice(5) - 1).padStart(2, "0")}-15` : `${p}-07-01`);
+  const colOf = () => (st.ind === "no2" ? "no2" : st.ind === "no2x" ? "no2_ex" : st.src === "bm" ? "ntl_bm" : "ntl_viirs");
+  const xOf = (p) => (st.f === "M" ? p + "-15" : st.f === "Q" ? `${p.slice(0, 4)}-${String(3 * +p.slice(5) - 1).padStart(2, "0")}-15` : `${p}`);
   const series = (zone, c) => { const t = (z[st.f] || {})[zone]; if (!t || !t[c]) return { x: [], y: [] };
     const per = t.period, v = t[c];
     if (st.view === "yoy") return { x: per.map(xOf), y: t[c + "_yoy"] || [] };
     if (st.view === "lvl") return { x: per.map(xOf), y: v };
+    if (c === "no2_ex") return { x: per.map(xOf), y: v };               // an excess can be negative: no index
     const yr = per.map((p) => p.slice(0, 4)); const ys = [...new Set(yr)];
-    let b = null; for (const y of ys) { const vals = v.filter((x, i) => yr[i] === y && isNum(x)); const need = st.f === "M" ? 12 : st.f === "Q" ? 4 : 1; if (vals.length >= need) { b = vals.reduce((s, q) => s + q, 0) / vals.length; break; } }
+    let b = null, by = null; for (const y of ys) { const vals = v.filter((x, i) => yr[i] === y && isNum(x)); const need = st.f === "M" ? 12 : st.f === "Q" ? 4 : 1; if (vals.length >= need) { b = vals.reduce((s, q) => s + q, 0) / vals.length; by = y; break; } }
+    if (by) bases.add(by);
     return { x: per.map(xOf), y: v.map((x) => (isNum(x) && b ? (100 * x) / b : null)) }; };
-  const ytitle = () => (st.view === "yoy" ? "%" : st.view === "idx" ? (FR ? "Indice" : "Index") : (z.indicators || {})[colOf()] || "");
+  const bases = new Set();
+  const idxTitle = () => { const b = [...bases].sort(); return b.length === 1 ? (FR ? `Indice (${b[0]} = 100)` : `Index (${b[0]} = 100)`) :
+    (FR ? `Indice (première année complète = 100 : ${b.join(", ")})` : `Index (first full calendar year = 100: ${b.join(", ")})`); };
+  const ytitle = () => (st.view === "yoy" ? "%" : st.view === "idx" && colOf() !== "no2_ex" ? idxTitle() : (z.indicators || {})[colOf()] || "");
   const draw = () => {
-    const c = colOf();
-    plot("z-main", groups.map((g) => { const s = series(g, c); return { x: s.x, y: s.y, name: z.groups[g], mode: "lines", line: { color: col[g], width: g === "country" ? 3 : 2 },
+    const c = colOf(); bases.clear();
+    const gs = c === "no2_ex" ? groups.filter((g) => !g.startsWith("country")) : groups;
+    plot("z-main", gs.map((g) => { const s = series(g, c); return { x: s.x, y: s.y, name: z.groups[g], mode: "lines", line: { color: col[g], width: g === "country" ? 3 : 2 },
       connectgaps: false, hovertemplate: "%{x|%b %Y}: %{y:.1f}<extra>" + esc(z.groups[g]) + "</extra>" }; }).filter((t) => t.y.some(isNum)),
       { yaxis: { title: { text: ytitle() }, zeroline: st.view === "yoy", zerolinecolor: C().axis }, xaxis: { type: "date" }, legend: { y: 1.12 } });
-    $("#z-src-note").textContent = (z.indicators || {})[c] || "";
+    $("#z-src-note").textContent = [(z.indicators || {})[c], (z.coverage || {})[c]].filter(Boolean).join(" — ");
     const lc = st.src === "bm" ? "ntl_bm" : "ntl_viirs", sv = st.view;
     if (st.view === "lvl") st.view = "idx";
     groups.forEach((g, i) => { const a = series(g, lc), b = series(g, "no2");
@@ -406,7 +412,7 @@ RENDER.ports = () => {
   $("#p-kpis").innerHTML = kpi(T.p_k_imp, kt(last.import), `${last.period || ""} · ${pc(ly.import, 0)} ${FR ? "sur un an" : "y/y"}`) +
     kpi(T.p_k_exp, kt(last.export), `${last.period || ""} · ${pc(ly.export, 0)} ${FR ? "sur un an" : "y/y"}`) +
     kpi(T.p_k_calls, F.num(last.portcalls), `${last.period || ""} · ${pc(ly.portcalls, 0)} ${FR ? "sur un an" : "y/y"}`) + kpi(T.p_k_ports, F.num((p.ports || []).length), "PortWatch");
-  const xOf = (s) => (st.f === "M" ? s + "-15" : st.f === "Q" ? `${s.slice(0, 4)}-${String(3 * +s.slice(5) - 1).padStart(2, "0")}-15` : `${s}-07-01`);
+  const xOf = (s) => (st.f === "M" ? s + "-15" : st.f === "Q" ? `${s.slice(0, 4)}-${String(3 * +s.slice(5) - 1).padStart(2, "0")}-15` : `${s}`);
   const draw = () => {
     const t = p[st.f] || [], ty = p[st.f + "_yoy"] || [];
     if (st.view === "yoy") { plot("p-main", [{ type: "bar", x: ty.map((r) => xOf(r.period)), y: ty.map((r) => r[st.meas]), marker: { color: ty.map((r) => (r[st.meas] < 0 ? IMF.red : IMF.blue)) }, showlegend: false }],

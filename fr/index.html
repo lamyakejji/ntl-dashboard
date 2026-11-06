@@ -7,8 +7,8 @@
 <title>Lumières nocturnes et activité économique</title>
 <meta name="description" content="Tableau de bord : l'activité économique mesurée par les lumières nocturnes (VIIRS), aux niveaux national et régional.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23004C97'/%3E%3Ccircle cx='11' cy='13' r='3' fill='%23F5BD47'/%3E%3Ccircle cx='21' cy='19' r='2' fill='%23F5BD47'/%3E%3Ccircle cx='19' cy='9' r='1.4' fill='%23fde7a6'/%3E%3C/svg%3E">
-<link rel="stylesheet" href="assets/vendor/leaflet.css?v=20261105130554">
-<link rel="stylesheet" href="assets/style.css?v=20261105130554">
+<link rel="stylesheet" href="assets/vendor/leaflet.css?v=20261106001208">
+<link rel="stylesheet" href="assets/style.css?v=20261106001208">
 <script>
   // apply the stored theme before first paint (no flash)
   try { const t = localStorage.getItem("ntl-theme"); if (t === "light" || t === "dark") document.documentElement.dataset.theme = t; } catch (e) {}
@@ -40,25 +40,34 @@
   ⚠️ Données <strong>synthétiques de test</strong> : ce tableau de bord sert à vérifier la chaîne de traitement.
   Aucun chiffre affiché n'est une statistique réelle.
 </div>
+<nav class="topics" aria-label="Thèmes">
+  <a href="#overview" data-topic="home">Vue d'ensemble et carte</a>
+  <a href="#time" data-topic="lights">Lumières et régions</a>
+  <a href="#urban" data-topic="people">Population et société</a>
+  <a href="#grid" data-topic="energy">Électricité</a>
+  <a href="#macro" data-topic="economy">Économie et secteurs</a>
+  <a href="#climate" data-topic="climate">Climat</a>
+  <a href="#method" data-topic="about">Méthode et données</a>
+</nav>
 <nav class="tabs" aria-label="Pages">
-  <a href="#overview" data-page="overview">Vue d'ensemble</a>
-  <a href="#map" data-page="map">Carte</a>
-  <a href="#time" data-page="time">Évolution</a>
-  <a href="#regions" data-page="regions">Régions</a>
-  <a href="#inequality" data-page="inequality">Inégalités</a>
-  <a href="#urban" data-page="urban">Population et urbanisation</a>
-  <a href="#grid" data-page="grid">Réseau électrique</a>
-  <a href="#outages" data-page="outages">Coupures d'électricité</a>
-  <a href="#industry" data-page="industry">Zones industrielles</a>
-  <a href="#zones" data-page="zones">Activité par zone</a>
-  <a href="#ports" data-page="ports">Ports et commerce</a>
-  <a href="#agri" data-page="agri">Agriculture</a>
-  <a href="#macro" data-page="macro">Croissance</a>
-  <a href="#labour" data-page="labour">Marché du travail</a>
-  <a href="#digital" data-page="digital">Numérique</a>
-  <a href="#climate" data-page="climate">Climat</a>
-  <a href="#method" data-page="method">Méthode &amp; sources</a>
-  <a href="#data" data-page="data">Données</a>
+  <a href="#overview" data-page="overview" data-topic="home">Vue d'ensemble</a>
+  <a href="#map" data-page="map" data-topic="home">Carte</a>
+  <a href="#time" data-page="time" data-topic="lights">Évolution</a>
+  <a href="#regions" data-page="regions" data-topic="lights">Régions</a>
+  <a href="#inequality" data-page="inequality" data-topic="lights">Inégalités</a>
+  <a href="#urban" data-page="urban" data-topic="people">Population et urbanisation</a>
+  <a href="#labour" data-page="labour" data-topic="people">Marché du travail</a>
+  <a href="#digital" data-page="digital" data-topic="people">Numérique</a>
+  <a href="#grid" data-page="grid" data-topic="energy">Réseau électrique</a>
+  <a href="#outages" data-page="outages" data-topic="energy">Coupures d'électricité</a>
+  <a href="#macro" data-page="macro" data-topic="economy">Croissance</a>
+  <a href="#industry" data-page="industry" data-topic="economy">Zones industrielles</a>
+  <a href="#zones" data-page="zones" data-topic="economy">Activité par zone</a>
+  <a href="#ports" data-page="ports" data-topic="economy">Ports et commerce</a>
+  <a href="#agri" data-page="agri" data-topic="economy">Agriculture</a>
+  <a href="#climate" data-page="climate" data-topic="climate">Climat</a>
+  <a href="#method" data-page="method" data-topic="about">Méthode &amp; sources</a>
+  <a href="#data" data-page="data" data-topic="about">Données</a>
 </nav>
 
 <main id="main" class="wrap">
@@ -212,11 +221,11 @@
     <h2 class="section-title">Les populations « dans le noir »</h2>
     <div class="grid two">
       <article class="card">
-        <h3>Habitants de zones sans lumière détectable</h3>
-        <p class="help">La zone ombrée montre la plage obtenue avec différents seuils de radiance : c'est la marge
-          d'incertitude de l'indicateur.</p>
+        <h3>Habitants des zones habitées éclairées et accès à l'électricité</h3>
+        <p class="help">Part de la population des zones habitées vivant dans des pixels éclairés de l'image annuelle nettoyée
+          par l'EOG (fond et lumières éphémères retirés), comparée au taux d'accès de la Banque mondiale. Bande : seuils de 0,25 à 1 nW sur la même image.</p>
         <div class="chart" id="i-dark"></div>
-        <p class="source">Sources : VIIRS VNL V2 ; GHSL/WorldPop ; Banque mondiale (EG.ELC.ACCS.ZS).</p>
+        <p class="source">Sources : VIIRS VNL V2, image nettoyée de l'EOG (average_masked) ; GHSL/WorldPop ; Banque mondiale (EG.ELC.ACCS.ZS).</p>
       </article>
       <article class="card">
         <h3>Où sont-ils ?</h3>
@@ -323,14 +332,14 @@
   <p id="foot"></p>
 </footer>
 
-<script src="assets/vendor/leaflet.js?v=20261105130554"></script>
+<script src="assets/vendor/leaflet.js?v=20261106001208"></script>
 <script>window.L || document.write('<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"><script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"><\/script>')</script>
-<script src="assets/vendor/plotly.min.js?v=20261105130554" charset="utf-8"></script>
+<script src="assets/vendor/plotly.min.js?v=20261106001208" charset="utf-8"></script>
 <script>window.Plotly || document.write('<script src="https://cdn.jsdelivr.net/npm/plotly.js-dist-min@2.35.2/plotly.min.js" charset="utf-8"><\/script>')</script>
-<script src="assets/app.js?v=20261105130554"></script>
-<script src="assets/elec.js?v=20261105130554"></script>
-<script src="assets/econ.js?v=20261105130554"></script>
-<script src="assets/lc.js?v=20261105130554"></script>
-<script src="assets/ud.js?v=20261105130554"></script>
+<script src="assets/app.js?v=20261106001208"></script>
+<script src="assets/elec.js?v=20261106001208"></script>
+<script src="assets/econ.js?v=20261106001208"></script>
+<script src="assets/lc.js?v=20261106001208"></script>
+<script src="assets/ud.js?v=20261106001208"></script>
 </body>
 </html>
