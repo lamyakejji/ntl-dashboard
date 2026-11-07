@@ -99,6 +99,14 @@
    <sub>🟢 high · Portulans Institute</sub>
 35. **Internet shutdowns** — 3 internet shutdowns since 2019, including 22 days without mobile internet in July 2024 after the presidential election, and cuts during the baccalauréat exams.  
    <sub>🟢 high · CIVICUS, Internet Society</sub>
+36. **Road network** — 44,676 km of mapped roads, 13% in paved classes; 8.8 km per 1,000 people.  
+   <sub>🟠 medium · OpenStreetMap: near complete for main roads, incomplete for tracks</sub>
+37. **Inclusion** — 35 of 57 ADM2 units are 'critical' (inclusion index below 20), home to 59% of the population.  
+   <sub>🟠 medium · composite index: ranks tested against other weights, levels are not absolute</sub>
+38. **Roads, services and lights** — Better-served ADM2 units are also brighter per person (Spearman 0.68; 0.66 at equal population density).  
+   <sub>🟠 medium · rank correlation, n = 57, p = 0.00; not a causal relationship</sub>
+39. **Weighting robustness** — The inclusion ranking changes little with the weights: rank correlation 0.66–0.97 across schemes.  
+   <sub>🟠 medium · rank correlation with the baseline weights</sub>
 
 ## 🛰️ Day and night
 
@@ -252,4 +260,4 @@ Produced by the **African Development Bank** as part of **Data Innovation for Af
 ---
 
 <p align="center"><sub>© 2026 AfDB-DI4A · with the IMF Big Data Center · Any reuse must cite “Source: AfDB-DI4A” · The views expressed do not necessarily represent the views of the IMF</sub></p>
-<p align="center"><sub>Last update: 2026-11-06 · <a href="#top">↑</a></sub></p>
+<p align="center"><sub>Last update: 2026-11-07 · <a href="#top">↑</a></sub></p>

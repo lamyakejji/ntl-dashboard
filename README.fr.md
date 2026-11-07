@@ -95,9 +95,17 @@
    <sub>high · Portulans Institute</sub>
 33. **Coupures d'internet** — 3 coupures d'internet depuis 2019, dont 22 jours d'internet mobile coupé en juillet 2024 après la présidentielle et des coupures pendant le baccalauréat.  
    <sub>high · CIVICUS, Internet Society</sub>
-34. **Croissance officielle** — PIB réel 2026T2 : +2,8 % sur un trimestre (CVS), +6,6 % sur un an ; hors gaz +5,9 % sur un an.  
+34. **Réseau routier** — 44 676 km de routes cartographiées, dont 13 % de classes revêtues ; 8,8 km pour 1 000 habitants.  
+   <sub>medium · OpenStreetMap : bien complet pour les grands axes, incomplet pour les pistes</sub>
+35. **Inclusion** — 35 unités ADM2 sur 57 sont « critiques » (indice d'inclusion < 20) : 59 % de la population.  
+   <sub>medium · indice composite : rangs robustes aux poids testés, niveaux non</sub>
+36. **Routes, services et lumières** — Les unités ADM2 mieux desservies sont aussi plus lumineuses par habitant (Spearman 0,68, 0,66 à densité égale).  
+   <sub>medium · corrélation de rang, n = 57, p = 0,00 ; pas une relation causale</sub>
+37. **Robustesse des poids** — Le classement d'inclusion change peu avec les poids : corrélation de rang 0,66 à 0,97 selon le schéma.  
+   <sub>medium · corrélation de rang avec la pondération de référence</sub>
+38. **Croissance officielle** — PIB réel 2026T2 : +2,8 % sur un trimestre (CVS), +6,6 % sur un an ; hors gaz +5,9 % sur un an.  
    <sub>high · ANSADE, comptes trimestriels</sub>
-35. **Satellites et comptes nationaux** — Meilleur indicateur avancé : Escales (PortWatch) pour « Transport » (corrélation de rang 0,71, même signe 67 % du temps).  
+39. **Satellites et comptes nationaux** — Meilleur indicateur avancé : Escales (PortWatch) pour « Transport » (corrélation de rang 0,71, même signe 67 % du temps).  
    <sub>medium · 6 trimestres</sub>
 
 ## 🛰️ Le jour et la nuit
@@ -252,4 +260,4 @@ Réalisé par la **Banque africaine de développement** dans le cadre de **Data 
 ---
 
 <p align="center"><sub>© 2026 AfDB-DI4A · avec l'IMF Big Data Center · Toute réutilisation doit mentionner « Source : AfDB-DI4A » · Les opinions exprimées ne reflètent pas nécessairement celles du FMI</sub></p>
-<p align="center"><sub>Dernière mise à jour : 2026-11-06 · <a href="#top">↑</a></sub></p>
+<p align="center"><sub>Dernière mise à jour : 2026-11-07 · <a href="#top">↑</a></sub></p>
