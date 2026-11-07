@@ -410,3 +410,30 @@ ul.small { font-size: .85rem; }
 .tabs a { font-size: .9rem; }
 .panel-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 12px; }
 .panel-grid .chart { height: 240px; }
+
+/* v7: transport & access to services page (tr.js) */
+.tr-views { display: flex; flex-wrap: wrap; gap: 10px 18px; margin: 14px 0 12px; }
+.tr-mapgrid { display: grid; grid-template-columns: minmax(0, 2.1fr) minmax(260px, 1fr); gap: 14px; align-items: start; }
+.tr-side { max-height: clamp(420px, calc(100vh - 300px), 680px); overflow-y: auto; }
+.tr-side h3 { margin: 0 0 4px; font-size: 1rem; }
+.tr-pois { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; margin: 0 0 10px; font-size: .86rem; color: var(--ink-2); }
+.tr-pois-l { font-weight: 700; color: var(--ink); margin-right: 2px; }
+.tr-chk { display: inline-flex; align-items: center; gap: 5px; cursor: pointer; white-space: nowrap; }
+.tr-chk input { accent-color: var(--accent, #004C97); margin: 0; }
+.tr-pois b.dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; border: 1.5px solid #fff; box-shadow: 0 0 0 1px var(--border); }
+.tr-n { color: var(--muted); font-variant-numeric: tabular-nums; font-size: .8rem; }
+.tr-legend { margin-top: 10px; }
+.tr-legend .classes { display: flex; flex-wrap: wrap; gap: 4px 14px; margin: 6px 0; font-size: .82rem; }
+.tr-legend .sw { display: inline-block; width: 14px; height: 14px; border-radius: 3px; vertical-align: -2px; margin-right: 5px; }
+.tr-legend .sw.na { background: #ccc; opacity: .5; }
+table.data tr.tr-base td { font-weight: 700; background: var(--surface-2); }
+table.data th.sortable:hover { color: var(--ink); }
+@media (max-width: 900px) { .tr-mapgrid { grid-template-columns: 1fr; } .tr-side { max-height: none; } }
+.tr-legend .ticks { display: flex; gap: 12px; color: var(--ink-2); font-size: .8rem; }
+#page-transport .seg { flex-wrap: wrap; max-width: 100%; }
+#page-transport .map-toolbar .ctl { flex-wrap: wrap; max-width: 100%; }
+#page-transport .map-toolbar select { max-width: min(420px, 100%); }
+#page-transport > * { min-width: 0; }
+#tr-map-view, #tr-corr-view { display: grid; gap: var(--gap, 16px); min-width: 0; }
+#tr-map-view[hidden], #tr-corr-view[hidden] { display: none; }
+#tr-map-view > *, #tr-corr-view > *, .tr-mapgrid > * { min-width: 0; }

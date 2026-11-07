@@ -261,6 +261,7 @@ const SRC = FR ? [
   ["Zones industrielles", "Détection par les lumières (section 12) et OpenStreetMap landuse=industrial", "Contours des zones, croissance des lumières par zone", "vecteur", "—", "ODbL (OSM)"],
   ["Ports et commerce", "FMI PortWatch", "Escales et volumes estimés d'import / export (AIS)", "port · quotidien", "2019 →", "FMI, attribution"],
   ["Climat", "NOAA CPC (RONI), CHIRPS, notebook El Niño", "Indice El Niño, pluie et pâturages de la saison", "national, wilaya · mensuel, décadaire", "1980 →", "Domaine public"],
+  ["Transport et services", "OpenStreetMap (extrait Geofabrik, lu avec pyrosm) ; PNUD, Rapport sur le développement humain", "Routes par classe, points d'intérêt en 9 secteurs ; IDH et composantes (contexte national)", "vecteur · date de l'extrait ; national · annuel", "— ; 1990 →", "ODbL (OSM) ; PNUD, attribution"],
   ["Numérique", "Ookla Speedtest open data ; UIT (WDI) ; Network Readiness Index ; Internet Society, CIVICUS", "Vitesse, latence, nombre de tests ; usage d'internet ; préparation numérique ; coupures", "tuile ~600 m · trimestriel ; national · annuel", "2019 →", "CC BY-NC-SA 4.0 (Ookla)"],
   ["Presse", "Médias mauritaniens en ligne (FR / AR / EN)", "Articles sur les coupures, vocabulaire économique", "article · quotidien", "2014 →", "Usage d'analyse, liens vers les sources"],
 ] : [
@@ -279,6 +280,7 @@ const SRC = FR ? [
   ["Industrial zones", "Detection from lights (section 12) and OpenStreetMap landuse=industrial", "Zone outlines, light growth by zone", "vector", "—", "ODbL (OSM)"],
   ["Ports and trade", "IMF PortWatch", "Port calls and estimated import / export volumes (AIS)", "port · daily", "2019 →", "IMF, attribution"],
   ["Climate", "NOAA CPC (RONI), CHIRPS, El Niño notebook", "El Niño index, season rainfall and pasture", "national, wilaya · monthly, dekadal", "1980 →", "Public domain"],
+  ["Transport and services", "OpenStreetMap (Geofabrik extract, read with pyrosm); UNDP Human Development Report", "Roads by class, points of interest in 9 sectors; HDI and components (national context)", "vector · extract date; national · annual", "—; 1990 →", "ODbL (OSM); UNDP, attribution"],
   ["Digital", "Ookla Speedtest open data; ITU (WDI); Network Readiness Index; Internet Society, CIVICUS", "Speed, latency, number of tests; internet use; digital readiness; shutdowns", "~600 m tile · quarterly; national · annual", "2019 →", "CC BY-NC-SA 4.0 (Ookla)"],
   ["News", "Mauritanian online media (FR / AR / EN)", "Articles on outages, economic vocabulary", "article · daily", "2014 →", "Analysis use, links to the sources"],
 ];

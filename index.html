@@ -7,8 +7,8 @@
 <title>Night-Time Lights and Economic Activity</title>
 <meta name="description" content="Dashboard: economic activity measured with night-time lights (VIIRS) at national and subnational levels.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23004C97'/%3E%3Ccircle cx='11' cy='13' r='3' fill='%23F5BD47'/%3E%3Ccircle cx='21' cy='19' r='2' fill='%23F5BD47'/%3E%3Ccircle cx='19' cy='9' r='1.4' fill='%23fde7a6'/%3E%3C/svg%3E">
-<link rel="stylesheet" href="assets/vendor/leaflet.css?v=20261106001150">
-<link rel="stylesheet" href="assets/style.css?v=20261106001150">
+<link rel="stylesheet" href="assets/vendor/leaflet.css?v=20261107080153">
+<link rel="stylesheet" href="assets/style.css?v=20261107080153">
 <script>
   // apply the stored theme before first paint (no flash)
   try { const t = localStorage.getItem("ntl-theme"); if (t === "light" || t === "dark") document.documentElement.dataset.theme = t; } catch (e) {}
@@ -44,7 +44,7 @@
   <a href="#overview" data-topic="home">Overview & map</a>
   <a href="#time" data-topic="lights">Lights & regions</a>
   <a href="#urban" data-topic="people">Population & society</a>
-  <a href="#grid" data-topic="energy">Electricity</a>
+  <a href="#grid" data-topic="energy">Electricity &amp; transport</a>
   <a href="#macro" data-topic="economy">Economy & sectors</a>
   <a href="#climate" data-topic="climate">Climate</a>
   <a href="#method" data-topic="about">Methods & data</a>
@@ -60,6 +60,7 @@
   <a href="#digital" data-page="digital" data-topic="people">Digital</a>
   <a href="#grid" data-page="grid" data-topic="energy">Electricity grid</a>
   <a href="#outages" data-page="outages" data-topic="energy">Power outages</a>
+  <a href="#transport" data-page="transport" data-topic="energy">Transport &amp; services</a>
   <a href="#macro" data-page="macro" data-topic="economy">Growth</a>
   <a href="#industry" data-page="industry" data-topic="economy">Industrial zones</a>
   <a href="#zones" data-page="zones" data-topic="economy">Activity by zone</a>
@@ -302,6 +303,7 @@
   <!-- ======================= ELECTRICITY GRID / OUTAGES (rendered by assets/elec.js) ======================= -->
   <section class="page" id="page-grid" hidden></section>
   <section class="page" id="page-outages" hidden></section>
+  <section class="page" id="page-transport" hidden></section>
 
   <section class="page prose" id="page-method" hidden>
     <article class="card"><div id="method"></div></article>
@@ -332,14 +334,15 @@
   <p id="foot"></p>
 </footer>
 
-<script src="assets/vendor/leaflet.js?v=20261106001150"></script>
+<script src="assets/vendor/leaflet.js?v=20261107080153"></script>
 <script>window.L || document.write('<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"><script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"><\/script>')</script>
-<script src="assets/vendor/plotly.min.js?v=20261106001150" charset="utf-8"></script>
+<script src="assets/vendor/plotly.min.js?v=20261107080153" charset="utf-8"></script>
 <script>window.Plotly || document.write('<script src="https://cdn.jsdelivr.net/npm/plotly.js-dist-min@2.35.2/plotly.min.js" charset="utf-8"><\/script>')</script>
-<script src="assets/app.js?v=20261106001150"></script>
-<script src="assets/elec.js?v=20261106001150"></script>
-<script src="assets/econ.js?v=20261106001150"></script>
-<script src="assets/lc.js?v=20261106001150"></script>
-<script src="assets/ud.js?v=20261106001150"></script>
+<script src="assets/app.js?v=20261107080153"></script>
+<script src="assets/elec.js?v=20261107080153"></script>
+<script src="assets/econ.js?v=20261107080153"></script>
+<script src="assets/lc.js?v=20261107080153"></script>
+<script src="assets/ud.js?v=20261107080153"></script>
+<script src="assets/tr.js?v=20261107080153"></script>
 </body>
 </html>
